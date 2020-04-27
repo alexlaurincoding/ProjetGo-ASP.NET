@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 
 namespace ProjetGoEquipe2.Controllers
 {
     public class HomeController : Controller
     {
+        public ActionResult Index() {
 
-        public ActionResult Index() { 
+            MEMBRE bob = Singleton.Instance.db.MEMBRES.FirstOrDefault();
+            ViewBag.Nom = bob.nom;
             return View();
         }
 

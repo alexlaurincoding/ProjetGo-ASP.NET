@@ -3,9 +3,99 @@
     ViewBag.Title = "Inscription";
 }
 
-<h2>Inscription</h2>
+<h2 style="text-align:center;">Inscription</h2>
+
+<div class="col-md-4 mb-3">
+    <br />
+
+    <h4>Remplissez ce formulaire pour devenir membre de ProjetGo</h4>
+
+    <h6>Vous pourrez payer votre cotisation de membre par la suite</h6>
+
+    <br />
+
+    <form class="needs-validation" novalidate>
+        <div class="form-row">
+            <label for="validationCustom01">Prénom</label>
+            <input type="text" class="form-control" id="validationCustom01" placeholder="Prénom" required>
+        </div>
+        <br />
+        <div class="form-row">
+            <label for="validationCustom02">Nom</label>
+            <input type="text" class="form-control" id="validationCustom02" placeholder="Nom de famille" required>
+        </div>
+        <br />
+        <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        </div>
+        <br />
+        <div class="form-row">
+            <label for="inputAddress2">Suite Addresse</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+        </div>
+        <br />
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputCity">Ville</label>
+                <input type="text" class="form-control" id="inputCity">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputState">Province</label>
+                <select id="inputState" class="form-control">
+                    <option selected>Choisir...</option>
+                    <option>Québec</option>
+                    <option>Alberta</option>
+                    <option>Colombie-Britannique</option>
+                    <option>Île du Prince Edouard</option>
+                    <option>Manitoba</option>
+                    <option>Nouveau-Brunswick</option>
+                    <option>Nouvelle-Écosse</option>
+                    <option>Nunavut</option>
+                    <option>Ontario</option>
+                    <option>Saskatchewan</option>
+                    <option>Terre-Neuve-Labrador</option>
+                    <option>Territoires du Nord-West</option>
+                    <option>Yukon</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputZip">Code Postal</label>
+                <input type="text" class="form-control" id="inputZip">
+            </div>
+        </div>
 
 
-<h4>Le formulaire d'enregistrement ici</h4>
+        <div class="form-row">
+            <label for="validationCustomUsername">Nom d'Utilisateur</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupPrepend"></span>
+                </div>
+                <input type="text" class="form-control" id="validationCustomUsername" placeholder="Pseudo" aria-describedby="inputGroupPrepend" required>
+            </div>
+        </div>
+        <br />
+        <div class="form-row">
+            <label for="exampleInputEmail1">Courriel</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez courriel">
+            <small id="emailHelp" class="form-text text-muted">Nous ne partagerons jamais votre courriel.</small>
+        </div>
+        <br />
+        <div class="form-row">
+            <label for="exampleInputPassword1">Mot de Passe</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
+        </div>
+        <br />
+        <div class="form-row">
+            <label for="exampleInputPassword1">Confirmer Mot de Passe</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirmer">
+        </div>
+        <br /><br />
+        <div class="form-row">
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+        </div>
+    </form>
+</div>
 
 
