@@ -14,6 +14,7 @@ namespace ProjetGoEquipe2.Controllers
             MEMBRE bob = Singleton.Instance.db.MEMBRES.FirstOrDefault();
             ViewBag.Nom = bob.nom;
             return View();
+
         }
 
         public ActionResult About()
