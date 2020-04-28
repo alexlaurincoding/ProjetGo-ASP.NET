@@ -12,18 +12,31 @@ namespace ProjetGoEquipe2
     using System;
     using System.Collections.Generic;
     
-    public partial class MEMBRE
+    public partial class Membre
     {
-        public string noMembre { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Membre()
+        {
+            this.Cotisations = new HashSet<Cotisation>();
+            this.Projets = new HashSet<Projet>();
+        }
+    
+        public string nomUsager { get; set; }
+        public string motPasse { get; set; }
         public string nom { get; set; }
         public string prenom { get; set; }
         public string email { get; set; }
         public string numeroTel { get; set; }
         public string adresse { get; set; }
-        public string motDePasse { get; set; }
-        public string dateDabonnement { get; set; }
-        public Nullable<bool> inscritMailingListe { get; set; }
-        public Nullable<System.DateTime> dateAdhesionMembre { get; set; }
-        public Nullable<System.DateTime> statuAdhésionMembre { get; set; }
+        public Nullable<System.DateTime> dateAdhesion { get; set; }
+        public Nullable<bool> inscritMailingList { get; set; }
+        public string statut { get; set; }
+        public Nullable<System.DateTime> dateProchaineCotisation { get; set; }
+        public Nullable<double> montantProchaineCotisation { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cotisation> Cotisations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Projet> Projets { get; set; }
     }
 }
