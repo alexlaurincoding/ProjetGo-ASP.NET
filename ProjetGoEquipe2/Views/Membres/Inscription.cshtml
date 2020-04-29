@@ -14,8 +14,9 @@
         <h4>Membre</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
         <div class="form-group">
-            @Html.LabelFor(model => model.nomUsager, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="control-label col-md-2">Nom d'Usager</div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.nomUsager, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.nomUsager, "", new { @class = "text-danger" })
