@@ -25,6 +25,10 @@ namespace ProjetGoEquipe2
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<MEMBRE> MEMBRES { get; set; }
+        public virtual DbSet<CompteRendu> CompteRendus { get; set; }
+        public virtual DbSet<Cotisation> Cotisations { get; set; }
+        public virtual DbSet<Membre> Membres { get; set; }
+        public virtual DbSet<Projet> Projets { get; set; }
+        public virtual DbSet<Tresorier> Tresoriers { get; set; }
     }
 }
