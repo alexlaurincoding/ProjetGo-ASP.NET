@@ -31,7 +31,7 @@
                         <li>@Html.ActionLink("Se Connecter", "Identifier", "Membres")</li>
                     }
                     @if (Session["Connected"] != null && (bool)Session["Connected"]==true) {
-                        <li>@Html.ActionLink("Compte", "Index", "Membres")</li>
+                        <li>@Html.ActionLink("Page de " + (string)Session["Usager"], "Index", "Membres")</li>
                         <li>@Html.ActionLink("Déconnexion", "Deconnexion", "Membres")</li>
                     }
 
