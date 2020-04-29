@@ -20,9 +20,13 @@ namespace ProjetGoEquipe2.Controllers
             return View();
         }
 
-        // GET: Projets/Create
-        public ActionResult Create()
+        // GET: Projets/Ajouter
+        public ActionResult Ajouter()
         {
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
