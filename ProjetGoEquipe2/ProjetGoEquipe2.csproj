@@ -226,6 +226,7 @@
     <Content Include="Views\Membres\Index.cshtml" />
     <Content Include="Views\Membres\Inscription.cshtml" />
     <Content Include="Views\Membres\Identifier.cshtml" />
+    <Content Include="Views\Membres\Cotisation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

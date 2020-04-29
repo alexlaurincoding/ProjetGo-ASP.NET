@@ -36,10 +36,14 @@ namespace ProjetGoEquipe2.Controllers
             }
             catch
             {
-                MessageBox.Show("On est dans le Catch");
-                Console.WriteLine("Dans le catch");
                 return View();
             }
+        }
+
+        // GET: Membre/Cotisation
+        public ActionResult Cotisation()
+        {
+            return View();
         }
 
         // GET: Membre/Identifier
