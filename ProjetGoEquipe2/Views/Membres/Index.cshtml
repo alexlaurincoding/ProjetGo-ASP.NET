@@ -16,29 +16,13 @@
 
                 <div class="btn-group-vertical" role="group">
                     <button type="button" class="btn btn-default" style="text-align:left">Mes Projets</button>
-                    <button onclick="afficherFormulaireAjoutProjet()" type="button" class="btn btn-default" style="text-align:left">Ajouter Projet</button>
+                    <button onclick="@("window.location.href='" + @Url.Action("Ajouter", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left">Ajouter Projet</button>
                     <button type="button" class="btn btn-default" style="text-align:left">Mes Comptes-Rendus</button>
                     <button type="button" class="btn btn-default" style="text-align:left">Payer ma Cotisation</button>
                     <button type="button" class="btn btn-default" style="text-align:left">Mon Profil</button>
                 </div>
             </div>
 
-            <script>
-                function afficherFormulaireAjoutProjet() {
-                    cacherSectionsMembres();
-                    alert("Je vais afficher");
-                    document.getElementById("ajoutProjet").style.display = "block";
-                    
-                }
-
-                function cacherSectionsMembres() {
-                    let sections = document.getElementsByClassName("sectionsMembre");
-                    for (let i = 0; i < sections.length; i++) {
-                        alert("Je vais cacher");
-                        sections[i].style.display = "none";
-                    }
-                }
-            </script>
 
 
         </div>
@@ -48,11 +32,7 @@
 
                 <div class="content-section" id="sectionPrincipaleMembre">
 
-                    <section class="sectionsMembre" id="ajoutProjet" style="display:none">
-
-                        Ceci est la section pour ajouter des projets.
-
-                    </section>
+                   
                 </div>
 
             </div>

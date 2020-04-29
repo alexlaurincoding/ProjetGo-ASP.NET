@@ -1,0 +1,112 @@
+﻿@model ProjetGoEquipe2.Projet
+
+@{
+    ViewBag.Title = "Ajouter";
+}
+
+<h2>Page de @Session["Usager"]</h2>
+
+<!-- Partie principale de la page -->
+<main role="main" class="container-fluid">
+    <div class="row">
+
+        <div class="col-sm-3">
+
+            <div class="content-section" id="right-left">
+                <h4>Mes Sections</h4>
+
+                <div class="btn-group-vertical" role="group">
+                    <button type="button" class="btn btn-default" style="text-align:left">Mes Projets</button>
+                    <button type="button" class="btn btn-success" style="text-align:left">Ajouter Projet</button>
+                    <button type="button" class="btn btn-default" style="text-align:left">Mes Comptes-Rendus</button>
+                    <button type="button" class="btn btn-default" style="text-align:left">Payer ma Cotisation</button>
+                    <button type="button" class="btn btn-default" style="text-align:left">Mon Profil</button>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="col-sm-9">
+            <div class="content-section main-section-top">
+
+                <div class="content-section" id="sectionPrincipaleMembre">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <h3>Ajouter un Projet</h3>
+                        <div class="form-horizontal">
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.titre, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.titre, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.titre, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.descriptionCourte, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.descriptionCourte, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.descriptionCourte, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.sommaire, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.sommaire, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.sommaire, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.debutEstime, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.debutEstime, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.debutEstime, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.finEstimee, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.finEstimee, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.finEstimee, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.budget, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.budget, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.budget, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.frequenceComptesRendus, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.frequenceComptesRendus, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.frequenceComptesRendus, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                </div>
+            </div>
+        </div>
+    </main>
