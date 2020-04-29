@@ -136,6 +136,7 @@
     <Compile Include="Controllers\DonsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembresController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProjetsController.cs" />
     <Compile Include="Cotisation.cs">
       <DependentUpon>ModelProjetGoSprint1.tt</DependentUpon>
@@ -161,6 +162,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelProjetGoSprint1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="PaypalConfiguration.cs" />
     <Compile Include="Projet.cs">
       <DependentUpon>ModelProjetGoSprint1.tt</DependentUpon>
     </Compile>
@@ -230,6 +232,7 @@
     <Content Include="Views\Membres\Inscription.cshtml" />
     <Content Include="Views\Membres\Identifier.cshtml" />
     <Content Include="Views\Membres\Cotisation.cshtml" />
+    <Content Include="Views\Payment\PaymentWithPaypal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

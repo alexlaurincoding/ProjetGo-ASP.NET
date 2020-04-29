@@ -29,7 +29,13 @@
             @Html.ValidationMessageFor(model => model.dateTransaction, "", new { @class = "text-danger" })
         </div>
     </div>
-
+    <div class="form-group">
+        <div class="col-md-10">
+            <!-- <input type="submit" value="Create" class="btn btn-default" />-->
+            <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+            <script>paypal.Buttons().render('body');</script>
+        </div>
+    </div>
     <div class="form-group">
         @Html.LabelFor(model => model.montant, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -38,13 +44,7 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <div class="col-md-10">
-            <!-- <input type="submit" value="Create" class="btn btn-default" />-->
-            <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
-            <script>paypal.Buttons().render('body');</script>
-        </div>
-    </div>
+
 </div>
 }
 
