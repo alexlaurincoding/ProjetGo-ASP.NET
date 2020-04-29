@@ -28,10 +28,13 @@ namespace ProjetGoEquipe2.Controllers
 
         // POST: Projets/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Membre membre)
         {
             try
             {
+                var nom = membre.nom;
+                var prenom = membre.prenom;
+
                 // TODO: Add insert logic here
 
                 return RedirectToAction("Index");

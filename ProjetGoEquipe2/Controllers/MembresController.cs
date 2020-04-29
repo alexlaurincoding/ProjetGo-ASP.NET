@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
+using System.Windows;
 
 namespace ProjetGoEquipe2.Controllers
 {
@@ -22,6 +24,24 @@ namespace ProjetGoEquipe2.Controllers
             return View();
         }
 
+        // POST: Membre/Inscription
+        [HttpPost]
+        public ActionResult Inscription(Membre membre)
+        {
+            try
+            {
+                Singleton.Instance.db.Membres.Add(membre);
+                Singleton.Instance.db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                MessageBox.Show("On est dans le Catch");
+                Console.WriteLine("Dans le catch");
+                return View();
+            }
+        }
+
         // GET: Membre/Identifier
         public ActionResult Identifier()
         {
@@ -34,27 +54,6 @@ namespace ProjetGoEquipe2.Controllers
             return View();
         }
 
-        // GET: Membre/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Membre/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         // GET: Membre/Edit/5
         public ActionResult Edit(int id)
