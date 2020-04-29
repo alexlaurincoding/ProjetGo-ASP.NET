@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - ProjetGo</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -24,8 +24,17 @@
                     <li>@Html.ActionLink("À Propos", "About", "Home")</li>
                     <li>@Html.ActionLink("Nos Projets", "Index", "Projets")</li>
                     <li>@Html.ActionLink("Faire un Don", "Index", "Dons")</li>
-                    <li>@Html.ActionLink("S'Inscrire", "Inscription", "Membres")</li>
-                    <li>@Html.ActionLink("Se Connecter", "Identifier", "Membres")</li>
+    
+                    @if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+                    {
+                        <li>@Html.ActionLink("S'Inscrire", "Inscription", "Membres")</li>
+                        <li>@Html.ActionLink("Se Connecter", "Identifier", "Membres")</li>
+                    }
+                    @if (Session["Connected"] != null && (bool)Session["Connected"]==true) {
+                        <li>@Html.ActionLink("Compte", "Index", "Membres")</li>
+                        <li>@Html.ActionLink("Déconnexion", "Deconnexion", "Membres")</li>
+                    }
+
 
 
                 </ul>
@@ -36,7 +45,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - ProjetGo Inc.</p>
         </footer>
     </div>
 
