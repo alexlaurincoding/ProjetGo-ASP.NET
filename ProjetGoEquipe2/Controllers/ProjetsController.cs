@@ -61,11 +61,6 @@ namespace ProjetGoEquipe2.Controllers
             }
         }
 
-        // GET: Projets/MesProjets
-        public ActionResult MesProjets()
-        {
-            return View();
-        }
 
         // GET: Projets/Edit/5
         public ActionResult Edit(int id)

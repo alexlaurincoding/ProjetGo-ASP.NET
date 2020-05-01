@@ -18,7 +18,7 @@
                 <h4>Mes Sections</h4>
 
                 <div class="btn-group-vertical" role="group">
-                    <button type="button" class="btn btn-default" style="text-align:left">Mes Projets</button>
+                    <button onclick="@("window.location.href='" + @Url.Action("Index", "Membres") + "'");" type="button" class="btn btn-default" style="text-align:left">Mes Projets</button>
                     <button type="button" class="btn btn-success" style="text-align:left">Ajouter Projet</button>
                     <button type="button" class="btn btn-default" style="text-align:left">Mes Comptes-Rendus</button>
                     <button type="button" class="btn btn-default" style="text-align:left">Payer ma Cotisation</button>
