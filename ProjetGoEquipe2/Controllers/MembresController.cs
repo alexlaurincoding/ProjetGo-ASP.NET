@@ -16,7 +16,7 @@ namespace ProjetGoEquipe2.Controllers
         {
             if (Session["Connected"] == null || (bool)Session["Connected"] == false)
             {
-                return RedirectToAction("Inscription");
+                return RedirectToAction("Identifier");
             }
             return View();
         }

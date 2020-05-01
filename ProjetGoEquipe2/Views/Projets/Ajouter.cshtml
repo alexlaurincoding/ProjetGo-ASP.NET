@@ -4,6 +4,8 @@
     ViewBag.Title = "Ajouter";
 }
 
+
+
 <h2>Page de @Session["Usager"]</h2>
 
 <!-- Partie principale de la page -->
@@ -16,7 +18,7 @@
                 <h4>Mes Sections</h4>
 
                 <div class="btn-group-vertical" role="group">
-                    <button type="button" class="btn btn-default" style="text-align:left">Mes Projets</button>
+                    <button onclick="@("window.location.href='" + @Url.Action("Index", "Membres") + "'");" type="button" class="btn btn-default" style="text-align:left">Mes Projets</button>
                     <button type="button" class="btn btn-success" style="text-align:left">Ajouter Projet</button>
                     <button type="button" class="btn btn-default" style="text-align:left">Mes Comptes-Rendus</button>
                     <button type="button" class="btn btn-default" style="text-align:left">Payer ma Cotisation</button>
@@ -42,64 +44,68 @@
                             <hr />
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group">
-                                @Html.LabelFor(model => model.titre, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
+                                <div class="control-label col-md-3">Titre</div>
+                                <div class="col-md-9">
                                     @Html.EditorFor(model => model.titre, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.titre, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.descriptionCourte, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.descriptionCourte, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.descriptionCourte, "", new { @class = "text-danger" })
+                                <div class="control-label col-md-3">Courte Description:</div>
+                                <div class="col-md-9">
+                                    <textarea class="form-control col-md-9" rows="5" name="description"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.sommaire, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.sommaire, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.sommaire, "", new { @class = "text-danger" })
+                                <div class="control-label col-md-3">Sommaire:</div>
+                                <div class="col-md-9">
+                                    <textarea class="form-control col-md-9" rows="5" name="sommaire"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.debutEstime, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.debutEstime, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.debutEstime, "", new { @class = "text-danger" })
+                                <div class="control-label col-md-3">Début Estimé</div>
+                                <div class="col-md-9">
+                                    <input type="date" class="form-control" name="debutEstime" />
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.finEstimee, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.finEstimee, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.finEstimee, "", new { @class = "text-danger" })
+                                <div class="control-label col-md-3">Fin Estimée</div>
+                                <div class="col-md-9">
+                                    <input type="date" class="form-control" name="finEstimee" />
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.budget, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.budget, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.budget, "", new { @class = "text-danger" })
+                                <div class="control-label col-md-3">Budget ($ seulement)</div>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="budget" />
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="control-label col-md-3">Fréquence Compte-Rendus (semaines)</div>
+                                <div class="col-md-9">
+                                    <select class="form-control" name="frequence">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="6">6</option>
+                                        <option value="8">8</option>
+                                        <option value="10">10</option>
+                                        <option value="12">12</option>
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.frequenceComptesRendus, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.frequenceComptesRendus, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.frequenceComptesRendus, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Create" class="btn btn-default" />
+                                <div class="col-md-offset-3 col-md-9">
+                                    <input type="submit" value="Ajouter" class="btn btn-primary" />
                                 </div>
                             </div>
                         </div>
