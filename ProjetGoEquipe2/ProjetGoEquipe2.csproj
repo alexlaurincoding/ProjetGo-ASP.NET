@@ -55,6 +55,7 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -126,14 +127,45 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="CompteRendu.cs">
+      <DependentUpon>ModelProjetGoSprint1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\DonsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembresController.cs" />
     <Compile Include="Controllers\ProjetsController.cs" />
+    <Compile Include="Cotisation.cs">
+      <DependentUpon>ModelProjetGoSprint1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Membre.cs">
+      <DependentUpon>ModelProjetGoSprint1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelProjetGoSprint1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelProjetGoSprint1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelProjetGoSprint1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelProjetGoSprint1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelProjetGoSprint1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelProjetGoSprint1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Projet.cs">
+      <DependentUpon>ModelProjetGoSprint1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Singleton.cs" />
+    <Compile Include="Tresorier.cs">
+      <DependentUpon>ModelProjetGoSprint1.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
@@ -145,8 +177,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ModelProjetGoSprint1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelProjetGoSprint1.edmx</DependentUpon>
+      <LastGenOutput>ModelProjetGoSprint1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelProjetGoSprint1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelProjetGoSprint1.edmx</DependentUpon>
+      <LastGenOutput>ModelProjetGoSprint1.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="ModelProjetGoSprint1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelProjetGoSprint1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="ModelProjetGoSprint1.edmx.diagram">
+      <DependentUpon>ModelProjetGoSprint1.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -177,6 +226,7 @@
     <Content Include="Views\Membres\Index.cshtml" />
     <Content Include="Views\Membres\Inscription.cshtml" />
     <Content Include="Views\Membres\Identifier.cshtml" />
+    <Content Include="Views\Projets\Ajouter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

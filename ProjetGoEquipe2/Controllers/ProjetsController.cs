@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Windows;
 
 namespace ProjetGoEquipe2.Controllers
 {
@@ -20,27 +21,46 @@ namespace ProjetGoEquipe2.Controllers
             return View();
         }
 
-        // GET: Projets/Create
-        public ActionResult Create()
+        // GET: Projets/Ajouter
+        public ActionResult Ajouter()
         {
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+            {
+                return RedirectToAction("Identifier", "Membres");
+            }
             return View();
         }
 
-        // POST: Projets/Create
+        // POST: Projets/Ajouter
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Ajouter(Projet projet, string description, string sommaire, string budget, DateTime debutEstime, DateTime finEstimee, string frequence)
         {
             try
             {
-                // TODO: Add insert logic here
+                int frequnceNum;
+                double budgetNum;
+                bool success;
 
-                return RedirectToAction("Index");
+                projet.idResponsable = (string)Session["Usager"];
+                projet.descriptionCourte = description;
+                projet.sommaire = sommaire;
+                projet.debutEstime = debutEstime;
+                projet.finEstimee = finEstimee;
+                success = Int32.TryParse(frequence, out frequnceNum);
+                if (success)    projet.frequenceComptesRendus = frequnceNum;
+                success = Double.TryParse(budget, out budgetNum);
+                if (success)    projet.budget = budgetNum;
+                Singleton.Instance.db.Projets.Add(projet);
+                Singleton.Instance.db.SaveChanges();
+                return RedirectToAction("Index", "Membres");
+
             }
             catch
             {
                 return View();
             }
         }
+
 
         // GET: Projets/Edit/5
         public ActionResult Edit(int id)

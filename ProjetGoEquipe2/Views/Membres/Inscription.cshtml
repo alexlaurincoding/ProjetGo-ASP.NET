@@ -1,11 +1,90 @@
-﻿
+﻿@model ProjetGoEquipe2.Membre
+
 @{
     ViewBag.Title = "Inscription";
 }
 
 <h2>Inscription</h2>
 
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
 
-<h4>Le formulaire d'enregistrement ici</h4>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+        <div class="form-group">
+            <div class="control-label col-md-2">Nom d'Usager</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nomUsager, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nomUsager, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
+        <div class="form-group">
+            <div class="control-label col-md-2">Mot de Passe</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.motPasse, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.motPasse, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">Nom</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nom, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nom, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">Prénom</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.prenom, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.prenom, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">Courriel</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">Numéro de Téléphone</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.numeroTel, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.numeroTel, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">Adresse</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.adresse, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.adresse, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">Recevoir des Nouvelles de ProjetGo?</div>
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.inscritMailingList)
+                    @Html.ValidationMessageFor(model => model.inscritMailingList, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Enregistrer" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

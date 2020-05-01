@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProjetGoDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CompteRendu">
+          <Key>
+            <PropertyRef Name="idCompteRendu" />
+          </Key>
+          <Property Name="idCompteRendu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dateCompteRendu" Type="date" />
+          <Property Name="informationsAJour" Type="varchar" MaxLength="5000" />
+          <Property Name="sommaireRealisationsCompletees" Type="varchar" MaxLength="5000" />
+          <Property Name="realisationsReportees" Type="varchar" MaxLength="5000" />
+          <Property Name="etatRisques" Type="varchar" MaxLength="5000" />
+          <Property Name="idProjet" Type="int" />
+        </EntityType>
+        <EntityType Name="Cotisation">
+          <Key>
+            <PropertyRef Name="idCotisation" />
+          </Key>
+          <Property Name="idCotisation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numTransaction" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="dateTransaction" Type="date" Nullable="false" />
+          <Property Name="montant" Type="int" Nullable="false" />
+          <Property Name="nomUsager" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Membre">
+          <Key>
+            <PropertyRef Name="nomUsager" />
+          </Key>
+          <Property Name="nomUsager" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="motPasse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prenom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="numeroTel" Type="varchar" MaxLength="20" />
+          <Property Name="adresse" Type="varchar" MaxLength="100" />
+          <Property Name="dateAdhesion" Type="date" />
+          <Property Name="inscritMailingList" Type="bit" />
+          <Property Name="statut" Type="varchar" MaxLength="20" />
+          <Property Name="dateProchaineCotisation" Type="date" />
+          <Property Name="montantProchaineCotisation" Type="float" />
+        </EntityType>
+        <EntityType Name="Projet">
+          <Key>
+            <PropertyRef Name="idProjet" />
+          </Key>
+          <Property Name="idProjet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="titre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="statut" Type="varchar" MaxLength="20" />
+          <Property Name="descriptionCourte" Type="varchar" MaxLength="500" />
+          <Property Name="sommaire" Type="varchar" MaxLength="100" />
+          <Property Name="debutEstime" Type="date" />
+          <Property Name="finEstimee" Type="date" />
+          <Property Name="debutReel" Type="date" />
+          <Property Name="finReelle" Type="date" />
+          <Property Name="budget" Type="float" />
+          <Property Name="totalFondsCollectes" Type="float" />
+          <Property Name="totalDepenes" Type="float" />
+          <Property Name="etatAvancement" Type="varchar" MaxLength="10" />
+          <Property Name="frequenceComptesRendus" Type="int" />
+          <Property Name="dateProchainCompteRendu" Type="date" />
+          <Property Name="idResponsable" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tresorier">
+          <Key>
+            <PropertyRef Name="nomUsager" />
+          </Key>
+          <Property Name="nomUsager" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="motPasse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CotisationMembre">
+          <End Role="Membre" Type="Self.Membre" Multiplicity="1" />
+          <End Role="Cotisation" Type="Self.Cotisation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membre">
+              <PropertyRef Name="nomUsager" />
+            </Principal>
+            <Dependent Role="Cotisation">
+              <PropertyRef Name="nomUsager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjetCompteRendu">
+          <End Role="Projet" Type="Self.Projet" Multiplicity="0..1" />
+          <End Role="CompteRendu" Type="Self.CompteRendu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projet">
+              <PropertyRef Name="idProjet" />
+            </Principal>
+            <Dependent Role="CompteRendu">
+              <PropertyRef Name="idProjet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Responsable">
+          <End Role="Membre" Type="Self.Membre" Multiplicity="0..1" />
+          <End Role="Projet" Type="Self.Projet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membre">
+              <PropertyRef Name="nomUsager" />
+            </Principal>
+            <Dependent Role="Projet">
+              <PropertyRef Name="idResponsable" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProjetGoDataModelStoreContainer">
+          <EntitySet Name="CompteRendu" EntityType="Self.CompteRendu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cotisation" EntityType="Self.Cotisation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Membre" EntityType="Self.Membre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Projet" EntityType="Self.Projet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tresorier" EntityType="Self.Tresorier" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CotisationMembre" Association="Self.FK_CotisationMembre">
+            <End Role="Membre" EntitySet="Membre" />
+            <End Role="Cotisation" EntitySet="Cotisation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjetCompteRendu" Association="Self.FK_ProjetCompteRendu">
+            <End Role="Projet" EntitySet="Projet" />
+            <End Role="CompteRendu" EntitySet="CompteRendu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Responsable" Association="Self.FK_Responsable">
+            <End Role="Membre" EntitySet="Membre" />
+            <End Role="Projet" EntitySet="Projet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProjetGoDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CompteRendu">
+          <Key>
+            <PropertyRef Name="idCompteRendu" />
+          </Key>
+          <Property Name="idCompteRendu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dateCompteRendu" Type="DateTime" Precision="0" />
+          <Property Name="informationsAJour" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="sommaireRealisationsCompletees" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="realisationsReportees" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="etatRisques" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="idProjet" Type="Int32" />
+          <NavigationProperty Name="Projet" Relationship="Self.FK_ProjetCompteRendu" FromRole="CompteRendu" ToRole="Projet" />
+        </EntityType>
+        <EntityType Name="Cotisation">
+          <Key>
+            <PropertyRef Name="idCotisation" />
+          </Key>
+          <Property Name="idCotisation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numTransaction" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dateTransaction" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="montant" Type="Int32" Nullable="false" />
+          <Property Name="nomUsager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Membre" Relationship="Self.FK_CotisationMembre" FromRole="Cotisation" ToRole="Membre" />
+        </EntityType>
+        <EntityType Name="Membre">
+          <Key>
+            <PropertyRef Name="nomUsager" />
+          </Key>
+          <Property Name="nomUsager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="motPasse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numeroTel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="adresse" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="dateAdhesion" Type="DateTime" Precision="0" />
+          <Property Name="inscritMailingList" Type="Boolean" />
+          <Property Name="statut" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="dateProchaineCotisation" Type="DateTime" Precision="0" />
+          <Property Name="montantProchaineCotisation" Type="Double" />
+          <NavigationProperty Name="Cotisations" Relationship="Self.FK_CotisationMembre" FromRole="Membre" ToRole="Cotisation" />
+          <NavigationProperty Name="Projets" Relationship="Self.FK_Responsable" FromRole="Membre" ToRole="Projet" />
+        </EntityType>
+        <EntityType Name="Projet">
+          <Key>
+            <PropertyRef Name="idProjet" />
+          </Key>
+          <Property Name="idProjet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="statut" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="descriptionCourte" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="sommaire" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="debutEstime" Type="DateTime" Precision="0" />
+          <Property Name="finEstimee" Type="DateTime" Precision="0" />
+          <Property Name="debutReel" Type="DateTime" Precision="0" />
+          <Property Name="finReelle" Type="DateTime" Precision="0" />
+          <Property Name="budget" Type="Double" />
+          <Property Name="totalFondsCollectes" Type="Double" />
+          <Property Name="totalDepenes" Type="Double" />
+          <Property Name="etatAvancement" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="frequenceComptesRendus" Type="Int32" />
+          <Property Name="dateProchainCompteRendu" Type="DateTime" Precision="0" />
+          <Property Name="idResponsable" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CompteRendus" Relationship="Self.FK_ProjetCompteRendu" FromRole="Projet" ToRole="CompteRendu" />
+          <NavigationProperty Name="Membre" Relationship="Self.FK_Responsable" FromRole="Projet" ToRole="Membre" />
+        </EntityType>
+        <EntityType Name="Tresorier">
+          <Key>
+            <PropertyRef Name="nomUsager" />
+          </Key>
+          <Property Name="nomUsager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="motPasse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ProjetCompteRendu">
+          <End Role="Projet" Type="Self.Projet" Multiplicity="0..1" />
+          <End Role="CompteRendu" Type="Self.CompteRendu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projet">
+              <PropertyRef Name="idProjet" />
+            </Principal>
+            <Dependent Role="CompteRendu">
+              <PropertyRef Name="idProjet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CotisationMembre">
+          <End Role="Membre" Type="Self.Membre" Multiplicity="1" />
+          <End Role="Cotisation" Type="Self.Cotisation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membre">
+              <PropertyRef Name="nomUsager" />
+            </Principal>
+            <Dependent Role="Cotisation">
+              <PropertyRef Name="nomUsager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Responsable">
+          <End Role="Membre" Type="Self.Membre" Multiplicity="0..1" />
+          <End Role="Projet" Type="Self.Projet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membre">
+              <PropertyRef Name="nomUsager" />
+            </Principal>
+            <Dependent Role="Projet">
+              <PropertyRef Name="idResponsable" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProjetGoDataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CompteRendus" EntityType="Self.CompteRendu" />
+          <EntitySet Name="Cotisations" EntityType="Self.Cotisation" />
+          <EntitySet Name="Membres" EntityType="Self.Membre" />
+          <EntitySet Name="Projets" EntityType="Self.Projet" />
+          <EntitySet Name="Tresoriers" EntityType="Self.Tresorier" />
+          <AssociationSet Name="FK_ProjetCompteRendu" Association="Self.FK_ProjetCompteRendu">
+            <End Role="Projet" EntitySet="Projets" />
+            <End Role="CompteRendu" EntitySet="CompteRendus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CotisationMembre" Association="Self.FK_CotisationMembre">
+            <End Role="Membre" EntitySet="Membres" />
+            <End Role="Cotisation" EntitySet="Cotisations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Responsable" Association="Self.FK_Responsable">
+            <End Role="Membre" EntitySet="Membres" />
+            <End Role="Projet" EntitySet="Projets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProjetGoDataModelStoreContainer" CdmEntityContainer="ProjetGoDataEntities">
+          <EntitySetMapping Name="CompteRendus">
+            <EntityTypeMapping TypeName="ProjetGoDataModel.CompteRendu">
+              <MappingFragment StoreEntitySet="CompteRendu">
+                <ScalarProperty Name="idCompteRendu" ColumnName="idCompteRendu" />
+                <ScalarProperty Name="dateCompteRendu" ColumnName="dateCompteRendu" />
+                <ScalarProperty Name="informationsAJour" ColumnName="informationsAJour" />
+                <ScalarProperty Name="sommaireRealisationsCompletees" ColumnName="sommaireRealisationsCompletees" />
+                <ScalarProperty Name="realisationsReportees" ColumnName="realisationsReportees" />
+                <ScalarProperty Name="etatRisques" ColumnName="etatRisques" />
+                <ScalarProperty Name="idProjet" ColumnName="idProjet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cotisations">
+            <EntityTypeMapping TypeName="ProjetGoDataModel.Cotisation">
+              <MappingFragment StoreEntitySet="Cotisation">
+                <ScalarProperty Name="idCotisation" ColumnName="idCotisation" />
+                <ScalarProperty Name="numTransaction" ColumnName="numTransaction" />
+                <ScalarProperty Name="dateTransaction" ColumnName="dateTransaction" />
+                <ScalarProperty Name="montant" ColumnName="montant" />
+                <ScalarProperty Name="nomUsager" ColumnName="nomUsager" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Membres">
+            <EntityTypeMapping TypeName="ProjetGoDataModel.Membre">
+              <MappingFragment StoreEntitySet="Membre">
+                <ScalarProperty Name="nomUsager" ColumnName="nomUsager" />
+                <ScalarProperty Name="motPasse" ColumnName="motPasse" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="numeroTel" ColumnName="numeroTel" />
+                <ScalarProperty Name="adresse" ColumnName="adresse" />
+                <ScalarProperty Name="dateAdhesion" ColumnName="dateAdhesion" />
+                <ScalarProperty Name="inscritMailingList" ColumnName="inscritMailingList" />
+                <ScalarProperty Name="statut" ColumnName="statut" />
+                <ScalarProperty Name="dateProchaineCotisation" ColumnName="dateProchaineCotisation" />
+                <ScalarProperty Name="montantProchaineCotisation" ColumnName="montantProchaineCotisation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projets">
+            <EntityTypeMapping TypeName="ProjetGoDataModel.Projet">
+              <MappingFragment StoreEntitySet="Projet">
+                <ScalarProperty Name="idProjet" ColumnName="idProjet" />
+                <ScalarProperty Name="titre" ColumnName="titre" />
+                <ScalarProperty Name="statut" ColumnName="statut" />
+                <ScalarProperty Name="descriptionCourte" ColumnName="descriptionCourte" />
+                <ScalarProperty Name="sommaire" ColumnName="sommaire" />
+                <ScalarProperty Name="debutEstime" ColumnName="debutEstime" />
+                <ScalarProperty Name="finEstimee" ColumnName="finEstimee" />
+                <ScalarProperty Name="debutReel" ColumnName="debutReel" />
+                <ScalarProperty Name="finReelle" ColumnName="finReelle" />
+                <ScalarProperty Name="budget" ColumnName="budget" />
+                <ScalarProperty Name="totalFondsCollectes" ColumnName="totalFondsCollectes" />
+                <ScalarProperty Name="totalDepenes" ColumnName="totalDepenes" />
+                <ScalarProperty Name="etatAvancement" ColumnName="etatAvancement" />
+                <ScalarProperty Name="frequenceComptesRendus" ColumnName="frequenceComptesRendus" />
+                <ScalarProperty Name="dateProchainCompteRendu" ColumnName="dateProchainCompteRendu" />
+                <ScalarProperty Name="idResponsable" ColumnName="idResponsable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tresoriers">
+            <EntityTypeMapping TypeName="ProjetGoDataModel.Tresorier">
+              <MappingFragment StoreEntitySet="Tresorier">
+                <ScalarProperty Name="nomUsager" ColumnName="nomUsager" />
+                <ScalarProperty Name="motPasse" ColumnName="motPasse" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
