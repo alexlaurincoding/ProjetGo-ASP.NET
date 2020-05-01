@@ -1,7 +1,9 @@
-﻿
+﻿@model IEnumerable<ProjetGoEquipe2.Projet>
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "MesProjets";
 }
+
 
 <h2>Page de @Session["Usager"]</h2>
 
@@ -15,7 +17,7 @@
                 <h4>Mes Sections</h4>
 
                 <div class="btn-group-vertical" role="group">
-                    <button type="button" class="btn btn-default" style="text-align:left">Mes Projets</button>
+                    <button type="button" class="btn btn-success" style="text-align:left">Mes Projets</button>
                     <button onclick="@("window.location.href='" + @Url.Action("Ajouter", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left">Ajouter Projet</button>
                     <button type="button" class="btn btn-default" style="text-align:left">Mes Comptes-Rendus</button>
                     <button type="button" class="btn btn-default" style="text-align:left">Payer ma Cotisation</button>
@@ -32,9 +34,74 @@
 
                 <div class="content-section" id="sectionPrincipaleMembre">
 
-                   
-                </div>
+                    <table class="table">
+                        <tr>
+                            <th></th>
+                            <th>
+                                Titre
+                            </th>
+                            <th>
+                                Statut
+                            </th>
 
+                            <th>
+                                Budget
+                            </th>
+                            <th>
+                                Fonds Collectés
+                            </th>
+                            <th>
+                                Dépenses
+                            </th>
+
+                            <th>
+                                Prochain Compte-rendu
+                            </th>
+
+
+                        </tr>
+
+                        @foreach (var item in Singleton.Instance.db.Projets)
+                        {
+
+                            if (item.idResponsable == (string)Session["Usager"])
+                            {
+
+                    <tr>
+                        <td>
+                            @Html.ActionLink("Modifier", "Edit", new { id = item.idProjet })<br />
+                            @Html.ActionLink("Détails", "Details", new { id = item.idProjet })<br />
+                            @Html.ActionLink("Effacer", "Delete", new { id = item.idProjet })<br />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.titre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.statut)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.budget)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.totalFondsCollectes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.totalDepenes)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dateProchainCompteRendu)
+                        </td>
+
+
+                    </tr>
+                            }
+                        }
+
+                    </table>
+
+                </div>
             </div>
         </div>
     </div>
