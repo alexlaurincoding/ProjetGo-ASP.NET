@@ -20,33 +20,37 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("ProjetGO", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <p class="site-title">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img src="~/Content/Images/Logo.jpg" style="width:80px;" ; alt="" />
+                    </a>
+                </p>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("À Propos", "About", "Home")</li>
-                    <li>@Html.ActionLink("Nos Projets", "Index", "Projets")</li>
-                    <li>@Html.ActionLink("Faire un Don", "Index", "Dons")</li>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav" style="margin-top:10px;">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("À Propos", "About", "Home")</li>
+                        <li>@Html.ActionLink("Nos Projets", "Index", "Projets")</li>
+                        <li>@Html.ActionLink("Faire un Don", "Index", "Dons")</li>
 
-                    @if (Session["Connected"] == null || (bool)Session["Connected"] == false)
-                    {
-                        <li>@Html.ActionLink("S'Inscrire", "Inscription", "Membres")</li>
-                        <li>@Html.ActionLink("Se Connecter", "Identifier", "Membres")</li>
-                    }
-                    @if (Session["Connected"] != null && (bool)Session["Connected"] == true)
-                    {
-                        <li>@Html.ActionLink("Page de " + (string)Session["Usager"], "Index", "Membres")</li>
-                        <li>@Html.ActionLink("Déconnexion", "Deconnexion", "Membres")</li>
-                    }
+                        @if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+                        {
+                            <li>@Html.ActionLink("S'Inscrire", "Inscription", "Membres")</li>
+                            <li>@Html.ActionLink("Se Connecter", "Identifier", "Membres")</li>
+                        }
+                        @if (Session["Connected"] != null && (bool)Session["Connected"] == true)
+                        {
+                            <li>@Html.ActionLink("Page de " + (string)Session["Usager"], "Index", "Membres")</li>
+                            <li>@Html.ActionLink("Déconnexion", "Deconnexion", "Membres")</li>
+                        }
 
 
 
-                </ul>
-            </div>
+                    </ul>
+                </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container body-content" style="margin-top:30px;">
         @RenderBody()
         <hr />
         <footer>
