@@ -1,0 +1,154 @@
+﻿@model IEnumerable<ProjetGoEquipe2.Projet>
+
+@{
+    ViewBag.Title = "MesProjets";
+}
+
+
+<h2>Page de @Session["Usager"]</h2>
+
+<!-- Partie principale de la page -->
+<main role="main" class="container-fluid">
+    <div class="row">
+
+        <div class="col-sm-3">
+
+            <div class="content-section" id="right-left">
+                <h4>Mes Sections</h4>
+
+                <div class="btn-group-vertical" role="group">
+                    <button type="button" class="btn btn-success" style="text-align:left">Mes Projets</button>
+                    <button onclick="@("window.location.href='" + @Url.Action("Ajouter", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left">Ajouter Projet</button>
+                    <button type="button" class="btn btn-default" style="text-align:left">Mes Comptes-Rendus</button>
+                    <button type="button" class="btn btn-default" style="text-align:left">Payer ma Cotisation</button>
+                    <button type="button" class="btn btn-default" style="text-align:left">Mon Profil</button>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="col-sm-9">
+            <div class="content-section main-section-top">
+
+                <div class="content-section" id="sectionPrincipaleMembre">
+
+                    <h3 style="text-align:center;">
+                        Mes Projets
+                    </h3>
+
+                    <br />
+
+
+                    <table class="table">
+                        <br />
+                        <tr>
+                            <th></th>
+                            <th>
+                                Titre
+                            </th>
+                            <th>
+                                Statut
+                            </th>
+
+                            <th>
+                                Budget
+                            </th>
+                            <th>
+                                Fonds Collectés
+                            </th>
+                            <th>
+                                Dépenses
+                            </th>
+
+                            <th>
+                                Prochain Compte-rendu
+                            </th>
+
+
+                        </tr>
+
+                        @foreach (var item in Singleton.Instance.db.Projets)
+                        {
+
+                            if (item.idResponsable == (string)Session["Usager"])
+                            {
+
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink("Modifier", "Modifier", new { id = item.idProjet })<br />
+                                        @Html.ActionLink("Détails", "Details", new { id = item.idProjet })<br />
+                                        @Html.ActionLink("Effacer", "Effacer", new { id = item.idProjet })<br />
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.titre)
+                                    </td>
+
+                                    @if (item.statut == null)
+                                    {
+                                        <td> ---</td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.statut)
+                                        </td>
+                                    }
+
+                                    @if (item.budget == null)
+                                    {
+                                        <td> ---</td>
+                                    }
+                                    else
+                                    {
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.budget)$
+                                        </td>
+                                    }
+                                    @if (item.totalFondsCollectes == null)
+                                    {
+                                        <td> ---</td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.totalFondsCollectes)$
+                                        </td>
+                                    }
+                                    @if (item.totalDepenes == null)
+                                    {
+                                        <td> ---</td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.totalDepenes)$
+                                        </td>
+                                    }
+                                    @if (item.dateProchainCompteRendu == null)
+                                    {
+                                        <td> ---</td>
+                                    }
+                                    else
+                                    {
+
+                                        <td>
+                                            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dateProchainCompteRendu))
+                                        </td>
+                                    }
+                                    
+
+                                </tr>
+                            }
+                        }
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -39,7 +39,7 @@
                     {
                         @Html.AntiForgeryToken()
 
-                        <h3>Ajouter un Projet</h3>
+                        <h3 style="text-align:center;">Ajouter un Projet</h3>
                         <div class="form-horizontal">
                             <hr />
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -52,16 +52,30 @@
                             </div>
 
                             <div class="form-group">
+                                <div class="control-label col-md-3">Statut</div>
+                                <div class="col-md-9">
+                                    <select class="form-control" name="statut">
+                                        <option value="Propose">Proposé</option>
+                                        <option value="Soumis">Soumis</option>
+                                        <option value="Approuve">Approuvé</option>
+                                        <option value="Actif">Actif</option>
+                                        <option value="Termine">Terminé</option>
+                                        <option value="Gele">Gelé</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <div class="control-label col-md-3">Courte Description:</div>
                                 <div class="col-md-9">
-                                    <textarea class="form-control col-md-9" rows="5" name="description"></textarea>
+                                    <textarea placeholder="Courte description du projet ici." class="form-control col-md-9" rows="5" name="description"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="control-label col-md-3">Sommaire:</div>
                                 <div class="col-md-9">
-                                    <textarea class="form-control col-md-9" rows="5" name="sommaire"></textarea>
+                                    <textarea placeholder="Décrivez le but, les objectifs, bénéfices escomptés et les risques du projet. Augmentez l'espace-texte au besoin." class="form-control col-md-9" rows="5" name="sommaire"></textarea>
                                 </div>
                             </div>
 

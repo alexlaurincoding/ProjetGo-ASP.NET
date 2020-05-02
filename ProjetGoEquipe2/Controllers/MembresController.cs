@@ -18,7 +18,7 @@ namespace ProjetGoEquipe2.Controllers
             {
                 return RedirectToAction("Identifier");
             }
-            return View();
+            return RedirectToAction("MesProjets", "Projets");
         }
 
 
@@ -37,7 +37,7 @@ namespace ProjetGoEquipe2.Controllers
                 Singleton.Instance.db.Membres.Add(membre);
                 Singleton.Instance.db.SaveChanges();
                 Session["Connected"] = true;
-                return RedirectToAction("Index");
+                return RedirectToAction("MesProjets", "Projets");
             }
             catch
             {

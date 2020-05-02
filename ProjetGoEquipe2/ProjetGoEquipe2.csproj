@@ -228,10 +228,13 @@
     <Content Include="Views\Membres\Inscription.cshtml" />
     <Content Include="Views\Membres\Identifier.cshtml" />
     <Content Include="Views\Projets\Ajouter.cshtml" />
+    <Content Include="Views\Projets\MesProjets.cshtml" />
+    <Content Include="Views\Projets\Details.cshtml" />
+    <Content Include="Views\Projets\Modifier.cshtml" />
+    <Content Include="Views\Projets\Effacer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Images\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
