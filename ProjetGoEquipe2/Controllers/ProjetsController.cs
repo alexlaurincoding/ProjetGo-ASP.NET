@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -15,10 +16,27 @@ namespace ProjetGoEquipe2.Controllers
             return View();
         }
 
-        // GET: Projets/Details/5
-        public ActionResult Details(int id)
+        // GET: Projet/MesProjets (Accueil membres)
+        public ActionResult MesProjets()
         {
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+            {
+                return RedirectToAction("Identifier", "Membres");
+            }
             return View();
+        }
+
+        // GET: Projets/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+            {
+                return RedirectToAction("Identifier", "Membres");
+            }
+
+            Projet projet = Singleton.Instance.db.Projets.Where(p => p.idProjet == id).FirstOrDefault();
+
+            return View(projet);
         }
 
         // GET: Projets/Ajouter
@@ -28,31 +46,35 @@ namespace ProjetGoEquipe2.Controllers
             {
                 return RedirectToAction("Identifier", "Membres");
             }
+
+
             return View();
         }
 
         // POST: Projets/Ajouter
         [HttpPost]
-        public ActionResult Ajouter(Projet projet, string description, string sommaire, string budget, DateTime debutEstime, DateTime finEstimee, string frequence)
+        public ActionResult Ajouter(Projet projet, string statut, string description, string sommaire, string budget, DateTime debutEstime, DateTime finEstimee, string frequence)
         {
-            try
-            {
+            try { 
+            
+
                 int frequnceNum;
                 double budgetNum;
                 bool success;
 
+                projet.statut = statut;
                 projet.idResponsable = (string)Session["Usager"];
                 projet.descriptionCourte = description;
                 projet.sommaire = sommaire;
-                projet.debutEstime = debutEstime;
-                projet.finEstimee = finEstimee;
+                projet.debutEstime = debutEstime.Date;
+                projet.finEstimee = finEstimee.Date;
                 success = Int32.TryParse(frequence, out frequnceNum);
                 if (success)    projet.frequenceComptesRendus = frequnceNum;
                 success = Double.TryParse(budget, out budgetNum);
                 if (success)    projet.budget = budgetNum;
                 Singleton.Instance.db.Projets.Add(projet);
                 Singleton.Instance.db.SaveChanges();
-                return RedirectToAction("Index", "Membres");
+                return RedirectToAction("MesProjets", "Projets");
 
             }
             catch
@@ -62,21 +84,48 @@ namespace ProjetGoEquipe2.Controllers
         }
 
 
-        // GET: Projets/Edit/5
-        public ActionResult Edit(int id)
+        // GET: Projets/Modifier/5
+        public ActionResult Modifier(int? id)
         {
-            return View();
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+            {
+                return RedirectToAction("Identifier", "Membres");
+            }
+
+            Projet projet = Singleton.Instance.db.Projets.Where(p => p.idProjet == id).FirstOrDefault();
+
+            return View(projet);
         }
 
         // POST: Projets/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Modifier(int id, Projet projetModifie, string description )
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
 
-                return RedirectToAction("Index");
+                    Projet ancienneVersion = Singleton.Instance.db.Projets.Where(p => p.idProjet == id).FirstOrDefault();
+                    ancienneVersion.budget = projetModifie.budget;
+                    ancienneVersion.dateProchainCompteRendu = projetModifie.dateProchainCompteRendu;
+                    ancienneVersion.debutEstime = projetModifie.debutEstime;
+                    ancienneVersion.debutReel = projetModifie.debutReel;
+                    ancienneVersion.descriptionCourte = description;
+                    ancienneVersion.etatAvancement = projetModifie.etatAvancement;
+                    ancienneVersion.finEstimee = projetModifie.finEstimee;
+                    ancienneVersion.finReelle = projetModifie.finReelle;
+                    ancienneVersion.frequenceComptesRendus = projetModifie.frequenceComptesRendus;
+                    ancienneVersion.sommaire = projetModifie.sommaire;
+                    ancienneVersion.statut = projetModifie.statut;
+                    ancienneVersion.titre = projetModifie.titre; 
+                    Singleton.Instance.db.SaveChanges();
+                    return RedirectToAction("MesProjets", "Projets");
+                }
+                MessageBox.Show("Un probleme");
+
+                return View();
+
             }
             catch
             {
@@ -85,20 +134,27 @@ namespace ProjetGoEquipe2.Controllers
         }
 
         // GET: Projets/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Effacer(int? id)
         {
-            return View();
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+            {
+                return RedirectToAction("Identifier", "Membres");
+            }
+
+            Projet projet = Singleton.Instance.db.Projets.Find(id);
+            return View(projet);
         }
 
         // POST: Projets/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Effacer(int id)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                Projet projet = Singleton.Instance.db.Projets.Find(id);
+                Singleton.Instance.db.Projets.Remove(projet);
+                Singleton.Instance.db.SaveChanges();
+                return RedirectToAction("MesProjets", "Projets");
             }
             catch
             {
