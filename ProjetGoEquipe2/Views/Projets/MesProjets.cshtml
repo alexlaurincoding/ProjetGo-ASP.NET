@@ -19,7 +19,7 @@
                 <div class="btn-group-vertical" role="group">
                     <button onclick="@("window.location.href='" + @Url.Action("MesProjets", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Mes Projets</button>
                     <button onclick="@("window.location.href='" + @Url.Action("Ajouter", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left">Ajouter Projet</button>
-                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Membres", "Cotisation") + "'");" class="btn btn-default" style="text-align:left">Mes Comptes-Rendus</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Cotisation", "Membres") + "'");" class="btn btn-default" style="text-align:left">Mes Comptes-Rendus</button>
                     <button type="button" onclick="@("window.location.href='" + @Url.Action("Cotisation", "Membres") + "'");" class="btn btn-default" style="text-align:left">Payer ma Cotisation</button>
                     <button type="button" class="btn btn-default" style="text-align:left">Mon Profil</button>
                 </div>
@@ -42,7 +42,6 @@
 
 
                     <table class="table">
-                        <br />
                         <tr>
                             <th></th>
                             <th>
