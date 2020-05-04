@@ -58,6 +58,12 @@ namespace ProjetGoEquipe2.Controllers
             return View();
         }
 
+        public ActionResult RenouvAbonnementCancel()
+        {
+            //code pour resetter l'abonnement du client
+            return View();
+        }
+
         // GET: Membre/Identifier
         public ActionResult Identifier()
         {

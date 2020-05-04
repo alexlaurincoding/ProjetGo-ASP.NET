@@ -239,6 +239,7 @@
     <Content Include="Views\Projets\Effacer.cshtml" />
     <Content Include="Views\Membres\RenouvAbonnementSucces.cshtml" />
     <Content Include="Views\Membres\Cotisation.cshtml" />
+    <Content Include="Views\Membres\RenouvAbonnementCancel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
