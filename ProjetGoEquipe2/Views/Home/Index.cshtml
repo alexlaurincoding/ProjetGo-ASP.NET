@@ -1,4 +1,4 @@
-﻿@{
+﻿    @{
     ViewBag.Title = "Home Page";
 }
 <!DOCTYPE html>
@@ -15,8 +15,9 @@
 <body>
 
     <main role="main" class="container-fluid">
+        <div class="col-lg-12">
 
-        <div class="row">
+            <div class="row">
 
                 <div class="content-section">
 
@@ -31,8 +32,8 @@
                             <li data-target="#myCarousel" data-slide-to="2"></li>
                         </ol>
                         <div class="carousel-inner">
-                            <div class="item active">
-                                <img src="https://mcgillstlaurent.com/wp-content/uploads/2017/02/banner-water.jpg" alt="First slide">
+                            <div class="item active" style="max-height:150px;">
+                                <img src="~/Content/Images/ramasser-roche.jpg" alt="First slide">
                                 <div class="container">
                                     <div class="carousel-caption">
                                         <h1>Test</h1>
@@ -40,8 +41,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="item">
-                                <img src="http://www.greenwoodtreeandlawn.com/wp-content/uploads/2014/04/tree-services-banner1.jpg " alt="Second slide">
+                            <div class="item" style="max-height:150px;">
+                                <img src="~/Content/Images/vente-garage.jpg" alt="Second slide">
                                 <div class="container">
                                     <div class="carousel-caption">
                                         <h1>Test</h1>
@@ -49,8 +50,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="item">
-                                <img src="https://wildeanalysis.co.uk/wp-content/uploads/2015/09/df-banner-placeholder.png" alt="Third slide">
+                            <div class="item" style="max-height:150px;">
+                                <img src="~/Content/Images/soupe-sans-abris.jpg" alt="Third slide">
                                 <div class="container">
                                     <div class="carousel-caption">
                                         <h1>Test</h1>
@@ -66,24 +67,30 @@
                     <br />
                 </div>
             </div>
-            
+        </div>
+
         <div class="row">
             <div class="content-section">
                 <div class="col-sm-8">
-                    <iframe width="700" height="315" src="https://www.youtube.com/embed/VhdEY6KLhNs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="700" height="315" src="https://www.youtube.com/embed/099_WKUBh6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
                 </div>
 
                 <div class="form-group">
-                    <div class="col-sm-4">
+                    <div class="table-bordered col-sm-4" >
                         
-                            <marquee direction="down"  style="height:300px; text-align:center" >
-                                Test d'actualité 1
-                                <br /><br />
-                                Test d'actualité 2
-                                <br /><br />
-                            </marquee>
-                                                 </div>
-                    
+                        <marquee class="container-fluid" direction="down" style="height:300px; text-align:center">
+                            <p><b>Projet en cours : Liste des projets actif</b></p>
+                            <br /><br />
+                            <p><b>Nous acceptons de nouveau les demandes de projets</b></p>
+                            <br /><br />
+                            <p><b>Reprise des activités de projetGo suite à la pandémie</b></p>
+                            <br /><br />
+                            <p><b>Arrêt temporaire des activités de projetGo due à la pandémie</b></p>
+                            <br /><br />
+
+                        </marquee>
+                    </div>
+
                 </div>
             </div>
         </div>

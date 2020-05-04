@@ -176,6 +176,7 @@
     <Content Include="Content\Images\Logo.jpg" />
     <Content Include="Content\Images\ramasser-roche.jpg" />
     <Content Include="Content\Images\soupe-sans-abris.jpg" />
+    <Content Include="Content\Images\vente-garage.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
