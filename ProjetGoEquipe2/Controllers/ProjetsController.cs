@@ -99,13 +99,12 @@ namespace ProjetGoEquipe2.Controllers
 
         // POST: Projets/Edit/5
         [HttpPost]
-        public ActionResult Modifier(int id, Projet projetModifie, string description )
+        public ActionResult Modifier(int id, Projet projetModifie, string description)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-
                     Projet ancienneVersion = Singleton.Instance.db.Projets.Where(p => p.idProjet == id).FirstOrDefault();
                     ancienneVersion.budget = projetModifie.budget;
                     ancienneVersion.dateProchainCompteRendu = projetModifie.dateProchainCompteRendu;

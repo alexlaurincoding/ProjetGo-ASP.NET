@@ -20,7 +20,7 @@
                     <h4>Mes Sections</h4>
 
                     <div class="btn-group-vertical" role="group">
-                        <button type="button" class="btn btn-success" style="text-align:left">Mes Projets</button>
+                        <button onclick="@("window.location.href='" + @Url.Action("MesProjets", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Mes Projets</button>
                         <button onclick="@("window.location.href='" + @Url.Action("Ajouter", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left">Ajouter Projet</button>
                         <button type="button" class="btn btn-default" style="text-align:left">Mes Comptes-Rendus</button>
                         <button type="button" class="btn btn-default" style="text-align:left">Payer ma Cotisation</button>
@@ -65,7 +65,7 @@
                             <div class="form-group">
                                 <div class="control-label col-md-2">Statut</div>
                                 <div class="col-md-10">
-                                    <select class="form-control" name="statut">
+                                    <select class="form-control" name="statut" value=@Model.statut>
                                         <option value="Propose">Proposé</option>
                                         <option value="Soumis">Soumis</option>
                                         <option value="Approuve">Approuvé</option>
@@ -86,41 +86,36 @@
                             <div class="form-group">
                                 <div class="control-label col-md-2">Sommaire</div>
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.sommaire, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.sommaire, "", new { @class = "text-danger" })
+                                    <textarea class="form-control col-md-10" rows="5" name="sommaire"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <div class="control-label col-md-2">Début estimé</div>
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.debutEstime, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.debutEstime, "", new { @class = "text-danger" })
-                                </div>
+                                <div class="control-label col-md-2">Début estimé</div>                                    
+                                    <div class="col-md-10">
+                                        <input type="date" class="form-control" name="debutEstime" value="@Convert.ToString(string.Format("{0:yyyy-MM-dd}", Model.debutEstime))" />
+                                    </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="control-label col-md-2">Fin estimée</div>
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.finEstimee, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.finEstimee, "", new { @class = "text-danger" })
+                                    <input type="date" class="form-control" name="finEstimee" value="@Convert.ToString(string.Format("{0:yyyy-MM-dd}", Model.finEstimee))" />
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="control-label col-md-2">Début réel</div>
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.debutReel, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.debutReel, "", new { @class = "text-danger" })
-                                </div>
+                                    <div class="col-md-10">
+                                        <input type="date" class="form-control" name="debutReel" value="@Convert.ToString(string.Format("{0:yyyy-MM-dd}", Model.debutReel))" />
+                                    </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="control-label col-md-2">Fin réelle</div>
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.finReelle, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.finReelle, "", new { @class = "text-danger" })
-                                </div>
+                                    <div class="col-md-10">
+                                        <input type="date" class="form-control" name="finReelle" value="@Convert.ToString(string.Format("{0:yyyy-MM-dd}", Model.finReelle))" />
+                                    </div>
                             </div>
 
                             <div class="form-group">
@@ -176,7 +171,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Save" class="btn btn-default" />
+                                    <input type="submit" value="Modifier" class="btn btn-default" style="background-color:rgb(184, 210, 49)"/>
                                 </div>
                             </div>
                         </dl>
@@ -186,5 +181,6 @@
                 </div>
             </div>
         </div>
-    </main
+    </main>
+    </main>
 
