@@ -32,6 +32,7 @@ namespace ProjetGoEquipe2.Controllers
             {
                 Singleton.Instance.db.Membres.Add(membre);
                 Singleton.Instance.db.SaveChanges();
+                Session["Connected"] = true;
                 return RedirectToAction("Index");
             }
             catch
@@ -58,6 +59,34 @@ namespace ProjetGoEquipe2.Controllers
         {
             return View();
         }
+
+        // POST: Membre/Identifier
+        [HttpPost]
+        public ActionResult Identifier(Membre membre)
+        {
+            foreach (Membre m in Singleton.Instance.db.Membres)
+            {
+                if (m.nomUsager == membre.nomUsager)
+                {
+                    if (m.motPasse == membre.motPasse)
+                    {
+                        Session["Connected"] = true;
+                        Session["Usager"] = membre.nomUsager;
+                        return RedirectToAction("Index");
+                    }
+                }
+            }
+            ViewBag.Erreur = "Informations invalides.";
+            return View();
+        }
+
+        public ActionResult Deconnexion()
+        {
+
+            Session["Connected"] = false;
+            return RedirectToAction("Index", "Home");
+        }
+
 
         // GET: Membre/Details/5
         public ActionResult Details(int id)
