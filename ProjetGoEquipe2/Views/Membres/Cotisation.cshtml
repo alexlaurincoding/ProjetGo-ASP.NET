@@ -4,7 +4,40 @@
     ViewBag.Title = "Cotisation";
 }
 
-<h2>Cotisation</h2>
+<h2>Page de @Session["Usager"]</h2>
+
+<!-- Partie principale de la page -->
+<main role="main" class="container-fluid">
+    <div class="row">
+
+        <div class="col-sm-3">
+
+            <div class="content-section" id="right-left">
+                <h4>Mes Sections</h4>
+
+                <div class="btn-group-vertical" role="group">
+                    <button onclick="@("window.location.href='" + @Url.Action("MesProjets", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left">Mes Projets</button>
+                    <button onclick="@("window.location.href='" + @Url.Action("Ajouter", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left;">Ajouter</button>
+                    <button type="button" class="btn btn-default" style="text-align:left">Mes Comptes-Rendus</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Cotisation", "Membres") + "'");" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Payer ma Cotisation</button>
+                    <button type="button" class="btn btn-default" style="text-align:left">Mon Profil</button>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="col-sm-9">
+            <div class="content-section main-section-top">
+
+                <div class="content-section" id="sectionPrincipaleMembre">
+
+                    <h3 style="text-align:center;">Payer Ma Cotisation</h3>
+                    <div class="form-horizontal">
+                        <hr />
+                        <h4>Pour payer votre cotisation annuelle de 10$, cliquez sur l'image:</h4>
+                        <br />
 
 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
     <input type="hidden" name="cmd" value="_s-xclick">
