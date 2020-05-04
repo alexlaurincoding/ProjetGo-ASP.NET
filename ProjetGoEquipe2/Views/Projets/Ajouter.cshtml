@@ -18,8 +18,8 @@
                 <h4>Mes Sections</h4>
 
                 <div class="btn-group-vertical" role="group">
-                    <button onclick="@("window.location.href='" + @Url.Action("Index", "Membres") + "'");" type="button" class="btn btn-default" style="text-align:left">Mes Projets</button>
-                    <button type="button" class="btn btn-success" style="text-align:left">Ajouter Projet</button>
+                    <button onclick="@("window.location.href='" + @Url.Action("MesProjets", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left">Mes Projets</button>
+                    <button onclick="@("window.location.href='" + @Url.Action("Ajouter", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Ajouter</button>
                     <button type="button" class="btn btn-default" style="text-align:left">Mes Comptes-Rendus</button>
                     <button type="button" class="btn btn-default" style="text-align:left">Payer ma Cotisation</button>
                     <button type="button" class="btn btn-default" style="text-align:left">Mon Profil</button>
@@ -119,7 +119,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-offset-3 col-md-9">
-                                    <input type="submit" value="Ajouter" class="btn btn-primary" />
+                                    <input type="submit" value="Ajouter" class="btn btn-primary" style="background-color:rgb(184, 210, 49)"/>
                                 </div>
                             </div>
                         </div>
