@@ -17,7 +17,7 @@
                 <h4>Mes Sections</h4>
 
                 <div class="btn-group-vertical" role="group">
-                    <button type="button" class="btn btn-success" style="text-align:left">Mes Projets</button>
+                    <button onclick="@("window.location.href='" + @Url.Action("MesProjets", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Mes Projets</button>
                     <button onclick="@("window.location.href='" + @Url.Action("Ajouter", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left">Ajouter Projet</button>
                     <button type="button" class="btn btn-default" style="text-align:left">Mes Comptes-Rendus</button>
                     <button type="button" class="btn btn-default" style="text-align:left">Payer ma Cotisation</button>
@@ -53,7 +53,7 @@
 
                                 <br />
                                 <div class="form-actions no-color" style="text-align:center;">
-                                    <input type="submit" value="Effacer" class="btn btn-danger" />
+                                    <input type="submit" value="Effacer" class="btn btn-default" style="background-color:rgb(184, 210, 49)"/>
                                     <button onclick="@("window.location.href='" + @Url.Action("MesProjets", "Projets") + "'");" type="button" class="btn btn-default">Annuler</button>
 
                                 </div>
