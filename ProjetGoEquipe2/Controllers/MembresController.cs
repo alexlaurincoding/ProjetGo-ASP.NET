@@ -45,6 +45,19 @@ namespace ProjetGoEquipe2.Controllers
             }
         }
 
+        // GET: Membre/Cotisation
+        public ActionResult Cotisation()
+        {
+            return View();
+        }
+
+        // GET: Membre/RenouvAbonnementSucces
+        public ActionResult RenouvAbonnementSucces()
+        {
+            //code pour resetter l'abonnement du client
+            return View();
+        }
+
         // GET: Membre/Identifier
         public ActionResult Identifier()
         {

@@ -55,6 +55,9 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -158,6 +161,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelProjetGoSprint1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="PaypalConfiguration.cs" />
     <Compile Include="Projet.cs">
       <DependentUpon>ModelProjetGoSprint1.tt</DependentUpon>
     </Compile>
@@ -233,6 +237,8 @@
     <Content Include="Views\Projets\Details.cshtml" />
     <Content Include="Views\Projets\Modifier.cshtml" />
     <Content Include="Views\Projets\Effacer.cshtml" />
+    <Content Include="Views\Membres\RenouvAbonnementSucces.cshtml" />
+    <Content Include="Views\Membres\Cotisation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
