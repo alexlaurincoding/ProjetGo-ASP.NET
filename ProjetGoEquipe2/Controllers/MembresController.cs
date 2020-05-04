@@ -54,13 +54,14 @@ namespace ProjetGoEquipe2.Controllers
         // GET: Membre/RenouvAbonnementSucces
         public ActionResult RenouvAbonnementSucces()
         {
+            
             //code pour resetter l'abonnement du client
             return View();
         }
 
         public ActionResult RenouvAbonnementCancel()
         {
-            //code pour resetter l'abonnement du client
+          
             return View();
         }
 
@@ -69,6 +70,7 @@ namespace ProjetGoEquipe2.Controllers
         {
             return View();
         }
+
 
         // POST: Membre/Identifier
         [HttpPost]
