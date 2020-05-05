@@ -22,7 +22,6 @@
             <PropertyRef Name="idCotisation" />
           </Key>
           <Property Name="idCotisation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="numTransaction" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="dateTransaction" Type="date" Nullable="false" />
           <Property Name="montant" Type="int" Nullable="false" />
           <Property Name="nomUsager" Type="varchar" MaxLength="50" Nullable="false" />
@@ -151,7 +150,6 @@
             <PropertyRef Name="idCotisation" />
           </Key>
           <Property Name="idCotisation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="numTransaction" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="dateTransaction" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="montant" Type="Int32" Nullable="false" />
           <Property Name="nomUsager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -285,7 +283,6 @@
             <EntityTypeMapping TypeName="ProjetGoDataModel.Cotisation">
               <MappingFragment StoreEntitySet="Cotisation">
                 <ScalarProperty Name="idCotisation" ColumnName="idCotisation" />
-                <ScalarProperty Name="numTransaction" ColumnName="numTransaction" />
                 <ScalarProperty Name="dateTransaction" ColumnName="dateTransaction" />
                 <ScalarProperty Name="montant" ColumnName="montant" />
                 <ScalarProperty Name="nomUsager" ColumnName="nomUsager" />
