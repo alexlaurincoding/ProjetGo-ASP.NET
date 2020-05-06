@@ -133,6 +133,7 @@
     <Compile Include="CompteRendu.cs">
       <DependentUpon>ModelProjetGoSprint1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\CompteRendusController.cs" />
     <Compile Include="Controllers\DonsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembresController.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="Tresorier.cs">
       <DependentUpon>ModelProjetGoSprint1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Views\CompteRenduController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
@@ -239,6 +241,11 @@
     <Content Include="Views\Projets\Effacer.cshtml" />
     <Content Include="Views\Membres\RenouvAbonnementSucces.cshtml" />
     <Content Include="Views\Membres\Cotisation.cshtml" />
+    <Content Include="Views\CompteRendus\Ajouter.cshtml" />
+    <Content Include="Views\CompteRendus\Index.cshtml" />
+    <Content Include="Views\CompteRendus\Details.cshtml" />
+    <Content Include="Views\CompteRendus\Modifier.cshtml" />
+    <Content Include="Views\CompteRendus\Effacer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

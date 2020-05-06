@@ -21,10 +21,11 @@
 
                     <div class="btn-group-vertical" role="group">
                         <button onclick="@("window.location.href='" + @Url.Action("MesProjets", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Mes Projets</button>
-                        <button onclick="@("window.location.href='" + @Url.Action("Ajouter", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left">Ajouter Projet</button>
-                        <button type="button" class="btn btn-default" style="text-align:left">Mes Comptes-Rendus</button>
+                        <button onclick="@("window.location.href='" + @Url.Action("Ajouter", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left">Ajouter un Projet</button>
+                        <button type="button" onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" class="btn btn-default" style="text-align:left">Mes Compte-Rendus</button>
+                        <button type="button" onclick="@("window.location.href='" + @Url.Action("Ajouter", "CompteRendus") + "'");" class="btn btn-default" style="text-align:left">Ajouter un Compte-Rendu</button>
                         <button type="button" onclick="@("window.location.href='" + @Url.Action("Cotisation", "Membres") + "'");" class="btn btn-default" style="text-align:left">Payer ma Cotisation</button>
-                        <button type="button" class="btn btn-default" style="text-align:left">Mon Profil</button>
+                        <button type="button" onclick="@("window.location.href='" + @Url.Action("Profil", "Membres") + "'");" class="btn btn-default" style="text-align:left">Mon Profil</button>
                     </div>
                 </div>
 
@@ -79,22 +80,23 @@
                             <div class="form-group">
                                 <div class="control-label col-md-2">Courte Description</div>
                                 <div class="col-md-10">
-                                    <textarea class="form-control col-md-10" rows="5" name="description"></textarea>
+                                    <textarea class="form-control col-md-10" rows="5" name="description">@Model.descriptionCourte</textarea>
                                 </div>
                             </div>
+
 
                             <div class="form-group">
                                 <div class="control-label col-md-2">Sommaire</div>
                                 <div class="col-md-10">
-                                    <textarea class="form-control col-md-10" rows="5" name="sommaire"></textarea>
+                                    <textarea class="form-control col-md-10" rows="5" name="sommaire">@Model.sommaire</textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <div class="control-label col-md-2">Début estimé</div>                                    
-                                    <div class="col-md-10">
-                                        <input type="date" class="form-control" name="debutEstime" value="@Convert.ToString(string.Format("{0:yyyy-MM-dd}", Model.debutEstime))" />
-                                    </div>
+                                <div class="control-label col-md-2">Début estimé</div>
+                                <div class="col-md-10">
+                                    <input type="date" class="form-control" name="debutEstime" value="@Convert.ToString(string.Format("{0:yyyy-MM-dd}", Model.debutEstime))" />
+                                </div>
                             </div>
 
                             <div class="form-group">
@@ -106,16 +108,16 @@
 
                             <div class="form-group">
                                 <div class="control-label col-md-2">Début réel</div>
-                                    <div class="col-md-10">
-                                        <input type="date" class="form-control" name="debutReel" value="@Convert.ToString(string.Format("{0:yyyy-MM-dd}", Model.debutReel))" />
-                                    </div>
+                                <div class="col-md-10">
+                                    <input type="date" class="form-control" name="debutReel" value="@Convert.ToString(string.Format("{0:yyyy-MM-dd}", Model.debutReel))" />
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="control-label col-md-2">Fin réelle</div>
-                                    <div class="col-md-10">
-                                        <input type="date" class="form-control" name="finReelle" value="@Convert.ToString(string.Format("{0:yyyy-MM-dd}", Model.finReelle))" />
-                                    </div>
+                                <div class="col-md-10">
+                                    <input type="date" class="form-control" name="finReelle" value="@Convert.ToString(string.Format("{0:yyyy-MM-dd}", Model.finReelle))" />
+                                </div>
                             </div>
 
                             <div class="form-group">
@@ -151,27 +153,26 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="control-label col-md-2">Fréquence des comptes-rendus</div>
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.frequenceComptesRendus, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.frequenceComptesRendus, "", new { @class = "text-danger" })
+                                <div class="control-label col-md-3">Fréquence Compte-Rendus (semaines)</div>
+                                <div class="col-md-9">
+                                    <select class="form-control" name="frequence">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4" selected>4</option>
+                                        <option value="6">6</option>
+                                        <option value="8">8</option>
+                                        <option value="10">10</option>
+                                        <option value="12">12</option>
+                                    </select>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <div class="control-label col-md-2">Date prochain compte-rendu</div>
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.dateProchainCompteRendu, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.dateProchainCompteRendu, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
 
 
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Modifier" class="btn btn-default" style="background-color:rgb(184, 210, 49)"/>
+                                    <input type="submit" value="Modifier" class="btn btn-default" style="background-color:rgb(184, 210, 49)" />
                                 </div>
                             </div>
                         </dl>

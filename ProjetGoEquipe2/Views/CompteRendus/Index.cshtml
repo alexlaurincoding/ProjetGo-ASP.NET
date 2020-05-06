@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ProjetGoEquipe2.CompteRendu>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Page de @Session["Usager"]</h2>
+
+<!-- Partie principale de la page -->
+<main role="main" class="container-fluid">
+    <div class="row">
+
+        <div class="col-sm-3">
+
+            <div class="content-section" id="right-left">
+                <h4>Mes Sections</h4>
+
+                <div class="btn-group-vertical" role="group">
+                    <button onclick="@("window.location.href='" + @Url.Action("MesProjets", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left;">Mes Projets</button>
+                    <button onclick="@("window.location.href='" + @Url.Action("Ajouter", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left">Ajouter un Projet</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" class="btn btn-default" style="text-align:left;  background-color:rgb(184, 210, 49)">Mes Compte-Rendus</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Ajouter", "CompteRendus") + "'");" class="btn btn-default" style="text-align:left">Ajouter un Compte-Rendu</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Cotisation", "Membres") + "'");" class="btn btn-default" style="text-align:left">Payer ma Cotisation</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Profil", "Membres") + "'");" class="btn btn-default" style="text-align:left">Mon Profil</button>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="col-sm-9">
+            <div class="content-section main-section-top">
+
+                <div class="content-section" id="sectionPrincipaleMembre">
+
+                    <h3 style="text-align:center;">
+                        Mes Compte-Rendus
+                    </h3>
+
+                    <br />
+
+                    <table class="table">
+                        <tr>
+                            <th></th>
+                            <th>
+                                Date du Compte-Rendu
+                            </th>
+                            <th>
+                                Projet
+                            </th>
+                            <th>
+                                Réalisations Principales
+                            </th>
+
+                        </tr>
+
+                        @foreach (CompteRendu item in Singleton.Instance.db.CompteRendus)
+                        {
+                            if (item.Projet.idResponsable == (string)Session["Usager"])
+                            {
+
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink("Détails", "Details", new { id = item.idCompteRendu })<br />
+                                        @Html.ActionLink("Modifier", "Modifier", new { id = item.idCompteRendu })<br />
+                                        @Html.ActionLink("Effacer", "Effacer", new { id = item.idCompteRendu })<br />
+                                    </td>
+                                    <td>
+                                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dateCompteRendu))
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Projet.titre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.sommaireRealisationsCompletees)
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
