@@ -1,0 +1,107 @@
+﻿@model ProjetGoEquipe2.CompteRendu
+
+@{
+    ViewBag.Title = "Ajouter";
+
+}
+
+<h2>Page de @Session["Usager"]</h2>
+
+<!-- Partie principale de la page -->
+<main role="main" class="container-fluid">
+    <div class="row">
+
+        <div class="col-sm-3">
+
+            <div class="content-section" id="right-left">
+                <h4>Mes Sections</h4>
+
+                <div class="btn-group-vertical" role="group">
+                    <button onclick="@("window.location.href='" + @Url.Action("MesProjets", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left;">Mes Projets</button>
+                    <button onclick="@("window.location.href='" + @Url.Action("Ajouter", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left">Ajouter un Projet</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" class="btn btn-default" style="text-align:left">Mes Compte-Rendus</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Ajouter", "CompteRendus") + "'");" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Ajouter un Comptes-Rendu</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Cotisation", "Membres") + "'");" class="btn btn-default" style="text-align:left">Payer ma Cotisation</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Profil", "Membres") + "'");" class="btn btn-default" style="text-align:left">Mon Profil</button>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="col-sm-9">
+            <div class="content-section main-section-top">
+
+                <div class="content-section" id="sectionPrincipaleMembre">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <h3 style="text-align:center;">Soumettre un Compte-Rendu</h3>
+                        <div class="form-horizontal">
+
+                            <hr />
+
+                            <div class="form-group">
+                                <div class="control-label col-md-3">Projet</div>
+                                <div class="col-md-9">
+                                    <select class="form-control" name="idProjet">
+
+                                            @foreach (var item in Singleton.Instance.db.Projets)
+                                            {
+
+
+                                                if (item.idResponsable == (string)Session["Usager"])
+                                                {
+                                                    <option value=@item.idProjet>@item.titre</option>
+                                                }
+                                            }
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label col-md-3">Informations à Jour</div>
+                                <div class="col-md-9">
+                                    <textarea class="form-control col-md-9" rows="5" name="informationsAJour"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label col-md-3">Réalisations Complétées</div>
+                                <div class="col-md-9">
+                                    <textarea class="form-control col-md-9" rows="5" name="sommaireRealisationsCompletees"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label col-md-3">Réalisations Reportées</div>
+                                <div class="col-md-9">
+                                    <textarea class="form-control col-md-9" rows="5" name="realisationsReportees"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label col-md-3">État des Risques</div>
+                                <div class="col-md-9">
+                                    <textarea class="form-control col-md-9" rows="5" name="etatRisques"></textarea>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Soumettre" class="btn btn-default0" style="background-color:rgb(184, 210, 49)" />
+                                </div>
+                            </div>
+                                
+                    </div>
+                            }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </main>

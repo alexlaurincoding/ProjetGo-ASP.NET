@@ -1,4 +1,4 @@
-﻿@model ProjetGoEquipe2.Projet
+﻿@model ProjetGoEquipe2.CompteRendu
 
 @{
     ViewBag.Title = "Effacer";
@@ -35,10 +35,12 @@
 
                 <div class="content-section" id="sectionPrincipaleMembre">
 
-                    <h3 style="text-align:center;">Supprimer "@Html.DisplayFor(model => model.titre)"</h3>
+                    <h3 style="text-align:center;">
+                        Supprimer Compte-Rendu du  @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateCompteRendu))<br /> pour "@Html.DisplayFor(model => model.Projet.titre)"
+                    </h3>
 
                     <div style="text-align:center;">
-                        @Html.ActionLink("Revenir à mes projets", "MesProjets")
+                        @Html.ActionLink("Revenir à mes compte-rendus", "Index")
                     </div>
 
                     <dl class="dl-horizontal">
@@ -46,7 +48,7 @@
                         <div>
                             <br /><br /><br />
 
-                            <h4>Êtes-vous vraiment certain de vouloir supprimer ce projet ?</h4>
+                            <h4>Êtes-vous vraiment certain de vouloir supprimer ce compte-rendu ?</h4>
 
                             @using (Html.BeginForm())
                             {
@@ -54,8 +56,8 @@
 
                                 <br />
                                 <div class="form-actions no-color" style="text-align:center;">
-                                    <input type="submit" value="Effacer" class="btn btn-default" style="background-color:rgb(184, 210, 49)"/>
-                                    <button onclick="@("window.location.href='" + @Url.Action("MesProjets", "Projets") + "'");" type="button" class="btn btn-default">Annuler</button>
+                                    <input type="submit" value="Effacer" class="btn btn-default" style="background-color:rgb(184, 210, 49)" />
+                                    <button onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" type="button" class="btn btn-default">Annuler</button>
 
                                 </div>
                             }
@@ -63,4 +65,3 @@
                 </div>
             </div>
 </main>
-

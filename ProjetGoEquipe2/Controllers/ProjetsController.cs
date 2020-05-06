@@ -13,6 +13,11 @@ namespace ProjetGoEquipe2.Controllers
         // GET: Projets
         public ActionResult Index()
         {
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+            {
+                return RedirectToAction("Identifier", "Membres");
+            }
+
             return View();
         }
 
@@ -121,7 +126,6 @@ namespace ProjetGoEquipe2.Controllers
                     Singleton.Instance.db.SaveChanges();
                     return RedirectToAction("MesProjets", "Projets");
                 }
-                MessageBox.Show("Un probleme");
 
                 return View();
 

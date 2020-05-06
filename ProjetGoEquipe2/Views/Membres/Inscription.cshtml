@@ -11,61 +11,92 @@
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
+
+    @{
+        if (ViewBag.Erreur == "Oubli")
+        {
+            <h8 class="col-md-9" style="color:red">@ViewBag.Message</h8>
+        }
+    }
+    <br />
     <hr />
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
     <div class="form-group">
-        <div class="control-label col-md-2">Nom d'Usager</div>
-        <div class="col-md-10">
+        <div class="control-label col-md-3">Nom d'Usager</div>
+        <div class="col-md-9">
             @Html.EditorFor(model => model.nomUsager, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.nomUsager, "", new { @class = "text-danger" })
+            @{
+                if (ViewBag.Erreur == "Usager")
+                {
+                    <h8 class="col-md-10" style="color:red">@ViewBag.Message</h8>
+                }
+            }
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-3">Mot de Passe</div>
+        <div class="col-md-9">
+            <input type="password" name="motPasse" class="form-control" />
         </div>
     </div>
 
     <div class="form-group">
-        <div class="control-label col-md-2">Mot de Passe</div>
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.motPasse, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.motPasse, "", new { @class = "text-danger" })
+        <div class="control-label col-md-3">Confirmer Mot de Passe</div>
+        <div class="col-md-9">
+            <input type="password" name="repeter" class="form-control" />
+            @{
+                if (ViewBag.Erreur == "Repeter")
+                {
+                    <h8 class="col-md-10" style="color:red">@ViewBag.Message</h8>
+                }
+            }
         </div>
     </div>
 
     <div class="form-group">
-        <div class="control-label col-md-2">Nom</div>
-        <div class="col-md-10">
+        <div class="control-label col-md-3">Nom</div>
+        <div class="col-md-9">
             @Html.EditorFor(model => model.nom, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.nom, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        <div class="control-label col-md-2">Prénom</div>
-        <div class="col-md-10">
+        <div class="control-label col-md-3">Prénom</div>
+        <div class="col-md-9">
             @Html.EditorFor(model => model.prenom, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.prenom, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        <div class="control-label col-md-2">Courriel</div>
-        <div class="col-md-10">
+        <div class="control-label col-md-3">Courriel</div>
+        <div class="col-md-9">
             @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            @{
+                if (ViewBag.Erreur == "Courriel")
+                {
+                    <h8 class="col-md-10" style="color:red">@ViewBag.Message</h8>
+                }
+            }
         </div>
+
     </div>
 
     <div class="form-group">
-        <div class="control-label col-md-2">Numéro de Téléphone</div>
-        <div class="col-md-10">
+        <div class="control-label col-md-3">Numéro de Téléphone</div>
+        <div class="col-md-9">
             @Html.EditorFor(model => model.numeroTel, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.numeroTel, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        <div class="control-label col-md-2">Adresse</div>
-        <div class="col-md-10">
+        <div class="control-label col-md-3">Adresse</div>
+        <div class="col-md-9">
             @Html.EditorFor(model => model.adresse, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.adresse, "", new { @class = "text-danger" })
         </div>
@@ -73,23 +104,23 @@
 
 
     <div class="form-group">
-        <div class="control-label col-md-2">Recevoir des Nouvelles de ProjetGo?</div>
-        <div class="col-md-10" style="margin-top:10px">
+        <div class="control-label col-md-3">Recevoir des Nouvelles de ProjetGo?</div>
+        <div class="col-md-9" style="margin-top:10px">
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="nouvelles" id="inlineRadio1" value="option1">
-                <label class="form-check-label" for="inlineRadio1"  style="font-weight:normal">Oui</label>
+                <label class="form-check-label" for="inlineRadio1" style="font-weight:normal">Oui</label>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="nouvelles" id="inlineRadio2" value="option2">
                 <label class="form-check-label" for="inlineRadio2" style="font-weight:normal">Non</label>
             </div>
         </div>
-        </div>
+    </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Enregistrer" class="btn btn-primary" style="background-color:rgb(184, 210, 49)" />
-                </div>
-            </div>
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-9">
+            <input type="submit" value="Enregistrer" class="btn btn-default" style="background-color:rgb(184, 210, 49)" />
         </div>
+    </div>
+</div>
         }

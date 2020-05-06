@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,14 +31,48 @@ namespace ProjetGoEquipe2.Controllers
 
         // POST: Membre/Inscription
         [HttpPost]
-        public ActionResult Inscription(Membre membre)
+        public ActionResult Inscription(Membre membre, string repeter)
         {
             try
             {
+
+                if (membre.motPasse.IsNullOrWhiteSpace() || membre.nomUsager.IsNullOrWhiteSpace() || membre.nom.IsNullOrWhiteSpace() || membre.prenom.IsNullOrWhiteSpace() || membre.email.IsNullOrWhiteSpace())
+                {
+                    ViewBag.Erreur = "Oubli";
+                    ViewBag.Message = "Les champs nom, prenom, nom d'usager, mot de passe et courriel sont obligatoires.";
+                    return View();
+
+                }
+
+                if (membre.motPasse != repeter)
+                {
+                    ViewBag.Erreur = "Repeter";
+                    ViewBag.Message = "Le mot de passe n'a pas été répété correctement";
+                    return View();
+                }
+
+                foreach (Membre m in Singleton.Instance.db.Membres)
+                {
+                    if (membre.nomUsager == m.nomUsager)
+                    {
+                        ViewBag.Erreur = "Usager";
+                        ViewBag.Message = "Ce nom d'usager existe déjà.";
+                        return View();
+                    }
+                    if (membre.email == m.email)
+                    {
+                        ViewBag.Erreur = "Courriel";
+                        ViewBag.Message = "Ce courriel est déjà utilisé par quelqu'un.";
+                        return View();
+                    }
+                }
+
                 Singleton.Instance.db.Membres.Add(membre);
                 Singleton.Instance.db.SaveChanges();
                 Session["Connected"] = true;
-                return RedirectToAction("MesProjets", "Projets");
+                Session["Usager"] = membre.nomUsager;
+                membre.statut = "Attente";
+                return RedirectToAction("Cotisation", "Membres");
             }
             catch
             {
@@ -54,8 +89,6 @@ namespace ProjetGoEquipe2.Controllers
         // GET: Membre/RenouvAbonnementSucces
         public ActionResult RenouvAbonnementSucces()
         {
-            
-            //code pour resetter l'abonnement du client
             return View();
         }
 
