@@ -1,7 +1,243 @@
-﻿
+﻿@model IEnumerable<ProjetGoEquipe2.Projet>
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>La Page d'Accueil de Projets</h2>
+<style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 30%;
+    }
 
+    .titre {
+        background-color: rgb(184, 210, 49);
+        padding: 5px;
+        border: 3px solid black;
+        text-align: center;
+        font-variant:small-caps;
+    }
+</style>
+<br />
+<br />
+
+
+<div class="center">
+    <h4 class="titre">Nos Projets Actifs</h4>
+</div>
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            Titre
+        </th>
+
+        <th>
+            Description
+        </th>
+
+        <th>
+            Début
+        </th>
+
+        <th>
+            Fin estimée
+        </th>
+
+        <th>
+            Fonds collectés
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Singleton.Instance.db.Projets.Where(projet => projet.statut == "Actif").OrderByDescending(projet => projet.debutReel))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.titre)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.descriptionCourte)
+            </td>
+
+            <td>
+                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.debutReel))
+            </td>
+            <td>
+                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.finEstimee))
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.totalFondsCollectes)$
+            </td>
+
+            @{
+                if (Session["Connected"] != null && (bool)Session["Connected"] == true)
+                {
+                    <td>
+                        @Html.ActionLink("Plus de détails (membres seulement)", "Details", new { id = item.idProjet })
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink("Plus de détails (membres seulement)", "Inscription", "Membres")
+                    </td>
+                }
+            }
+
+        </tr>
+
+    }
+
+</table>
+
+<br />
+<br />
+
+
+<div class="center">
+    <h4 class="titre">Nos Projets à Venir</h4>
+</div>
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            Titre
+        </th>
+
+        <th>
+            Description
+        </th>
+
+        <th>
+            Début estimé
+        </th>
+
+        <th>
+            Fin estiméee
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Singleton.Instance.db.Projets.Where(projet => projet.statut == "Approuve").OrderByDescending(projet => projet.debutEstime))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.titre)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.descriptionCourte)
+            </td>
+
+            <td>
+                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.debutEstime))
+            </td>
+
+            <td>
+                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.finEstimee))
+            </td>
+
+            @{
+                if (Session["Connected"] != null && (bool)Session["Connected"] == true)
+                {
+                    <td>
+                        @Html.ActionLink("Plus de détails (membres seulement)", "Details", new { id = item.idProjet })
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink("Plus de détails (membres seulement)", "Inscription", "Membres")
+                    </td>
+                }
+            }
+        </tr>
+    }
+</table>
+
+<br />
+<br />
+
+<div class="center">
+    <h4 class="titre">Nos Projets Complétés</h4>
+</div>
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            Titre
+        </th>
+
+        <th>
+            Description
+        </th>
+
+        <th>
+            Début
+        </th>
+
+        <th>
+            Fin
+        </th>
+
+        <th>
+            Fonds collectés
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Singleton.Instance.db.Projets.Where(projet => projet.statut == "Termine").OrderByDescending(projet => projet.finReelle))
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.titre)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.descriptionCourte)
+            </td>
+
+            <td>
+                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.debutReel))
+
+            </td>
+            <td>
+                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.finReelle))
+
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.totalFondsCollectes)$
+            </td>
+
+
+            @{
+                if (Session["Connected"] != null && (bool)Session["Connected"] == true)
+                {
+                    <td>
+                        @Html.ActionLink("Plus de détails (membres seulement)", "Details", new { id = item.idProjet })
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink("Plus de détails (membres seulement)", "Inscription", "Membres")
+                    </td>
+                }
+            }
+        </tr>
+    }
+
+</table>

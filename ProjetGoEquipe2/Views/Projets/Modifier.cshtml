@@ -68,11 +68,66 @@
                                 <div class="col-md-10">
                                     <select class="form-control" name="statut" value=@Model.statut>
                                         <option value="Propose">Proposé</option>
-                                        <option value="Soumis">Soumis</option>
-                                        <option value="Approuve">Approuvé</option>
-                                        <option value="Actif">Actif</option>
-                                        <option value="Termine">Terminé</option>
-                                        <option value="Gele">Gelé</option>
+                                        @{
+                                            if (Model.statut == "Soumis")
+                                            {
+                                                <option value="Soumis" selected>Soumis</option>
+
+                                            }
+                                            else
+                                            {
+                                                <option value="Soumis">Soumis</option>
+
+                                            }
+                                        }
+                                        @{
+                                            if (Model.statut == "Approuve")
+                                            {
+                                                <option value="Approuve" selected>Approuvé</option>
+
+                                            }
+                                            else
+                                            {
+                                                <option value="Approuve">Approuvé</option>
+
+                                            }
+                                        }
+                                        @{
+                                            if (Model.statut == "Actif")
+                                            {
+                                                <option value="Actif" selected>Actif</option>
+
+                                            }
+                                            else
+                                            {
+                                                <option value="Actif">Actif</option>
+
+                                            }
+                                        }
+                                        @{
+                                            if (Model.statut == "Termine")
+                                            {
+                                                <option value="Termine" selected>Terminé</option>
+
+                                            }
+                                            else
+                                            {
+                                                <option value="Termine">Terminé</option>
+
+                                            }
+                                        }
+                                        @{
+                                            if (Model.statut == "Gele")
+                                            {
+                                                <option value="Gele" selected>Gelé</option>
+
+                                            }
+                                            else
+                                            {
+                                                <option value="Gele">Gelé</option>
+
+                                            }
+                                        }
                                     </select>
                                 </div>
                             </div>
@@ -153,8 +208,8 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="control-label col-md-3">Fréquence Compte-Rendus (semaines)</div>
-                                <div class="col-md-9">
+                                <div class="control-label col-md-2">Fréquence Compte-Rendus (semaines)</div>
+                                <div class="col-md-10">
                                     <select class="form-control" name="frequence">
                                         <option value="1">1</option>
                                         <option value="2">2</option>

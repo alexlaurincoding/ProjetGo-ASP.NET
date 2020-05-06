@@ -55,7 +55,15 @@ namespace ProjetGoEquipe2.Controllers
                 Singleton.Instance.db.SaveChanges();
                 int joursAvantProchain = (int)cr.Projet.frequenceComptesRendus * 7;
                 cr.Projet.dateProchainCompteRendu = DateTime.Now.AddDays(joursAvantProchain);
-                return RedirectToAction("Index", "CompteRendus");
+                try
+                {
+                    Singleton.Instance.db.SaveChanges();
+                    return RedirectToAction("Index", "CompteRendus");
+                }
+                catch
+                {
+                    return View();
+                }
             }
             catch
             {
