@@ -4,7 +4,9 @@
     ViewBag.Title = "Effacer";
 }
 
+<br />
 <h2>Page de @Session["Usager"]</h2>
+<hr /><br />
 
 <!-- Partie principale de la page -->
 <main role="main" class="container-fluid">
@@ -17,9 +19,9 @@
                 <h4>Mes Sections</h4>
 
                 <div class="btn-group-vertical" role="group">
-                    <button onclick="@("window.location.href='" + @Url.Action("MesProjets", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Mes Projets</button>
+                    <button onclick="@("window.location.href='" + @Url.Action("MesProjets", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left;">Mes Projets</button>
                     <button onclick="@("window.location.href='" + @Url.Action("Ajouter", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left">Ajouter un Projet</button>
-                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" class="btn btn-default" style="text-align:left">Mes Compte-Rendus</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Mes Compte-Rendus</button>
                     <button type="button" onclick="@("window.location.href='" + @Url.Action("Ajouter", "CompteRendus") + "'");" class="btn btn-default" style="text-align:left">Ajouter un Compte-Rendu</button>
                     <button type="button" onclick="@("window.location.href='" + @Url.Action("Cotisation", "Membres") + "'");" class="btn btn-default" style="text-align:left">Payer ma Cotisation</button>
                     <button type="button" onclick="@("window.location.href='" + @Url.Action("Profil", "Membres") + "'");" class="btn btn-default" style="text-align:left">Mon Profil</button>
@@ -31,13 +33,13 @@
         </div>
 
         <div class="col-sm-9">
-            <div class="content-section main-section-top">
+            <div class="content-section main-section-top main-add">
 
                 <div class="content-section" id="sectionPrincipaleMembre">
 
-                    <h3 style="text-align:center;">
+                    <h4 class="titre">
                         Supprimer Compte-Rendu du  @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateCompteRendu))<br /> pour "@Html.DisplayFor(model => model.Projet.titre)"
-                    </h3>
+                    </h4>
 
                     <div style="text-align:center;">
                         @Html.ActionLink("Revenir à mes compte-rendus", "Index")

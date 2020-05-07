@@ -3,8 +3,9 @@
 @{
     ViewBag.Title = "Modifier";
 }
-
+<br />
 <h2>Page de @Session["Usager"]</h2>
+<br /><hr>
 
 
 <main class="form-horizontal">
@@ -34,7 +35,7 @@
             </div>
 
             <div class="col-sm-9">
-                <div class="content-section main-section-top">
+                <div class="content-section main-section-top main-add">
 
                     <div class="content-section" id="sectionPrincipaleMembre">
 
@@ -42,7 +43,7 @@
                     {
                         @Html.AntiForgeryToken()
 
-                        <h3 style="text-align:center;">Modifier @Html.DisplayFor(model => model.titre)</h3>
+                        <h4 class="titre">Modifier @Html.DisplayFor(model => model.titre)</h4>
 
                         <div style="text-align:center;">
                             @Html.ActionLink("Revenir à mes projets", "MesProjets")
@@ -68,14 +69,99 @@
                                 <div class="col-md-10">
                                     <select class="form-control" name="statut" value=@Model.statut>
                                         <option value="Propose">Proposé</option>
-                                        <option value="Soumis">Soumis</option>
-                                        <option value="Approuve">Approuvé</option>
-                                        <option value="Actif">Actif</option>
-                                        <option value="Termine">Terminé</option>
-                                        <option value="Gele">Gelé</option>
+                                        @{
+                                            if (Model.statut == "Soumis")
+                                            {
+                                                <option value="Soumis" selected>Soumis</option>
+
+                                            }
+                                            else
+                                            {
+                                                <option value="Soumis">Soumis</option>
+
+                                            }
+                                        }
+                                        @{
+                                            if (Model.statut == "Approuve")
+                                            {
+                                                <option value="Approuve" selected>Approuvé</option>
+
+                                            }
+                                            else
+                                            {
+                                                <option value="Approuve">Approuvé</option>
+
+                                            }
+                                        }
+                                        @{
+                                            if (Model.statut == "Actif")
+                                            {
+                                                <option value="Actif" selected>Actif</option>
+
+                                            }
+                                            else
+                                            {
+                                                <option value="Actif">Actif</option>
+
+                                            }
+                                        }
+                                        @{
+                                            if (Model.statut == "Termine")
+                                            {
+                                                <option value="Termine" selected>Terminé</option>
+
+                                            }
+                                            else
+                                            {
+                                                <option value="Termine">Terminé</option>
+
+                                            }
+                                        }
+                                        @{
+                                            if (Model.statut == "Gele")
+                                            {
+                                                <option value="Gele" selected>Gelé</option>
+
+                                            }
+                                            else
+                                            {
+                                                <option value="Gele">Gelé</option>
+
+                                            }
+                                        }
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <div class="control-label col-md-2">Visibilité</div>
+                                <div class="col-md-10">
+                                    <select class="form-control" name="visibilite" value=@Model.statut>
+
+                                        @{if (Model.visibilite == null || Model.visibilite == "Public")
+                                            {
+                                                <option value="Public" selected>Public</option>
+                                                <option value="Membres">Membres</option>
+                                                <option value="Prive">Privé</option>
+
+                                            }
+                                            else if (Model.visibilite == "Membres")
+                                            {
+                                                <option value="Public">Public</option>
+                                                <option value="Membres" selected>Membres</option>
+                                                <option value="Prive">Privé</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="Public">Public</option>
+                                                <option value="Membres">Membres</option>
+                                                <option value="Prive" selected>Privé</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
 
                             <div class="form-group">
                                 <div class="control-label col-md-2">Courte Description</div>
@@ -153,8 +239,8 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="control-label col-md-3">Fréquence Compte-Rendus (semaines)</div>
-                                <div class="col-md-9">
+                                <div class="control-label col-md-2">Fréquence Compte-Rendus (semaines)</div>
+                                <div class="col-md-10">
                                     <select class="form-control" name="frequence">
                                         <option value="1">1</option>
                                         <option value="2">2</option>

@@ -63,6 +63,7 @@
           <Property Name="frequenceComptesRendus" Type="int" />
           <Property Name="dateProchainCompteRendu" Type="date" />
           <Property Name="idResponsable" Type="varchar" MaxLength="50" />
+          <Property Name="visibilite" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Tresorier">
           <Key>
@@ -194,6 +195,7 @@
           <Property Name="frequenceComptesRendus" Type="Int32" />
           <Property Name="dateProchainCompteRendu" Type="DateTime" Precision="0" />
           <Property Name="idResponsable" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="visibilite" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CompteRendus" Relationship="Self.FK_ProjetCompteRendu" FromRole="Projet" ToRole="CompteRendu" />
           <NavigationProperty Name="Membre" Relationship="Self.FK_Responsable" FromRole="Projet" ToRole="Membre" />
         </EntityType>
@@ -326,6 +328,7 @@
                 <ScalarProperty Name="frequenceComptesRendus" ColumnName="frequenceComptesRendus" />
                 <ScalarProperty Name="dateProchainCompteRendu" ColumnName="dateProchainCompteRendu" />
                 <ScalarProperty Name="idResponsable" ColumnName="idResponsable" />
+                <ScalarProperty Name="visibilite" ColumnName="visibilite" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -3,8 +3,10 @@
 @{
     ViewBag.Title = "Details";
 }
+<br />
 
 <h2>Page de @Session["Usager"]</h2>
+<hr /><br />
 
 <!-- Partie principale de la page -->
 <main role="main" class="container-fluid">
@@ -30,10 +32,10 @@
         </div>
 
         <div class="col-sm-9">
-            <div class="content-section main-section-top">
+            <div class="content-section main-section-top main-add">
 
                 <div class="content-section" id="sectionPrincipaleMembre">
-                    <h3 style="text-align:center;">Détails de @Html.DisplayFor(model => model.titre)</h3>
+                    <h4 class="titre">Détails de @Html.DisplayFor(model => model.titre)</h4>
                     <div style="text-align:center;">
                         @Html.ActionLink("Revenir à mes projets", "MesProjets") 
                     </div>
@@ -59,6 +61,27 @@
                         }
                         <br />
 
+                        <dt>
+                            Visibilité
+                        </dt>
+
+                        @{
+                            if (Model.visibilite == null || Model.visibilite == "Public")
+                            {
+
+                                <dd>Public</dd>
+                            }
+                            else if (Model.visibilite == "Membres")
+                            {
+                                <dd>Membres</dd>
+                            }
+                            else
+                            {
+                                <dd>Privé</dd>
+                            }
+                        }
+
+                        <br />
                         <dt>
                             Description
                         </dt>
@@ -100,9 +123,9 @@
                         }
                         else
                         {
-                    <dd>
-                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.debutEstime))
-                    </dd>
+                            <dd>
+                                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.debutEstime))
+                            </dd>
                         }
                         <br />
 
@@ -116,9 +139,9 @@
                         }
                         else
                         {
-                    <dd>
-                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.finEstimee))
-                    </dd>
+                            <dd>
+                                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.finEstimee))
+                            </dd>
                         }
                         <br />
 
@@ -132,9 +155,9 @@
                         }
                         else
                         {
-                    <dd>
-                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.debutReel))
-                    </dd>
+                            <dd>
+                                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.debutReel))
+                            </dd>
                         }
                         <br />
 
@@ -149,9 +172,9 @@
                         }
                         else
                         {
-                    <dd>
-                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.finReelle))
-                    </dd>
+                            <dd>
+                                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.finReelle))
+                            </dd>
                         }
                         <br />
 
@@ -245,13 +268,13 @@
                         }
                         else
                         {
-                    <dd>
-                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateProchainCompteRendu))
-                    </dd>
+                            <dd>
+                                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateProchainCompteRendu))
+                            </dd>
                         }
 
 
-                        </dl>
+                    </dl>
                 </div>
             </div>
         </div>

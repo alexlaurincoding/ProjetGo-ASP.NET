@@ -179,8 +179,14 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\current_projects.jpg" />
     <Content Include="Content\Images\Logo.jpg" />
+    <Content Include="Content\Images\nosProjets.png" />
+    <Content Include="Content\Images\project-completion.jpg" />
+    <Content Include="Content\Images\project_approved.jpg" />
+    <Content Include="Content\Images\projetsProposes.png" />
     <Content Include="Content\Images\soupe-sans-abris.jpg" />
+    <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -246,6 +252,9 @@
     <Content Include="Views\CompteRendus\Details.cshtml" />
     <Content Include="Views\CompteRendus\Modifier.cshtml" />
     <Content Include="Views\CompteRendus\Effacer.cshtml" />
+    <Content Include="Views\Projets\AVenir.cshtml" />
+    <Content Include="Views\Projets\Completes.cshtml" />
+    <Content Include="Views\Projets\Proposes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

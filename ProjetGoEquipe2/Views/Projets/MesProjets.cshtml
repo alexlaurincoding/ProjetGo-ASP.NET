@@ -4,8 +4,9 @@
     ViewBag.Title = "MesProjets";
 }
 
-
+<br />
 <h2>Page de @Session["Usager"]</h2>
+<hr /><br />
 
 <!-- Partie principale de la page -->
 <main role="main" class="container-fluid">
@@ -31,11 +32,11 @@
         </div>
 
         <div class="col-sm-9">
-            <div class="content-section main-section-top">
+            <div class="content-section main-section-top main-add">
 
                 <div class="content-section" id="sectionPrincipaleMembre">
 
-                    <h3 style="text-align:center;">
+                    <h3 class="center titre">
                         Mes Projets
                     </h3>
 
@@ -50,6 +51,10 @@
                             </th>
                             <th>
                                 Statut
+                            </th>
+
+                            <th>
+                                Visibilité
                             </th>
 
                             <th>
@@ -75,73 +80,89 @@
                             if (item.idResponsable == (string)Session["Usager"])
                             {
 
-                                <tr>
-                                    <td>
-                                        @Html.ActionLink("Détails", "Details", new { id = item.idProjet })<br />
-                                        @Html.ActionLink("Modifier", "Modifier", new { id = item.idProjet })<br />
-                                        @Html.ActionLink("Effacer", "Effacer", new { id = item.idProjet })<br />
-                                    </td>
+                    <tr>
+                        <td>
+                            @Html.ActionLink("Détails", "Details", new { id = item.idProjet })<br />
+                            @Html.ActionLink("Modifier", "Modifier", new { id = item.idProjet })<br />
+                            @Html.ActionLink("Effacer", "Effacer", new { id = item.idProjet })<br />
+                        </td>
 
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.titre)
-                                    </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.titre)
+                        </td>
 
-                                    @if (item.statut == null)
-                                    {
-                                        <td> ---</td>
-                                    }
-                                    else
-                                    {
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.statut)
-                                        </td>
-                                    }
+                        @if (item.statut == null)
+                        {
+                            <td> ---</td>
+                        }
+                        else
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.statut)
+                            </td>
+                        }
 
-                                    @if (item.budget == null)
-                                    {
-                                        <td> ---</td>
-                                    }
-                                    else
-                                    {
+                        @{
+                            if (item.visibilite == null || item.visibilite ==  "Public")
+                            {
 
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.budget)$
-                                        </td>
-                                    }
-                                    @if (item.totalFondsCollectes == null)
-                                    {
-                                        <td> ---</td>
-                                    }
-                                    else
-                                    {
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.totalFondsCollectes)$
-                                        </td>
-                                    }
-                                    @if (item.totalDepenes == null)
-                                    {
-                                        <td> ---</td>
-                                    }
-                                    else
-                                    {
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.totalDepenes)$
-                                        </td>
-                                    }
-                                    @if (item.dateProchainCompteRendu == null)
-                                    {
-                                        <td> ---</td>
-                                    }
-                                    else
-                                    {
+                                <td>Public</td>
+                            }
+                            else if (item.visibilite == "Membres")
+                            {
+                                <td>Membres</td>
+                            }
+                            else
+                            {
+                                <td>Privé</td>
+                            }
+                        }
 
-                                        <td>
-                                            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dateProchainCompteRendu))
-                                        </td>
-                                    }
-                                    
+                        @if (item.budget == null)
+                        {
+                            <td> ---</td>
+                        }
+                        else
+                        {
 
-                                </tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.budget)$
+                            </td>
+                        }
+                        @if (item.totalFondsCollectes == null)
+                        {
+                            <td> ---</td>
+                        }
+                        else
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.totalFondsCollectes)$
+                            </td>
+                        }
+                        @if (item.totalDepenes == null)
+                        {
+                            <td> ---</td>
+                        }
+                        else
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.totalDepenes)$
+                            </td>
+                        }
+                        @if (item.dateProchainCompteRendu == null)
+                        {
+                            <td> ---</td>
+                        }
+                        else
+                        {
+
+                            <td>
+                                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dateProchainCompteRendu))
+                            </td>
+                        }
+
+
+                    </tr>
                             }
                         }
 
