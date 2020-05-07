@@ -4,7 +4,10 @@
     ViewBag.Title = "Details";
 }
 
+<br />
 <h2>Page de @Session["Usager"]</h2>
+
+<hr /><br />
 
 <!-- Partie principale de la page -->
 <main role="main" class="container-fluid">
@@ -28,13 +31,13 @@
         </div>
 
         <div class="col-sm-9">
-            <div class="content-section main-section-top">
+            <div class="content-section main-section-top main-add">
 
                 <div class="content-section" id="sectionPrincipaleMembre">
 
-                    <h3 style="text-align:center;">
+                    <h4 class="titre">
                         Détails du Compte-Rendu du  @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateCompteRendu))<br /> pour "@Html.DisplayFor(model => model.Projet.titre)"
-                    </h3>
+                    </h4>
                     <div style="text-align:center;">
                         @Html.ActionLink("Revenir à mes compte-rendus", "Index")
                     </div>

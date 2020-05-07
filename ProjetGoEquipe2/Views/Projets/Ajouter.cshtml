@@ -5,8 +5,9 @@
 }
 
 
-
+<br />
 <h2>Page de @Session["Usager"]</h2>
+<hr /><br />
 
 <!-- Partie principale de la page -->
 <main role="main" class="container-fluid">
@@ -32,7 +33,7 @@
         </div>
 
         <div class="col-sm-9">
-            <div class="content-section main-section-top">
+            <div class="content-section main-section-top main-add">
 
                 <div class="content-section" id="sectionPrincipaleMembre">
 
@@ -40,7 +41,7 @@
                     {
                         @Html.AntiForgeryToken()
 
-                        <h3 style="text-align:center;">Ajouter un Projet</h3>
+                        <h4 class="titre center">Ajouter un Projet</h4>
                         <div class="form-horizontal">
                             <hr />
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -65,6 +66,18 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <div class="control-label col-md-3">Visibilité</div>
+                                <div class="col-md-9">
+                                    <select class="form-control" name="visibilite">
+                                        <option value="Public">Public</option>
+                                        <option value="Membres">Membres</option>
+                                        <option value="Membres">Privé</option>
+                                    </select>
+                                </div>
+                            </div>
+
 
                             <div class="form-group">
                                 <div class="control-label col-md-3">Courte Description:</div>
@@ -106,6 +119,7 @@
                                 <div class="control-label col-md-3">Fréquence Compte-Rendus (semaines)</div>
                                 <div class="col-md-9">
                                     <select class="form-control" name="frequence">
+                                        <option value="1">aucun</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -120,7 +134,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-offset-3 col-md-9">
-                                    <input type="submit" value="Ajouter" class="btn btn-primary" style="background-color:rgb(184, 210, 49)"/>
+                                    <input type="submit" value="Ajouter" class="btn btn-default" style="background-color:rgb(184, 210, 49)" />
                                 </div>
                             </div>
                         </div>

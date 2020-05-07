@@ -33,39 +33,43 @@ namespace ProjetGoEquipe2.Controllers
         [HttpPost]
         public ActionResult Inscription(Membre membre, string repeter)
         {
-            try
+
+            if (membre.motPasse.IsNullOrWhiteSpace() || membre.nomUsager.IsNullOrWhiteSpace() || membre.nom.IsNullOrWhiteSpace() || membre.prenom.IsNullOrWhiteSpace() || membre.email.IsNullOrWhiteSpace())
             {
+                ViewBag.Erreur = "Oubli";
+                ViewBag.Message = "Les champs nom, prenom, nom d'usager, mot de passe et courriel sont obligatoires.";
+                return View();
 
-                if (membre.motPasse.IsNullOrWhiteSpace() || membre.nomUsager.IsNullOrWhiteSpace() || membre.nom.IsNullOrWhiteSpace() || membre.prenom.IsNullOrWhiteSpace() || membre.email.IsNullOrWhiteSpace())
+            }
+
+            if (membre.motPasse != repeter)
+            {
+                ViewBag.Erreur = "Repeter";
+                ViewBag.Message = "Le mot de passe n'a pas été répété correctement";
+                return View();
+            }
+
+            foreach (Membre m in Singleton.Instance.db.Membres)
+            {
+                if (membre.nomUsager == m.nomUsager)
                 {
-                    ViewBag.Erreur = "Oubli";
-                    ViewBag.Message = "Les champs nom, prenom, nom d'usager, mot de passe et courriel sont obligatoires.";
+                    ViewBag.Erreur = "Usager";
+                    ViewBag.Message = "Ce nom d'usager existe déjà.";
                     return View();
-
                 }
-
-                if (membre.motPasse != repeter)
+                if (membre.email == m.email)
                 {
-                    ViewBag.Erreur = "Repeter";
-                    ViewBag.Message = "Le mot de passe n'a pas été répété correctement";
+                    ViewBag.Erreur = "Courriel";
+                    ViewBag.Message = "Ce courriel est déjà utilisé par quelqu'un.";
                     return View();
                 }
+            }
+                
+            try { 
 
-                foreach (Membre m in Singleton.Instance.db.Membres)
-                {
-                    if (membre.nomUsager == m.nomUsager)
-                    {
-                        ViewBag.Erreur = "Usager";
-                        ViewBag.Message = "Ce nom d'usager existe déjà.";
-                        return View();
-                    }
-                    if (membre.email == m.email)
-                    {
-                        ViewBag.Erreur = "Courriel";
-                        ViewBag.Message = "Ce courriel est déjà utilisé par quelqu'un.";
-                        return View();
-                    }
-                }
+                var inscription = Request.Form["inscritMailingList"];
+                
+                membre.inscritMailingList = inscription == "1" ? true : false;
 
                 Singleton.Instance.db.Membres.Add(membre);
                 Singleton.Instance.db.SaveChanges();

@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="aa921b77cac94c3090d4b517e3e26759" Name="Diagram1">
-        <EntityTypeShape EntityType="ProjetGoDataModel.CompteRendu" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+      <Diagram DiagramId="59f5c2f8f8d641ee882764f592d32823" Name="Diagram1">
+        <EntityTypeShape EntityType="ProjetGoDataModel.CompteRendu" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjetGoDataModel.Cotisation" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjetGoDataModel.Membre" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjetGoDataModel.Projet" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjetGoDataModel.Projet" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjetGoDataModel.Tresorier" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="ProjetGoDataModel.FK_ProjetCompteRendu" ManuallyRouted="false" />
         <AssociationConnector Association="ProjetGoDataModel.FK_CotisationMembre" ManuallyRouted="false" />
