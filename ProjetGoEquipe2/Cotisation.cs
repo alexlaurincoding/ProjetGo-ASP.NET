@@ -15,7 +15,6 @@ namespace ProjetGoEquipe2
     public partial class Cotisation
     {
         public int idCotisation { get; set; }
-        public string numTransaction { get; set; }
         public System.DateTime dateTransaction { get; set; }
         public int montant { get; set; }
         public string nomUsager { get; set; }

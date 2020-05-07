@@ -83,12 +83,43 @@ namespace ProjetGoEquipe2.Controllers
         // GET: Membre/Cotisation
         public ActionResult Cotisation()
         {
+
             return View();
         }
 
         // GET: Membre/RenouvAbonnementSucces
         public ActionResult RenouvAbonnementSucces()
         {
+            Cotisation cotisation = new Cotisation();
+            cotisation.nomUsager = (string)Session["Usager"];
+            cotisation.montant = 10;
+            cotisation.dateTransaction = DateTime.Now;
+
+            Singleton.Instance.db.Cotisations.Add(cotisation);
+
+            try
+            {
+                Singleton.Instance.db.SaveChanges();
+
+            }
+            catch
+            {
+                MessageBox.Show("Erreur sauvegarde cotisation");
+            }
+                
+                Membre membre = Singleton.Instance.db.Membres.Find((string)Session["Usager"]);
+                membre.dateProchaineCotisation = DateTime.Now.AddDays(365);
+                membre.statut = "Actif";
+                try
+                {
+                    Singleton.Instance.db.SaveChanges();
+                }
+                catch
+                {
+                    MessageBox.Show("Erreur sauvegarde membres");
+                }
+
+            
             return View();
         }
 

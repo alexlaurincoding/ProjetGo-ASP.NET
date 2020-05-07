@@ -40,15 +40,24 @@
                         <h4>Pour payer votre cotisation annuelle de 10$, cliquez sur l'image:</h4>
                         <br />
 
-<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-    <input type="hidden" name="cmd" value="_s-xclick">
-    <input type="hidden" name="hosted_button_id" value="FJ38TA3L9PBDJ">
-    <input type="image" src="https://www.sandbox.paypal.com/fr_CA/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - la solution de paiement en ligne la plus simple et la plus sécurisée !">
-    <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
+                        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <input type="hidden" name="cmd" value="_s-xclick">
+                            <input type="hidden" name="hosted_button_id" value="JDN2EUK549E9A">
+                            <input type="image" src="https://www.sandbox.paypal.com/fr_CA/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - la solution de paiement en ligne la plus simple et la plus sécurisée !">
+                            <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                        </form>
 
 
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+                        @*<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="FJ38TA3L9PBDJ">
+            <input type="image" src="https://www.sandbox.paypal.com/fr_CA/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - la solution de paiement en ligne la plus simple et la plus sécurisée !">
+            <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>*@
+
+
+
+                        <div>
+                            @Html.ActionLink("Back to List", "Index")
+                        </div>
