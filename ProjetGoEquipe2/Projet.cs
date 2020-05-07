@@ -36,6 +36,7 @@ namespace ProjetGoEquipe2
         public Nullable<int> frequenceComptesRendus { get; set; }
         public Nullable<System.DateTime> dateProchainCompteRendu { get; set; }
         public string idResponsable { get; set; }
+        public string visibilite { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CompteRendu> CompteRendus { get; set; }

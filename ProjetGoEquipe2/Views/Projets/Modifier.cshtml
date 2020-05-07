@@ -3,8 +3,9 @@
 @{
     ViewBag.Title = "Modifier";
 }
-
+<br />
 <h2>Page de @Session["Usager"]</h2>
+<br /><hr>
 
 
 <main class="form-horizontal">
@@ -34,7 +35,7 @@
             </div>
 
             <div class="col-sm-9">
-                <div class="content-section main-section-top">
+                <div class="content-section main-section-top main-add">
 
                     <div class="content-section" id="sectionPrincipaleMembre">
 
@@ -42,7 +43,7 @@
                     {
                         @Html.AntiForgeryToken()
 
-                        <h3 style="text-align:center;">Modifier @Html.DisplayFor(model => model.titre)</h3>
+                        <h4 class="titre">Modifier @Html.DisplayFor(model => model.titre)</h4>
 
                         <div style="text-align:center;">
                             @Html.ActionLink("Revenir à mes projets", "MesProjets")
@@ -131,6 +132,36 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <div class="control-label col-md-2">Visibilité</div>
+                                <div class="col-md-10">
+                                    <select class="form-control" name="visibilite" value=@Model.statut>
+
+                                        @{if (Model.visibilite == null || Model.visibilite == "Public")
+                                            {
+                                                <option value="Public" selected>Public</option>
+                                                <option value="Membres">Membres</option>
+                                                <option value="Prive">Privé</option>
+
+                                            }
+                                            else if (Model.visibilite == "Membres")
+                                            {
+                                                <option value="Public">Public</option>
+                                                <option value="Membres" selected>Membres</option>
+                                                <option value="Prive">Privé</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="Public">Public</option>
+                                                <option value="Membres">Membres</option>
+                                                <option value="Prive" selected>Privé</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
 
                             <div class="form-group">
                                 <div class="control-label col-md-2">Courte Description</div>

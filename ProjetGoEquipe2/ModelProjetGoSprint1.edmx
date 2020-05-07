@@ -22,7 +22,6 @@
             <PropertyRef Name="idCotisation" />
           </Key>
           <Property Name="idCotisation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="numTransaction" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="dateTransaction" Type="date" Nullable="false" />
           <Property Name="montant" Type="int" Nullable="false" />
           <Property Name="nomUsager" Type="varchar" MaxLength="50" Nullable="false" />
@@ -64,6 +63,7 @@
           <Property Name="frequenceComptesRendus" Type="int" />
           <Property Name="dateProchainCompteRendu" Type="date" />
           <Property Name="idResponsable" Type="varchar" MaxLength="50" />
+          <Property Name="visibilite" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Tresorier">
           <Key>
@@ -151,7 +151,6 @@
             <PropertyRef Name="idCotisation" />
           </Key>
           <Property Name="idCotisation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="numTransaction" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="dateTransaction" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="montant" Type="Int32" Nullable="false" />
           <Property Name="nomUsager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -196,6 +195,7 @@
           <Property Name="frequenceComptesRendus" Type="Int32" />
           <Property Name="dateProchainCompteRendu" Type="DateTime" Precision="0" />
           <Property Name="idResponsable" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="visibilite" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CompteRendus" Relationship="Self.FK_ProjetCompteRendu" FromRole="Projet" ToRole="CompteRendu" />
           <NavigationProperty Name="Membre" Relationship="Self.FK_Responsable" FromRole="Projet" ToRole="Membre" />
         </EntityType>
@@ -285,7 +285,6 @@
             <EntityTypeMapping TypeName="ProjetGoDataModel.Cotisation">
               <MappingFragment StoreEntitySet="Cotisation">
                 <ScalarProperty Name="idCotisation" ColumnName="idCotisation" />
-                <ScalarProperty Name="numTransaction" ColumnName="numTransaction" />
                 <ScalarProperty Name="dateTransaction" ColumnName="dateTransaction" />
                 <ScalarProperty Name="montant" ColumnName="montant" />
                 <ScalarProperty Name="nomUsager" ColumnName="nomUsager" />
@@ -329,6 +328,7 @@
                 <ScalarProperty Name="frequenceComptesRendus" ColumnName="frequenceComptesRendus" />
                 <ScalarProperty Name="dateProchainCompteRendu" ColumnName="dateProchainCompteRendu" />
                 <ScalarProperty Name="idResponsable" ColumnName="idResponsable" />
+                <ScalarProperty Name="visibilite" ColumnName="visibilite" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -17,6 +17,32 @@ namespace ProjetGoEquipe2.Controllers
             return View();
         }
 
+        // GET: Projets/AVenir
+        public ActionResult AVenir()
+        {
+
+            return View();
+        }
+
+        // GET: Projets/Proposes
+        public ActionResult Proposes()
+        {
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+            {
+                return RedirectToAction("Index", "Projets");
+            }
+
+            return View();
+        }
+
+        // GET: Projets/Completes
+        public ActionResult Completes()
+        {
+
+            return View();
+        }
+
+
         // GET: Projet/MesProjets (Accueil membres)
         public ActionResult MesProjets()
         {
@@ -54,7 +80,7 @@ namespace ProjetGoEquipe2.Controllers
 
         // POST: Projets/Ajouter
         [HttpPost]
-        public ActionResult Ajouter(Projet projet, string statut, string description, string sommaire, string budget, DateTime debutEstime, DateTime finEstimee, string frequence)
+        public ActionResult Ajouter(Projet projet, string visibilite, string statut, string description, string sommaire, string budget, DateTime debutEstime, DateTime finEstimee, string frequence)
         {
             try { 
             
@@ -62,8 +88,7 @@ namespace ProjetGoEquipe2.Controllers
                 int frequnceNum;
                 double budgetNum;
                 bool success;
-
-                projet.statut = statut;
+                projet.visibilite = visibilite;
                 projet.idResponsable = (string)Session["Usager"];
                 projet.descriptionCourte = description;
                 projet.sommaire = sommaire;
@@ -102,9 +127,10 @@ namespace ProjetGoEquipe2.Controllers
 
         // POST: Projets/Edit/5
         [HttpPost]
-        public ActionResult Modifier(int id, Projet projetModifie, string description)
+        public ActionResult Modifier(int id, Projet projetModifie, string description, string visibilite)
         {
             Projet ancienneVersion = Singleton.Instance.db.Projets.Where(p => p.idProjet == id).FirstOrDefault();
+            ancienneVersion.visibilite = visibilite;
             ancienneVersion.budget = projetModifie.budget;
             ancienneVersion.dateProchainCompteRendu = projetModifie.dateProchainCompteRendu;
             ancienneVersion.debutEstime = projetModifie.debutEstime;

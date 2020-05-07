@@ -4,13 +4,17 @@
     ViewBag.Title = "Identifier";
 }
 
-<h2>Se Connecter</h2>
+<br />
+<h3 class="center titre">Se Connecter</h3>
+
+<hr /><br />
+
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
+<div class="form-horizontal main-add">
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">

@@ -22,3 +22,31 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}
+
+.center-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.titre {
+    background-color: rgb(184, 210, 49);
+    padding: 5px;
+    border: 3px solid black;
+    text-align: center;
+    font-variant: small-caps;
+}
+
+.main-add {
+    padding:10px; 
+    background-color:rgb(245,245,245);
+}
