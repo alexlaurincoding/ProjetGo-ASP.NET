@@ -255,6 +255,8 @@
     <Content Include="Views\Projets\AVenir.cshtml" />
     <Content Include="Views\Projets\Completes.cshtml" />
     <Content Include="Views\Projets\Proposes.cshtml" />
+    <Content Include="Views\Projets\DetailsPublic.cshtml" />
+    <Content Include="Views\Shared\TestShared.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

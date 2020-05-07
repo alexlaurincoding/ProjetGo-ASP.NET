@@ -164,6 +164,36 @@
 
 
                             <div class="form-group">
+                                <div class="control-label col-md-2">État d'avancement</div>
+                                <div class="col-md-10">
+                                    <select class="form-control" name="etatAvancement" value=@Model.etatAvancement>
+
+                                        @{if (Model.etatAvancement == null || Model.etatAvancement == "Rouge")
+                                            {
+                                                <option value="Vert">Vert</option>
+                                                <option value="Jaune">Jaune</option>
+                                                <option value="Rouge" selected>Rouge</option>
+
+                                            }
+                                            else if (Model.etatAvancement == "Jaune")
+                                            {
+                                                <option value="Vert">Vert</option>
+                                                <option value="Jaune" selected>Jaune</option>
+                                                <option value="Rouge">Rouge</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="Vert" selected>Vert</option>
+                                                <option value="Jaune">Jaune</option>
+                                                <option value="Rouge">Rouge</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
                                 <div class="control-label col-md-2">Courte Description</div>
                                 <div class="col-md-10">
                                     <textarea class="form-control col-md-10" rows="5" name="description">@Model.descriptionCourte</textarea>
@@ -227,14 +257,6 @@
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.totalDepenes, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.totalDepenes, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="control-label col-md-2">État d'avancement</div>
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.etatAvancement, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.etatAvancement, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 

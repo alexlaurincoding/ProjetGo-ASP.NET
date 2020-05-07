@@ -6,7 +6,9 @@
 <br />
 <h2>Nos Projets</h2>
 
-<br /><hr />
+<br />
+<hr />
+
 
 <!-- Partie principale de la page -->
 <main role="main" class="container-fluid">
@@ -41,7 +43,7 @@
 
                     <h3 class="titre center">Nos Projets Complétés</h3>
 
-                    <img src="~/Content/Images/project-completion.jpg" alt="Projets proposés" class="center-image" width="200" ; />
+                    <img src="~/Content/Images/project-completion.jpg" alt="Projets complétés" class="center-image" width="200" ; />
 
                     <br /><br />
 
@@ -99,7 +101,7 @@
 
 
                                     <td>
-                                        @Html.ActionLink("Plus de détails", "Details", new { id = item.idProjet })
+                                        @Html.ActionLink("Plus de détails", "DetailsPublic", new { id = item.idProjet })
                                     </td>
 
                                 </tr>

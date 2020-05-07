@@ -61,10 +61,31 @@ namespace ProjetGoEquipe2.Controllers
                 return RedirectToAction("Identifier", "Membres");
             }
 
-            Projet projet = Singleton.Instance.db.Projets.Where(p => p.idProjet == id).FirstOrDefault();
+            Projet projet = Singleton.Instance.db.Projets.Find(id);
+
+            if (projet == null || projet.idResponsable != (string)Session["Usager"])
+            {
+                return RedirectToAction("MesProjets");
+            }
 
             return View(projet);
         }
+
+        // GET: Projets/DetailsPublic/5
+        public ActionResult DetailsPublic(int? id)
+        {
+
+            Projet projet = Singleton.Instance.db.Projets.Find(id);
+
+            if (projet == null || projet.visibilite == "Prive" || projet.visibilite == "Membres" && (Session["Connected"] == null || (bool)Session["Connected"] == false))
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View(projet);
+        }
+
+
 
         // GET: Projets/Ajouter
         public ActionResult Ajouter()
@@ -120,7 +141,11 @@ namespace ProjetGoEquipe2.Controllers
             }
 
             Projet projet = Singleton.Instance.db.Projets.Where(p => p.idProjet == id).FirstOrDefault();
-            
+
+            if (projet == null || projet.idResponsable != (string)Session["Usager"])
+            {
+                return RedirectToAction("MesProjets");
+            }
 
             return View(projet);
         }
@@ -150,9 +175,8 @@ namespace ProjetGoEquipe2.Controllers
             try
             {
                 Singleton.Instance.db.SaveChanges();
+               
                 return RedirectToAction("MesProjets", "Projets");
-
-                return View();
 
             }
             catch
@@ -170,6 +194,12 @@ namespace ProjetGoEquipe2.Controllers
             }
 
             Projet projet = Singleton.Instance.db.Projets.Find(id);
+
+            if (projet == null || projet.idResponsable != (string)Session["Usager"])
+            {
+                return RedirectToAction("MesProjets");
+            }
+
             return View(projet);
         }
 

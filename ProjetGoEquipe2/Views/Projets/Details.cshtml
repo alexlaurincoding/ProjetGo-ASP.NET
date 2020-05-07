@@ -82,6 +82,22 @@
                         }
 
                         <br />
+
+                        <dt>
+                            État d'avancement
+                        </dt>
+
+                        @if (Model.etatAvancement == null)
+                        {
+                            <dd> ---</dd>
+                        }
+                        else
+                        {
+                            <dd> @Html.DisplayFor(model => model.etatAvancement)</dd>
+                        }
+
+                        <br />
+
                         <dt>
                             Description
                         </dt>
@@ -227,20 +243,6 @@
                         }
                         <br />
 
-                        <dt>
-                            État d'avancement
-                        </dt>
-
-                        @if (Model.etatAvancement == null)
-                        {
-                            <dd> ---</dd>
-                        }
-                        else
-                        {
-                            <dd> @Html.DisplayFor(model => model.etatAvancement)</dd>
-                        }
-
-                        <br />
 
                         <dt>
                             Fréquence des comptes-rendus
