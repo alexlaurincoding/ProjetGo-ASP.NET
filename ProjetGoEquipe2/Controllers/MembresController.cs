@@ -76,6 +76,7 @@ namespace ProjetGoEquipe2.Controllers
                 Session["Connected"] = true;
                 Session["Usager"] = membre.nomUsager;
                 membre.statut = "Attente";
+                membre.dateProchaineCotisation = DateTime.Now.AddDays(28);
                 return RedirectToAction("Cotisation", "Membres");
             }
             catch

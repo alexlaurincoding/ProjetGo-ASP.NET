@@ -8,24 +8,42 @@
 
             @{
                 bool connected = true;
+                bool afficheCotisation = false;
+                bool bloquer = false;
+                Membre membre = Singleton.Instance.db.Membres.Find((string)Session["Usager"]);
+
                 if (Session["Connected"] == null || (bool)Session["Connected"] == false)
                 {
                     connected = false;
                 }
-                bool afficheCotisation = false;
-                Membre membre = Singleton.Instance.db.Membres.Find((string)Session["Usager"]);
+
                 if (membre != null)
                 {
-                    afficheCotisation = membre.dateProchaineCotisation == null || membre.dateProchaineCotisation <= DateTime.Now.AddMonths(+1) ? true : false;
+                    afficheCotisation = membre.dateProchaineCotisation == null || membre.dateProchaineCotisation <= DateTime.Now.AddMonths(1) ? true : false;
+
+                    if (membre.dateProchaineCotisation == null)
+                    {
+                        bloquer = true;
+                    }
+                    else
+                    {
+                        DateTime prochaineCotisation = (DateTime)membre.dateProchaineCotisation;
+
+                        if (membre.dateProchaineCotisation == null || DateTime.Now > prochaineCotisation.AddMonths(1))
+                        {
+                            bloquer = true;
+                        }
+                    }
                 }
+
 
 
                 if (Model["Categorie"] == "M")
                 {
-                    <button onclick="@("window.location.href='" + @Url.Action("MesProjets", "Projets") + "'");" type="button" class="@(@Model["Emphase"] == "PP" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")"> Mes Projets</button>
-                    <button onclick="@("window.location.href='" + @Url.Action("Ajouter", "Projets") + "'");" type="button" class="@(@Model["Emphase"] == "PA" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Ajouter un Projet</button>
-                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" class="@(@Model["Emphase"] == "CP" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Mes Compte-Rendus</button>
-                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Ajouter", "CompteRendus") + "'");" class="@(@Model["Emphase"] == "CA" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Ajouter un Compte-Rendu</button>
+                    <button @(bloquer ? "disabled" : null) onclick="@("window.location.href='" + @Url.Action("MesProjets", "Projets") + "'");" type="button" class="@(@Model["Emphase"] == "PP" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")"> Mes Projets</button>
+                    <button @(bloquer ? "disabled" : null) onclick="@("window.location.href='" + @Url.Action("Ajouter", "Projets") + "'");" type="button" class="@(@Model["Emphase"] == "PA" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Ajouter un Projet</button>
+                    <button @(bloquer ? "disabled" : null) type="button" onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" class="@(@Model["Emphase"] == "CP" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Mes Compte-Rendus</button>
+                    <button @(bloquer ? "disabled" : null) type="button" onclick="@("window.location.href='" + @Url.Action("Ajouter", "CompteRendus") + "'");" class="@(@Model["Emphase"] == "CA" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Ajouter un Compte-Rendu</button>
                     if (afficheCotisation)
                     {
                         <button type="button" onclick="@("window.location.href='" + @Url.Action("Cotisation", "Membres") + "'");" class="btn btn-danger" style="text-align:left">Payer ma Cotisation</button>
