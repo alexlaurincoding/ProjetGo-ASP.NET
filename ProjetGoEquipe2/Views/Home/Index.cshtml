@@ -33,20 +33,20 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="item active" style="max-height:150px;">
+                                
                                 <img src="~/Content/Images/ramasser-roche.jpg" alt="First slide">
                                 <div class="container">
                                     <div class="carousel-caption">
-                                        <h1>Test</h1>
-                                        <p>Test</p>
+                                        <h1>@Html.ActionLink("Nos Projets", "Index", "Projets")</h1>
+                                     
                                     </div>
                                 </div>
                             </div>
                             <div class="item" style="max-height:150px;">
                                 <img src="~/Content/Images/vente-garage.jpg" alt="Second slide">
                                 <div class="container">
-                                    <div class="carousel-caption">
-                                        <h1>Test</h1>
-                                        <p>Test</p>
+                                    <div class="carousel-caption" >
+                                        <h1>@Html.ActionLink("Nos Projets", "Index", "Projets")</h1>
                                     </div>
                                 </div>
                             </div>
@@ -54,14 +54,12 @@
                                 <img src="~/Content/Images/soupe-sans-abris.jpg" alt="Third slide">
                                 <div class="container">
                                     <div class="carousel-caption">
-                                        <h1>Test</h1>
-                                        <p>Test</p>
+                                        <h1>@Html.ActionLink("Nos Projets", "Index", "Projets")</h1>
+                                      
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-                        <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
                     </div><!-- /.carousel -->
                     <br />
                     <br />
@@ -72,12 +70,14 @@
         <div class="row">
             <div class="content-section">
                 <div class="col-sm-8">
-                    <iframe width="700" height="315" src="https://www.youtube.com/embed/099_WKUBh6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
+                    <div class="container-fluid">
+                        <iframe width="700" height="315" src="https://www.youtube.com/embed/099_WKUBh6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="table-bordered col-sm-4" >
-                        
+                <div class="newsFeed">
+                    <div class="table-bordered col-sm-4" style="border-color:rgb(184, 210, 49); text-align:center">
+                            <h3>Quoi de Neuf ?</h3>
                         <marquee class="container-fluid" direction="down" style="height:300px; text-align:center">
                             <p><b>Projet en cours : Liste des projets actif</b></p>
                             <br /><br />

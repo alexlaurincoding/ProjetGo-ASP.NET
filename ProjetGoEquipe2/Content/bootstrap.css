@@ -1601,6 +1601,35 @@ pre code {
     width: 1170px;
   }
 }
+
+.newsFeed {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+@media (min-width: 100px) {
+    .newsFeed {
+        width: 700px;
+    }
+}
+
+@media (min-width: 500px) {
+    .newsFeed {
+        width: 700px;
+    }
+}
+
+
+@media (min-width: 1200px) {
+    .newsFeed {
+        width: 1200px;
+    }
+}
+
+
 .container-fluid {
   padding-right: 15px;
   padding-left: 15px;
