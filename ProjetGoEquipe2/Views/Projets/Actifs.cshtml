@@ -15,25 +15,10 @@
     <div class="row">
 
         <div class="col-sm-3">
+            @{
 
-            <div class="content-section" id="right-left">
-
-                <div class="btn-group-vertical" role="group">
-                    <button onclick="@("window.location.href='" + @Url.Action("Index") + "'");" type="button" class="btn btn-default" style="text-align:left;  background-color:rgb(184, 210, 49)">Projets Actifs</button>
-                    <button onclick="@("window.location.href='" + @Url.Action("AVenir", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left;">Projets À Venir</button>
-                    @{
-                        if (Session["Connected"] != null && (bool)Session["Connected"] == true)
-                        {
-                            <button type="button" onclick="@("window.location.href='" + @Url.Action("Proposes", "Projets") + "'");" class="btn btn-default" style="text-align:left">Projets Proposés</button>
-
-                        }
-                    }
-                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Completes", "Projets") + "'");" class="btn btn-default" style="text-align:left">Projets Complétés</button>
-                </div>
-            </div>
-
-
-
+                Html.RenderAction("Menus", "Design", new { Categorie = "P", Emphase = "PA" });
+            }
         </div>
 
         <div class="col-sm-9">

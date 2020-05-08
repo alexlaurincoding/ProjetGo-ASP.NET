@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Cotisation";
+
 }
 
 <br />
@@ -11,26 +12,9 @@
 <!-- Partie principale de la page -->
 <main role="main" class="container-fluid">
     <div class="row">
-
-        <div class="col-sm-3">
-
-            <div class="content-section" id="right-left">
-                <h4>Mes Sections</h4>
-
-                <div class="btn-group-vertical" role="group">
-                    <button onclick="@("window.location.href='" + @Url.Action("MesProjets", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left;">Mes Projets</button>
-                    <button onclick="@("window.location.href='" + @Url.Action("Ajouter", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left">Ajouter un Projet</button>
-                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" class="btn btn-default" style="text-align:left">Mes Compte-Rendus</button>
-                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Ajouter", "CompteRendus") + "'");" class="btn btn-default" style="text-align:left">Ajouter un Compte-Rendu</button>
-                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Cotisation", "Membres") + "'");" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Payer ma Cotisation</button>
-                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Profil", "Membres") + "'");" class="btn btn-default" style="text-align:left">Mon Profil</button>
-                </div>
-            </div>
-
-        </div>
-
-
-
+        @{
+            Html.RenderAction("Menus", "Design", new { Categorie = "M", Emphase = "CO" });
+        }
         <div class="col-sm-9">
             <div class="content-section main-section-top main-add">
 
@@ -52,11 +36,11 @@
 
 
                         @*<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="FJ38TA3L9PBDJ">
-            <input type="image" src="https://www.sandbox.paypal.com/fr_CA/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - la solution de paiement en ligne la plus simple et la plus sécurisée !">
-            <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-        </form>*@
+                            <input type="hidden" name="cmd" value="_s-xclick">
+                            <input type="hidden" name="hosted_button_id" value="FJ38TA3L9PBDJ">
+                            <input type="image" src="https://www.sandbox.paypal.com/fr_CA/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - la solution de paiement en ligne la plus simple et la plus sécurisée !">
+                            <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                        </form>*@
 
 
 

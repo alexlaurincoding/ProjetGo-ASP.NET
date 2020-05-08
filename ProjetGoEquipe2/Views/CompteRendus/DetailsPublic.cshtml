@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "DetailsPublic";
+
+    string emphase = Model.Projet.statut == "Approuve" ? "PA" : Model.Projet.statut == "Complete" ? "PC" : Model.Projet.statut == "Approuve" ? "PV" : "PP";
 }
 
 <br />
@@ -14,65 +16,10 @@
 <main role="main" class="container-fluid">
     <div class="row">
 
-        <div class="col-sm-3">
+        @{
 
-            <div class="content-section" id="right-left">
-
-                <div class="btn-group-vertical" role="group">
-
-                    @{
-                        if (Model.Projet.statut == "Actif")
-                        {
-                            <button onclick="@("window.location.href='" + @Url.Action("Index", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Projets Actifs</button>
-                        }
-                        else
-                        {
-                            <button onclick="@("window.location.href='" + @Url.Action("Index", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; ">Projets Actifs</button>
-                        }
-                    }
-                    @{
-                        if (Model.Projet.statut == "Approuve")
-                        {
-                            <button onclick="@("window.location.href='" + @Url.Action("AVenir", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Projets À Venir</button>
-                        }
-                        else
-                        {
-                            <button onclick="@("window.location.href='" + @Url.Action("AVenir", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; ">Projets À Venir</button>
-                        }
-                    }
-
-                    @{
-                        if (Session["Connected"] != null && (bool)Session["Connected"] == true)
-                        {
-                            if (Model.Projet.statut == "Propose" || Model.Projet.statut == "Soumis")
-                            {
-                                <button type="button" onclick="@("window.location.href='" + @Url.Action("Proposes", "Projets") + "'");" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Projets Proposés</button>
-                            }
-                            else
-                            {
-                                <button type="button" onclick="@("window.location.href='" + @Url.Action("Proposes", "Projets") + "'");" class="btn btn-default" style="text-align:left">Projets Proposés</button>
-                            }
-
-                        }
-                    }
-
-                    @{
-                        if (Model.Projet.statut == "Termine")
-                        {
-                            <button onclick="@("window.location.href='" + @Url.Action("Completes", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Projets Complétés</button>
-                        }
-                        else
-                        {
-                            <button onclick="@("window.location.href='" + @Url.Action("Completes", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; ">Projets Complétés</button>
-                        }
-                    }
-
-                </div>
-            </div>
-
-
-
-        </div>
+            Html.RenderAction("Menus", "Design", new { Categorie = "P", Emphase = emphase });
+        }
 
         <div class="col-sm-9">
             <div class="content-section main-section-top main-add">
@@ -81,74 +28,74 @@
 
                     <br /><br />
 
-                          <div class="content-section" id="sectionPrincipaleMembre">
-                              <h4 class="titre">
-                                  Compte-Rendu du @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateCompteRendu))<br /> pour "@Html.DisplayFor(model => model.Projet.titre)"
-                              </h4>
+                    <div class="content-section" id="sectionPrincipaleMembre">
+                        <h4 class="titre">
+                            Compte-Rendu du @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateCompteRendu))<br /> pour "@Html.DisplayFor(model => model.Projet.titre)"
+                        </h4>
 
-                              <br />
-                              <div style="text-align:center;">
-                                  @Html.ActionLink("Revenir aux détails du projet", "DetailsPublic", "Projets", new { id = Model.Projet.idProjet }, null)
-                              </div>
-
-                              <br />
-                              <div style="text-align:center;">
-                                  @Html.ActionLink("Voir la liste de tous les compte-rendus de ce projet", "Public", "CompteRendus", new { id = Model.Projet.idProjet }, null)
-                              </div>
-
-                              <br />
-                              <hr />
-
-
-
-                              <dl class="dl-horizontal">
-
-                                  <dt>
-                                      Informations à Jour
-                                  </dt>
-
-                                  <dd>
-                                      @Html.DisplayFor(model => model.informationsAJour)
-                                  </dd>
-                                  <br />
-
-                                  <dt>
-                                      Réalisations Complétées
-                                  </dt>
-
-                                  <dd>
-                                      @Html.DisplayFor(model => model.sommaireRealisationsCompletees)
-                                  </dd>
-
-                                  <br />
-
-                                  <dt>
-                                      Réalisations Reportées
-                                  </dt>
-
-                                  <dd>
-                                      @Html.DisplayFor(model => model.realisationsReportees)
-                                  </dd>
-
-                                  @{
-                                      if (Session["Connected"] != null && (bool)Session["Connected"] == true)
-                                      {
-                                          <br />
-
-                                          <dt>
-                                              État des Risques
-                                          </dt>
-
-                                          <dd>
-                                              @Html.DisplayFor(model => model.etatRisques)
-                                          </dd>
-                                      }
-                                  }
-
-                              </dl>
-                          </div>
+                        <br />
+                        <div style="text-align:center;">
+                            @Html.ActionLink("Revenir aux détails du projet", "DetailsPublic", "Projets", new { id = Model.Projet.idProjet }, null)
                         </div>
+
+                        <br />
+                        <div style="text-align:center;">
+                            @Html.ActionLink("Voir la liste de tous les compte-rendus de ce projet", "Public", "CompteRendus", new { id = Model.Projet.idProjet }, null)
+                        </div>
+
+                        <br />
+                        <hr />
+
+
+
+                        <dl class="dl-horizontal">
+
+                            <dt>
+                                Informations à Jour
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.informationsAJour)
+                            </dd>
+                            <br />
+
+                            <dt>
+                                Réalisations Complétées
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.sommaireRealisationsCompletees)
+                            </dd>
+
+                            <br />
+
+                            <dt>
+                                Réalisations Reportées
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.realisationsReportees)
+                            </dd>
+
+                            @{
+                                if (Session["Connected"] != null && (bool)Session["Connected"] == true)
+                                {
+                                    <br />
+
+                                    <dt>
+                                        État des Risques
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.etatRisques)
+                                    </dd>
+                                }
+                            }
+
+                        </dl>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
     </main>

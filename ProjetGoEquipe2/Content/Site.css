@@ -50,3 +50,12 @@ textarea {
     padding:10px; 
     background-color:rgb(245,245,245);
 }
+
+.button-emphasis {
+    background-color: rgb(184, 210, 49);
+    text-align: left;
+}
+
+.button-noemphasis {
+    text-align: left;
+}

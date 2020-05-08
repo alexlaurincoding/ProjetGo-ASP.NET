@@ -1,0 +1,52 @@
+﻿@model  Dictionary<string, string>
+
+
+<div class="col-sm-3">
+    <div class="content-section" id="right-left">
+        <h4>Sections</h4>
+            <div class="btn-group-vertical" role="group">
+
+            @{
+                bool connected = true;
+                if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+                {
+                    connected = false;
+                }
+                bool afficheCotisation = false;
+                Membre membre = Singleton.Instance.db.Membres.Find((string)Session["Usager"]);
+                if (membre != null)
+                {
+                    afficheCotisation = membre.dateProchaineCotisation == null || membre.dateProchaineCotisation <= DateTime.Now.AddMonths(+1) ? true : false;
+                }
+
+
+                if (Model["Categorie"] == "M")
+                {
+                    <button onclick="@("window.location.href='" + @Url.Action("MesProjets", "Projets") + "'");" type="button" class="@(@Model["Emphase"] == "PP" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")"> Mes Projets</button>
+                    <button onclick="@("window.location.href='" + @Url.Action("Ajouter", "Projets") + "'");" type="button" class="@(@Model["Emphase"] == "PA" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Ajouter un Projet</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" class="@(@Model["Emphase"] == "CP" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Mes Compte-Rendus</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Ajouter", "CompteRendus") + "'");" class="@(@Model["Emphase"] == "CA" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Ajouter un Compte-Rendu</button>
+                    if (afficheCotisation)
+                    {
+                        <button type="button" onclick="@("window.location.href='" + @Url.Action("Cotisation", "Membres") + "'");" class="btn btn-danger" style="text-align:left">Payer ma Cotisation</button>
+                    }
+
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Profil", "Membres") + "'");" class="@(@Model["Emphase"] == "PL" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Mon Profil</button>
+                }
+
+                else
+                {
+                    <button onclick="@("window.location.href='" + @Url.Action("Actifs", "Projets") + "'");" type="button" class="@(@Model["Emphase"] == "PA" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Projets Actifs</button>
+                    <button onclick="@("window.location.href='" + @Url.Action("AVenir", "Projets") + "'");" type="button" class="@(@Model["Emphase"] == "PV" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Projets À Venir</button>
+                    if (connected)
+                    {
+                        <button type="button" onclick="@("window.location.href='" + @Url.Action("Proposes", "Projets") + "'");" class="@(@Model["Emphase"] == "PP" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Projets Proposés</button>
+
+                    }
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Completes", "Projets") + "'");" class="@(@Model["Emphase"] == "PC" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Projets Complétés</button>
+                }
+
+            }
+        </div>
+    </div>
+</div>

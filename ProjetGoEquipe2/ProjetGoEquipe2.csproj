@@ -134,6 +134,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\CompteRendusController.cs" />
+    <Compile Include="Controllers\DesignController.cs" />
     <Compile Include="Controllers\DonsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembresController.cs" />
@@ -235,7 +236,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Projets\Index.cshtml" />
+    <Content Include="Views\Projets\Actifs.cshtml" />
     <Content Include="Views\Dons\Index.cshtml" />
     <Content Include="Views\Membres\Index.cshtml" />
     <Content Include="Views\Membres\Inscription.cshtml" />
@@ -259,6 +260,7 @@
     <Content Include="Views\Shared\TestShared.cshtml" />
     <Content Include="Views\CompteRendus\DetailsPublic.cshtml" />
     <Content Include="Views\CompteRendus\Public.cshtml" />
+    <Content Include="Views\Shared\Menus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

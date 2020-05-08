@@ -11,7 +11,7 @@ namespace ProjetGoEquipe2.Controllers
     public class ProjetsController : Controller
     {
         // GET: Projets
-        public ActionResult Index()
+        public ActionResult Actifs()
         {
 
             return View();
@@ -29,7 +29,7 @@ namespace ProjetGoEquipe2.Controllers
         {
             if (Session["Connected"] == null || (bool)Session["Connected"] == false)
             {
-                return RedirectToAction("Index", "Projets");
+                return RedirectToAction("Actifs");
             }
 
             return View();
@@ -79,7 +79,7 @@ namespace ProjetGoEquipe2.Controllers
 
             if (projet == null || projet.visibilite == "Prive" || projet.visibilite == "Membres" && (Session["Connected"] == null || (bool)Session["Connected"] == false))
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Actifs");
             }
 
             return View(projet);
