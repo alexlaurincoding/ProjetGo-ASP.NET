@@ -56,7 +56,7 @@
 
                         </tr>
 
-                        @foreach (CompteRendu item in Singleton.Instance.db.CompteRendus)
+                        @foreach (CompteRendu item in Singleton.Instance.db.CompteRendus.OrderByDescending(cr=>cr.dateCompteRendu))
                         {
                             if (item.Projet.idResponsable == (string)Session["Usager"])
                             {

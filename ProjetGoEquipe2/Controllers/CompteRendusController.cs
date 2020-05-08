@@ -19,6 +19,18 @@ namespace ProjetGoEquipe2.Controllers
             return View();
         }
 
+        // GET: CompteRendus
+        public ActionResult Public(int? id)
+        {
+            List<CompteRendu> cr = Singleton.Instance.db.CompteRendus.Where(c => c.Projet.idProjet == id).OrderByDescending(c => c.dateCompteRendu).ToList();
+
+            if (cr == null || cr[0].Projet.visibilite == "Prive" || cr[0].Projet.visibilite == "Membres" && (Session["Connected"] == null || (bool)Session["Connected"] == false))
+            {
+                return RedirectToAction("Index", "Projets");
+            }
+            return View(cr);
+        }
+
         // GET: CompteRendus/Details/5
         public ActionResult Details(int? id)
         {
@@ -28,6 +40,19 @@ namespace ProjetGoEquipe2.Controllers
             }
 
             CompteRendu cr = Singleton.Instance.db.CompteRendus.Where(c => c.idCompteRendu == id).FirstOrDefault();
+
+            return View(cr);
+        }
+
+        // GET: CompteRendus/DetailsPublic/5
+        public ActionResult DetailsPublic(int? id)
+        {
+            CompteRendu cr = Singleton.Instance.db.CompteRendus.Find(id);
+
+            if (cr == null || cr.Projet.visibilite == "Prive" || cr.Projet.visibilite == "Membres" && (Session["Connected"] == null || (bool)Session["Connected"] == false))
+            {
+                return RedirectToAction("Index", "Projets");
+            }
 
             return View(cr);
         }

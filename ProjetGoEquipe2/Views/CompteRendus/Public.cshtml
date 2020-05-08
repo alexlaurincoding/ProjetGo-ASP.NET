@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProjetGoEquipe2.CompteRendu>
+
+@{
+    ViewBag.Title = "Public";
+}
+
+<h2>Public</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.dateCompteRendu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.informationsAJour)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sommaireRealisationsCompletees)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.realisationsReportees)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.etatRisques)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Projet.titre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateCompteRendu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.informationsAJour)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sommaireRealisationsCompletees)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.realisationsReportees)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.etatRisques)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Projet.titre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idCompteRendu }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idCompteRendu }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idCompteRendu })
+        </td>
+    </tr>
+}
+
+</table>

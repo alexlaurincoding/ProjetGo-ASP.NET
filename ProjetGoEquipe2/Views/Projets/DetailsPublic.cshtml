@@ -80,267 +80,282 @@
 
                     <br /><br />
 
-                    <div class="content-section" id="sectionPrincipaleMembre">
-                        <h4 class="titre">Détails de "@Html.DisplayFor(model => model.titre)"</h4>
-                        <div style="text-align:center;">
-                            @Html.ActionLink("Revenir aux projets", "Index")
-                        </div>
-                        <br />
-                        <hr />
+                          <div class="content-section" id="sectionPrincipaleMembre">
+                              <h4 class="titre">Détails de "@Html.DisplayFor(model => model.titre)"</h4>
+                              <div style="text-align:center;">
+                                  @Html.ActionLink("Revenir aux projets", "Index")
+                              </div>
+                              @{
+                                  CompteRendu compteRendu = Singleton.Instance.db.CompteRendus.Where(cr => cr.Projet.idProjet == Model.idProjet).OrderByDescending(cr => cr.dateCompteRendu).FirstOrDefault();
+                                  if (compteRendu != null)
+                                  {
+                                      <br />
+                                      <div style="text-align:center;">
+                                          @Html.ActionLink("Voir le plus récent compte-rendu", "DetailsPublic", "CompteRendus", new { id = compteRendu.idCompteRendu }, null)
+                                      </div>
 
-                        <dl class="dl-horizontal">
+                                      <br />
+                                      <div style="text-align:center;">
+                                          @Html.ActionLink("Voir la liste de tous les compte-rendus", "Public", "CompteRendus", new { id = compteRendu.idCompteRendu }, null)
+                                      </div>
+                                  }
+                              }
 
-                            @{
-                                if (Session["Connected"] != null && (bool)Session["Connected"] == true)
-                                {
+                              <hr />
 
-                                    <dt>
-                                        Statut
-                                    </dt>
+                              <dl class="dl-horizontal">
 
-                                    if (Model.statut == null)
-                                    {
-                                        <dd> ---</dd>
-                                    }
-                                    else
-                                    {
-                                        <dd>
-                                            @Html.DisplayFor(model => model.statut)
-                                        </dd>
-                                    }
-                                    <br />
+                                  @{
+                                      if (Session["Connected"] != null && (bool)Session["Connected"] == true)
+                                      {
 
-                                    <dt>
-                                        Visibilité
-                                    </dt>
+                                          <dt>
+                                              Statut
+                                          </dt>
 
-                                    if (Model.visibilite == null || Model.visibilite == "Public")
-                                    {
+                                          if (Model.statut == null)
+                                          {
+                                              <dd> ---</dd>
+                                          }
+                                          else
+                                          {
+                                              <dd>
+                                                  @Html.DisplayFor(model => model.statut)
+                                              </dd>
+                                          }
+                                          <br />
 
-                                        <dd>Public</dd>
-                                    }
-                                    else if (Model.visibilite == "Membres")
-                                    {
-                                        <dd>Membres</dd>
-                                    }
-                                    else
-                                    {
-                                        <dd>Privé</dd>
-                                    }
+                                          <dt>
+                                              Visibilité
+                                          </dt>
 
+                                          if (Model.visibilite == null || Model.visibilite == "Public")
+                                          {
 
-                                    <br />
-
-                                    <dt>
-                                        État d'avancement
-                                    </dt>
-
-                                    if (Model.etatAvancement == null)
-                                    {
-                                        <dd> ---</dd>
-                                    }
-                                    else
-                                    {
-                                        <dd> @Html.DisplayFor(model => model.etatAvancement)</dd>
-                                    }
-
-                                    <br />
-
-                                }
-
-                            }
+                                              <dd>Public</dd>
+                                          }
+                                          else if (Model.visibilite == "Membres")
+                                          {
+                                              <dd>Membres</dd>
+                                          }
+                                          else
+                                          {
+                                              <dd>Privé</dd>
+                                          }
 
 
-                            <dt>
-                                Membre responsable
-                            </dt>
+                                          <br />
 
-                            <dd> @Html.DisplayFor(model => model.Membre.prenom)  @Html.DisplayFor(model => model.Membre.nom)</dd>
+                                          <dt>
+                                              État d'avancement
+                                          </dt>
 
+                                          if (Model.etatAvancement == null)
+                                          {
+                                              <dd> ---</dd>
+                                          }
+                                          else
+                                          {
+                                              <dd> @Html.DisplayFor(model => model.etatAvancement)</dd>
+                                          }
 
-                            <br />
+                                          <br />
 
-                            <dt>
-                                Description
-                            </dt>
+                                      }
 
-                            @if (Model.descriptionCourte == null)
-                            {
-                                <dd> ---</dd>
-                            }
-                            else
-                            {
-                                <dd>
-                                    @Html.DisplayFor(model => model.descriptionCourte)
-                                </dd>
-                            }
-                            <br />
-
-                            <dt>
-                                Sommaire
-                            </dt>
-                            @if (Model.sommaire == null)
-                            {
-                                <dd> ---</dd>
-                            }
-                            else
-                            {
-                                <dd>
-                                    @Html.DisplayFor(model => model.sommaire)
-                                </dd>
-                            }
-                            <br />
-
-                            <dt>
-                                Début estimé
-                            </dt>
-
-                            @if (Model.debutEstime == null)
-                            {
-                                <dd> ---</dd>
-                            }
-                            else
-                            {
-                                <dd>
-                                    @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.debutEstime))
-                                </dd>
-                            }
-                            <br />
-
-                            <dt>
-                                Fin estimée
-                            </dt>
-
-                            @if (Model.finEstimee == null)
-                            {
-                                <dd> ---</dd>
-                            }
-                            else
-                            {
-                                <dd>
-                                    @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.finEstimee))
-                                </dd>
-                            }
-                            <br />
-
-                            <dt>
-                                Début réel
-                            </dt>
-
-                            @if (Model.debutReel == null)
-                            {
-                                <dd> ---</dd>
-                            }
-                            else
-                            {
-                                <dd>
-                                    @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.debutReel))
-                                </dd>
-                            }
-                            <br />
+                                  }
 
 
-                            <dt>
-                                Fin réelle
-                            </dt>
+                                  <dt>
+                                      Membre responsable
+                                  </dt>
 
-                            @if (Model.finReelle == null)
-                            {
-                                <dd> ---</dd>
-                            }
-                            else
-                            {
-                                <dd>
-                                    @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.finReelle))
-                                </dd>
-                            }
-                            <br />
-
-                            <dt>
-                                Budget
-                            </dt>
-                            @if (Model.budget == null)
-                            {
-                                <dd> ---</dd>
-                            }
-                            else
-                            {
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.budget)$
-                                </dd>
-                            }
-                            <br />
+                                  <dd> @Html.DisplayFor(model => model.Membre.prenom)  @Html.DisplayFor(model => model.Membre.nom)</dd>
 
 
-                            <dt>
-                                Fonds collectés
-                            </dt>
+                                  <br />
 
-                            @if (Model.totalFondsCollectes == null)
-                            {
-                                <dd> ---</dd>
-                            }
-                            else
-                            {
-                                <dd>
-                                    @Html.DisplayFor(model => model.totalFondsCollectes)$
-                                </dd>
-                            }
-                            <br />
+                                  <dt>
+                                      Description
+                                  </dt>
 
-                            <dt>
-                                Total dépenses
-                            </dt>
+                                  @if (Model.descriptionCourte == null)
+                                  {
+                                      <dd> ---</dd>
+                                  }
+                                  else
+                                  {
+                                      <dd>
+                                          @Html.DisplayFor(model => model.descriptionCourte)
+                                      </dd>
+                                  }
+                                  <br />
 
-                            @if (Model.totalDepenes == null)
-                            {
-                                <dd> ---</dd>
-                            }
-                            else
-                            {
-                                <dd>
-                                    @Html.DisplayFor(model => model.totalDepenes)$
-                                </dd>
-                            }
-                            <br />
+                                  <dt>
+                                      Sommaire
+                                  </dt>
+                                  @if (Model.sommaire == null)
+                                  {
+                                      <dd> ---</dd>
+                                  }
+                                  else
+                                  {
+                                      <dd>
+                                          @Html.DisplayFor(model => model.sommaire)
+                                      </dd>
+                                  }
+                                  <br />
+
+                                  <dt>
+                                      Début estimé
+                                  </dt>
+
+                                  @if (Model.debutEstime == null)
+                                  {
+                                      <dd> ---</dd>
+                                  }
+                                  else
+                                  {
+                                      <dd>
+                                          @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.debutEstime))
+                                      </dd>
+                                  }
+                                  <br />
+
+                                  <dt>
+                                      Fin estimée
+                                  </dt>
+
+                                  @if (Model.finEstimee == null)
+                                  {
+                                      <dd> ---</dd>
+                                  }
+                                  else
+                                  {
+                                      <dd>
+                                          @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.finEstimee))
+                                      </dd>
+                                  }
+                                  <br />
+
+                                  <dt>
+                                      Début réel
+                                  </dt>
+
+                                  @if (Model.debutReel == null)
+                                  {
+                                      <dd> ---</dd>
+                                  }
+                                  else
+                                  {
+                                      <dd>
+                                          @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.debutReel))
+                                      </dd>
+                                  }
+                                  <br />
 
 
-                            <dt>
-                                Fréquence des comptes-rendus
-                            </dt>
+                                  <dt>
+                                      Fin réelle
+                                  </dt>
 
-                            @if (Model.frequenceComptesRendus == null)
-                            {
-                                <dd> ---</dd>
-                            }
-                            else
-                            {
-                                <dd>
-                                    À chaque @Html.DisplayFor(model => model.frequenceComptesRendus) semaines
-                                </dd>
-                            }
-                            <br />
+                                  @if (Model.finReelle == null)
+                                  {
+                                      <dd> ---</dd>
+                                  }
+                                  else
+                                  {
+                                      <dd>
+                                          @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.finReelle))
+                                      </dd>
+                                  }
+                                  <br />
+
+                                  <dt>
+                                      Budget
+                                  </dt>
+                                  @if (Model.budget == null)
+                                  {
+                                      <dd> ---</dd>
+                                  }
+                                  else
+                                  {
+
+                                      <dd>
+                                          @Html.DisplayFor(model => model.budget)$
+                                      </dd>
+                                  }
+                                  <br />
 
 
-                            <dt>
-                                Date limite du prochain compte-rendu
-                            </dt>
+                                  <dt>
+                                      Fonds collectés
+                                  </dt>
 
-                            @if (Model.dateProchainCompteRendu == null)
-                            {
-                                <dd> ---</dd>
-                            }
-                            else
-                            {
-                                <dd>
-                                    @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateProchainCompteRendu))
-                                </dd>
-                            }
+                                  @if (Model.totalFondsCollectes == null)
+                                  {
+                                      <dd> ---</dd>
+                                  }
+                                  else
+                                  {
+                                      <dd>
+                                          @Html.DisplayFor(model => model.totalFondsCollectes)$
+                                      </dd>
+                                  }
+                                  <br />
+
+                                  <dt>
+                                      Total dépenses
+                                  </dt>
+
+                                  @if (Model.totalDepenes == null)
+                                  {
+                                      <dd> ---</dd>
+                                  }
+                                  else
+                                  {
+                                      <dd>
+                                          @Html.DisplayFor(model => model.totalDepenes)$
+                                      </dd>
+                                  }
+                                  <br />
 
 
-                        </dl>
-                    </div>
+                                  <dt>
+                                      Fréquence des comptes-rendus
+                                  </dt>
+
+                                  @if (Model.frequenceComptesRendus == null)
+                                  {
+                                      <dd> ---</dd>
+                                  }
+                                  else
+                                  {
+                                      <dd>
+                                          À chaque @Html.DisplayFor(model => model.frequenceComptesRendus) semaines
+                                      </dd>
+                                  }
+                                  <br />
+
+
+                                  <dt>
+                                      Date limite du prochain compte-rendu
+                                  </dt>
+
+                                  @if (Model.dateProchainCompteRendu == null)
+                                  {
+                                      <dd> ---</dd>
+                                  }
+                                  else
+                                  {
+                                      <dd>
+                                          @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateProchainCompteRendu))
+                                      </dd>
+                                  }
+
+
+                              </dl>
+                          </div>
                 </div>
             </div>
         </div>
