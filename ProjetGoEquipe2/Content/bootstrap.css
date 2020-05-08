@@ -1612,15 +1612,10 @@ pre code {
 
 @media (min-width: 100px) {
     .newsFeed {
-        width: 700px;
+        width: 500px;
     }
 }
 
-@media (min-width: 500px) {
-    .newsFeed {
-        width: 700px;
-    }
-}
 
 
 @media (min-width: 1200px) {
