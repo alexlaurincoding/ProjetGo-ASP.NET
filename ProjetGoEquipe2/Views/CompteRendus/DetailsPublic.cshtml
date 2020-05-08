@@ -19,14 +19,15 @@
             <div class="content-section" id="right-left">
 
                 <div class="btn-group-vertical" role="group">
+
                     @{
                         if (Model.Projet.statut == "Actif")
                         {
-                            <button onclick="@("window.location.href='" + @Url.Action("Index") + "'");" type="button" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Projets Actifs</button>
+                            <button onclick="@("window.location.href='" + @Url.Action("Index", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Projets Actifs</button>
                         }
                         else
                         {
-                            <button onclick="@("window.location.href='" + @Url.Action("Index") + "'");" type="button" class="btn btn-default" style="text-align:left; ">Projets Actifs</button>
+                            <button onclick="@("window.location.href='" + @Url.Action("Index", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; ">Projets Actifs</button>
                         }
                     }
                     @{
@@ -84,10 +85,17 @@
                               <h4 class="titre">
                                   Compte-Rendu du @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateCompteRendu))<br /> pour "@Html.DisplayFor(model => model.Projet.titre)"
                               </h4>
+
+                              <br />
                               <div style="text-align:center;">
-                                  @Html.ActionLink("Revenir aux projets", "Index", "Projets")
+                                  @Html.ActionLink("Revenir aux détails du projet", "DetailsPublic", "Projets", new { id = Model.Projet.idProjet }, null)
                               </div>
-                              
+
+                              <br />
+                              <div style="text-align:center;">
+                                  @Html.ActionLink("Voir la liste de tous les compte-rendus de ce projet", "Public", "CompteRendus", new { id = Model.Projet.idProjet }, null)
+                              </div>
+
                               <br />
                               <hr />
 

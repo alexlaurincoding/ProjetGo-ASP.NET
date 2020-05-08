@@ -19,12 +19,12 @@ namespace ProjetGoEquipe2.Controllers
             return View();
         }
 
-        // GET: CompteRendus
+        // GET: CompteRendus/Public/5
         public ActionResult Public(int? id)
         {
             List<CompteRendu> cr = Singleton.Instance.db.CompteRendus.Where(c => c.Projet.idProjet == id).OrderByDescending(c => c.dateCompteRendu).ToList();
 
-            if (cr == null || cr[0].Projet.visibilite == "Prive" || cr[0].Projet.visibilite == "Membres" && (Session["Connected"] == null || (bool)Session["Connected"] == false))
+            if (cr.Count == 0 || cr[0].Projet.visibilite == "Prive" || cr[0].Projet.visibilite == "Membres" && (Session["Connected"] == null || (bool)Session["Connected"] == false))
             {
                 return RedirectToAction("Index", "Projets");
             }

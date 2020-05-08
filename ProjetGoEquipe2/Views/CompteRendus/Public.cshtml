@@ -2,62 +2,121 @@
 
 @{
     ViewBag.Title = "Public";
+    Projet leprojet = new Projet();
+
+    foreach (var item in Model)
+    {
+        leprojet = item.Projet;
+        break;
+    }
 }
 
-<h2>Public</h2>
+<br />
+<h2>Nos Projets</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.dateCompteRendu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.informationsAJour)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sommaireRealisationsCompletees)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.realisationsReportees)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.etatRisques)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Projet.titre)
-        </th>
-        <th></th>
-    </tr>
+<br />
+<hr />
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.dateCompteRendu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.informationsAJour)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sommaireRealisationsCompletees)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.realisationsReportees)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.etatRisques)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Projet.titre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idCompteRendu }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idCompteRendu }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idCompteRendu })
-        </td>
-    </tr>
-}
+<!-- Partie principale de la page -->
+<main role="main" class="container-fluid">
+    <div class="row">
 
-</table>
+        <div class="col-sm-3">
+
+            <div class="content-section" id="right-left">
+
+                <div class="btn-group-vertical" role="group">
+                    @{
+                        if ( leprojet.statut == "Actif")
+                        {
+                            <button onclick="@("window.location.href='" + @Url.Action("Index", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Projets Actifs</button>
+                        }
+                        else
+                        {
+                            <button onclick="@("window.location.href='" + @Url.Action("Index", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; ">Projets Actifs</button>
+                        }
+                    }
+                    @{
+                        if (leprojet.statut == "Approuve")
+                        {
+                            <button onclick="@("window.location.href='" + @Url.Action("AVenir", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Projets À Venir</button>
+                        }
+                        else
+                        {
+                            <button onclick="@("window.location.href='" + @Url.Action("AVenir", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; ">Projets À Venir</button>
+                        }
+                    }
+
+                    @{
+                        if (Session["Connected"] != null && (bool)Session["Connected"] == true)
+                        {
+                            if (leprojet.statut == "Propose" || leprojet.statut == "Soumis")
+                            {
+                                <button type="button" onclick="@("window.location.href='" + @Url.Action("Proposes", "Projets") + "'");" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Projets Proposés</button>
+                            }
+                            else
+                            {
+                                <button type="button" onclick="@("window.location.href='" + @Url.Action("Proposes", "Projets") + "'");" class="btn btn-default" style="text-align:left">Projets Proposés</button>
+                            }
+
+                        }
+                    }
+
+                    @{
+                        if (leprojet.statut == "Termine")
+                        {
+                            <button onclick="@("window.location.href='" + @Url.Action("Completes", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Projets Complétés</button>
+                        }
+                        else
+                        {
+                            <button onclick="@("window.location.href='" + @Url.Action("Completes", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; ">Projets Complétés</button>
+                        }
+                    }
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="col-sm-9">
+            <div class="content-section main-section-top main-add">
+
+                <div class="content-section" id="sectionPrincipaleMembre">
+
+                    <br /><br />
+
+                          <div class="content-section" id="sectionPrincipaleMembre">
+                              <h4 class="titre">Compte-rendus de "@leprojet.titre"</h4>
+                              
+                              <div style="text-align:center;">
+                                  @Html.ActionLink("Revenir aux détails du projet", "DetailsPublic", "Projets", new { id = leprojet.idProjet }, null)
+                              </div>
+                              <br />
+                              <div style="text-align:center;">
+                                @Html.ActionLink("Revenir à la liste des projets", "Index", "Projets")
+                            </div>
+
+                              <hr />
+
+                              <table class="table">
+
+                                  @foreach (var item in Model)
+                                  {
+                                      <tr>
+                                          <td>
+                                              @Html.ActionLink("Compte-rendu du " + @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dateCompteRendu)), "DetailsPublic", "CompteRendus", new { id = item.idCompteRendu }, null)
+                                          </td>
+                                      </tr>
+                                      <br />
+                                  }
+
+                              </table>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+

@@ -82,21 +82,20 @@
 
                           <div class="content-section" id="sectionPrincipaleMembre">
                               <h4 class="titre">Détails de "@Html.DisplayFor(model => model.titre)"</h4>
-                              <div style="text-align:center;">
-                                  @Html.ActionLink("Revenir aux projets", "Index")
-                              </div>
+
+
                               @{
                                   CompteRendu compteRendu = Singleton.Instance.db.CompteRendus.Where(cr => cr.Projet.idProjet == Model.idProjet).OrderByDescending(cr => cr.dateCompteRendu).FirstOrDefault();
                                   if (compteRendu != null)
                                   {
                                       <br />
                                       <div style="text-align:center;">
-                                          @Html.ActionLink("Voir le plus récent compte-rendu", "DetailsPublic", "CompteRendus", new { id = compteRendu.idCompteRendu }, null)
+                                          @Html.ActionLink("Voir le plus récent compte-rendu de ce projet", "DetailsPublic", "CompteRendus", new { id = compteRendu.idCompteRendu }, null)
                                       </div>
 
                                       <br />
                                       <div style="text-align:center;">
-                                          @Html.ActionLink("Voir la liste de tous les compte-rendus", "Public", "CompteRendus", new { id = compteRendu.idCompteRendu }, null)
+                                          @Html.ActionLink("Voir la liste de tous les compte-rendus de ce projet", "Public", "CompteRendus", new { id = compteRendu.Projet.idProjet }, null)
                                       </div>
                                   }
                               }
