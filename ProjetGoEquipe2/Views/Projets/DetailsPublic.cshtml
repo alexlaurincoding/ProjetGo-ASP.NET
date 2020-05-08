@@ -3,8 +3,9 @@
 @{
     ViewBag.Title = "DetailsPublic";
 
-    string emphase = Model.statut == "Approuve" ? "PA" : Model.statut == "Complete" ? "PC" : Model.statut == "Approuve" ? "PV" : "PP";
+    string emphase = Model.statut == "Actif" ? "PA" : Model.statut == "Complete" ? "PC" : Model.statut == "Approuve" ? "PV" : "PP";
 
+}
 
 <br />
 <h2>Nos Projets</h2>

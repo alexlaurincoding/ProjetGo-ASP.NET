@@ -31,7 +31,7 @@
                     <ul class="nav navbar-nav" style="margin-top:10px;">
                         <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
                         <li>@Html.ActionLink("À Propos", "About", "Home")</li>
-                        <li>@Html.ActionLink("Nos Projets", "Index", "Projets")</li>
+                        <li>@Html.ActionLink("Nos Projets", "Actifs", "Projets")</li>
                         <li>@Html.ActionLink("Faire un Don", "Index", "Dons")</li>
 
                         @if (Session["Connected"] == null || (bool)Session["Connected"] == false)

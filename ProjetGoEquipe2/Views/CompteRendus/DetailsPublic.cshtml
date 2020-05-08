@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "DetailsPublic";
 
-    string emphase = Model.Projet.statut == "Approuve" ? "PA" : Model.Projet.statut == "Complete" ? "PC" : Model.Projet.statut == "Approuve" ? "PV" : "PP";
+    string emphase = Model.Projet.statut == "Actif" ? "PA" : Model.Projet.statut == "Complete" ? "PC" : Model.Projet.statut == "Approuve" ? "PV" : "PP";
 }
 
 <br />

@@ -8,7 +8,7 @@
     foreach (var item in Model)
     {
         leprojet = item.Projet;
-        emphase = item.Projet.statut == "Approuve" ? "PA" : item.Projet.statut == "Complete" ? "PC" : item.Projet.statut == "Approuve" ? "PV" : "PP";
+        emphase = item.Projet.statut == "Actif" ? "PA" : item.Projet.statut == "Complete" ? "PC" : item.Projet.statut == "Approuve" ? "PV" : "PP";
         break;
     }
 }
@@ -41,7 +41,7 @@
                         </div>
                         <br />
                         <div style="text-align:center;">
-                            @Html.ActionLink("Revenir à la liste des projets", "Index", "Projets")
+                            @Html.ActionLink("Revenir à la liste des projets", "Actifs", "Projets")
                         </div>
 
                         <hr />
