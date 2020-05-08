@@ -1,14 +1,12 @@
 ﻿@model IEnumerable<ProjetGoEquipe2.Projet>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Complétés";
 }
-
 <br />
 <h2>Nos Projets</h2>
 
 <br /><hr />
-
 
 <!-- Partie principale de la page -->
 <main role="main" class="container-fluid">
@@ -19,7 +17,7 @@
             <div class="content-section" id="right-left">
 
                 <div class="btn-group-vertical" role="group">
-                    <button onclick="@("window.location.href='" + @Url.Action("Index") + "'");" type="button" class="btn btn-default" style="text-align:left;  background-color:rgb(184, 210, 49)">Projets Actifs</button>
+                    <button onclick="@("window.location.href='" + @Url.Action("Index") + "'");" type="button" class="btn btn-default" style="text-align:left;">Projets Actifs</button>
                     <button onclick="@("window.location.href='" + @Url.Action("AVenir", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left;">Projets À Venir</button>
                     @{
                         if (Session["Connected"] != null && (bool)Session["Connected"] == true)
@@ -28,7 +26,7 @@
 
                         }
                     }
-                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Completes", "Projets") + "'");" class="btn btn-default" style="text-align:left">Projets Complétés</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Completes", "Projets") + "'");" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Projets Complétés</button>
                 </div>
             </div>
 
@@ -41,11 +39,9 @@
 
                 <div class="content-section" id="sectionPrincipaleMembre">
 
-                    <h3 class="titre center">
-                        Projets Actifs
-                    </h3>
+                    <h3 class="titre center">Nos Projets Complétés</h3>
 
-                    <img src="~/Content/Images/current_projects.jpg" alt="Projets proposés" class="center-image" width="200" ; />
+                    <img src="~/Content/Images/project-completion.jpg" alt="Projets proposés" class="center-image" width="200" ; />
 
                     <br /><br />
 
@@ -64,7 +60,7 @@
                             </th>
 
                             <th>
-                                Fin estimée
+                                Fin
                             </th>
 
                             <th>
@@ -74,10 +70,11 @@
                             <th></th>
                         </tr>
 
-                        @foreach (var item in Singleton.Instance.db.Projets.Where(projet => projet.statut == "Actif").OrderByDescending(projet => projet.debutReel))
+                        @foreach (var item in Singleton.Instance.db.Projets.Where(projet => projet.statut == "Termine").OrderByDescending(projet => projet.finReelle))
                         {
                             if (item.visibilite == null || item.visibilite == "Public" || item.visibilite == "Membres" && Session["Connected"] != null && (bool)Session["Connected"] == true)
                             {
+
                                 <tr>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.titre)
@@ -89,14 +86,17 @@
 
                                     <td>
                                         @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.debutReel))
+
                                     </td>
                                     <td>
-                                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.finEstimee))
+                                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.finReelle))
+
                                     </td>
 
                                     <td>
                                         @Html.DisplayFor(modelItem => item.totalFondsCollectes)$
                                     </td>
+
 
                                     <td>
                                         @Html.ActionLink("Plus de détails", "Details", new { id = item.idProjet })
@@ -107,10 +107,11 @@
                         }
 
                     </table>
+
+                    <br />
+                    <br />
                 </div>
             </div>
         </div>
     </div>
 </main>
-
-

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,7 +19,7 @@ namespace ProjetGoEquipe2.Controllers
             {
                 return RedirectToAction("Identifier");
             }
-            return View();
+            return RedirectToAction("MesProjets", "Projets");
         }
 
 
@@ -30,14 +31,52 @@ namespace ProjetGoEquipe2.Controllers
 
         // POST: Membre/Inscription
         [HttpPost]
-        public ActionResult Inscription(Membre membre)
+        public ActionResult Inscription(Membre membre, string repeter)
         {
-            try
+
+            if (membre.motPasse.IsNullOrWhiteSpace() || membre.nomUsager.IsNullOrWhiteSpace() || membre.nom.IsNullOrWhiteSpace() || membre.prenom.IsNullOrWhiteSpace() || membre.email.IsNullOrWhiteSpace())
             {
+                ViewBag.Erreur = "Oubli";
+                ViewBag.Message = "Les champs nom, prenom, nom d'usager, mot de passe et courriel sont obligatoires.";
+                return View();
+
+            }
+
+            if (membre.motPasse != repeter)
+            {
+                ViewBag.Erreur = "Repeter";
+                ViewBag.Message = "Le mot de passe n'a pas été répété correctement";
+                return View();
+            }
+
+            foreach (Membre m in Singleton.Instance.db.Membres)
+            {
+                if (membre.nomUsager == m.nomUsager)
+                {
+                    ViewBag.Erreur = "Usager";
+                    ViewBag.Message = "Ce nom d'usager existe déjà.";
+                    return View();
+                }
+                if (membre.email == m.email)
+                {
+                    ViewBag.Erreur = "Courriel";
+                    ViewBag.Message = "Ce courriel est déjà utilisé par quelqu'un.";
+                    return View();
+                }
+            }
+                
+            try { 
+
+                var inscription = Request.Form["inscritMailingList"];
+                
+                membre.inscritMailingList = inscription == "1" ? true : false;
+
                 Singleton.Instance.db.Membres.Add(membre);
                 Singleton.Instance.db.SaveChanges();
                 Session["Connected"] = true;
-                return RedirectToAction("Index");
+                Session["Usager"] = membre.nomUsager;
+                membre.statut = "Attente";
+                return RedirectToAction("Cotisation", "Membres");
             }
             catch
             {
@@ -45,11 +84,61 @@ namespace ProjetGoEquipe2.Controllers
             }
         }
 
+        // GET: Membre/Cotisation
+        public ActionResult Cotisation()
+        {
+
+            return View();
+        }
+
+        // GET: Membre/RenouvAbonnementSucces
+        public ActionResult RenouvAbonnementSucces()
+        {
+            Cotisation cotisation = new Cotisation();
+            cotisation.nomUsager = (string)Session["Usager"];
+            cotisation.montant = 10;
+            cotisation.dateTransaction = DateTime.Now;
+
+            Singleton.Instance.db.Cotisations.Add(cotisation);
+
+            try
+            {
+                Singleton.Instance.db.SaveChanges();
+
+            }
+            catch
+            {
+                MessageBox.Show("Erreur sauvegarde cotisation");
+            }
+                
+                Membre membre = Singleton.Instance.db.Membres.Find((string)Session["Usager"]);
+                membre.dateProchaineCotisation = DateTime.Now.AddDays(365);
+                membre.statut = "Actif";
+                try
+                {
+                    Singleton.Instance.db.SaveChanges();
+                }
+                catch
+                {
+                    MessageBox.Show("Erreur sauvegarde membres");
+                }
+
+            
+            return View();
+        }
+
+        public ActionResult RenouvAbonnementCancel()
+        {
+          
+            return View();
+        }
+
         // GET: Membre/Identifier
         public ActionResult Identifier()
         {
             return View();
         }
+
 
         // POST: Membre/Identifier
         [HttpPost]

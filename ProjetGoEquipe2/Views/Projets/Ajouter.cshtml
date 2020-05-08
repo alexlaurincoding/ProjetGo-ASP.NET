@@ -8,8 +8,9 @@
 }
 
 
-
+<br />
 <h2>Page de @Session["Usager"]</h2>
+<hr /><br />
 
 <!-- Partie principale de la page -->
 <main role="main" class="container-fluid">
@@ -21,11 +22,12 @@
                 <h4>Mes Sections</h4>
 
                 <div class="btn-group-vertical" role="group">
-                    <button onclick="@("window.location.href='" + @Url.Action("Index", "Membres") + "'");" type="button" class="btn btn-default" style="text-align:left">Mes Projets</button>
-                    <button type="button" class="btn btn-success" style="text-align:left">Ajouter Projet</button>
-                    <button type="button" class="btn btn-default" style="text-align:left">Mes Comptes-Rendus</button>
-                    <button type="button" class="btn btn-default" style="text-align:left">Payer ma Cotisation</button>
-                    <button type="button" class="btn btn-default" style="text-align:left">Mon Profil</button>
+                    <button onclick="@("window.location.href='" + @Url.Action("MesProjets", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left;">Mes Projets</button>
+                    <button onclick="@("window.location.href='" + @Url.Action("Ajouter", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Ajouter un Projet</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" class="btn btn-default" style="text-align:left">Mes Compte-Rendus</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Ajouter", "CompteRendus") + "'");" class="btn btn-default" style="text-align:left">Ajouter un Comptes-Rendu</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Cotisation", "Membres") + "'");" class="btn btn-default" style="text-align:left">Payer ma Cotisation</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Profil", "Membres") + "'");" class="btn btn-default" style="text-align:left">Mon Profil</button>
                 </div>
             </div>
 
@@ -34,7 +36,7 @@
         </div>
 
         <div class="col-sm-9">
-            <div class="content-section main-section-top">
+            <div class="content-section main-section-top main-add">
 
                 <div class="content-section" id="sectionPrincipaleMembre">
 
@@ -42,7 +44,7 @@
                     {
                         @Html.AntiForgeryToken()
 
-                        <h3>Ajouter un Projet</h3>
+                        <h4 class="titre center">Ajouter un Projet</h4>
                         <div class="form-horizontal">
                             <hr />
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -55,16 +57,42 @@
                             </div>
 
                             <div class="form-group">
+                                <div class="control-label col-md-3">Statut</div>
+                                <div class="col-md-9">
+                                    <select class="form-control" name="statut">
+                                        <option value="Propose">Proposé</option>
+                                        <option value="Soumis">Soumis</option>
+                                        <option value="Approuve">Approuvé</option>
+                                        <option value="Actif">Actif</option>
+                                        <option value="Termine">Terminé</option>
+                                        <option value="Gele">Gelé</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label col-md-3">Visibilité</div>
+                                <div class="col-md-9">
+                                    <select class="form-control" name="visibilite">
+                                        <option value="Public">Public</option>
+                                        <option value="Membres">Membres</option>
+                                        <option value="Membres">Privé</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
                                 <div class="control-label col-md-3">Courte Description:</div>
                                 <div class="col-md-9">
-                                    <textarea class="form-control col-md-9" rows="5" name="description"></textarea>
+                                    <textarea placeholder="Courte description du projet ici." class="form-control col-md-9" rows="5" name="description"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="control-label col-md-3">Sommaire:</div>
                                 <div class="col-md-9">
-                                    <textarea class="form-control col-md-9" rows="5" name="sommaire"></textarea>
+                                    <textarea placeholder="Décrivez le but, les objectifs, bénéfices escomptés et les risques du projet." class="form-control col-md-9" rows="5" name="sommaire"></textarea>
                                 </div>
                             </div>
 
@@ -94,10 +122,11 @@
                                 <div class="control-label col-md-3">Fréquence Compte-Rendus (semaines)</div>
                                 <div class="col-md-9">
                                     <select class="form-control" name="frequence">
+                                        <option value="1">aucun</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
-                                        <option value="4">4</option>
+                                        <option value="4" selected>4</option>
                                         <option value="6">6</option>
                                         <option value="8">8</option>
                                         <option value="10">10</option>
@@ -108,7 +137,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-offset-3 col-md-9">
-                                    <input type="submit" value="Ajouter" class="btn btn-primary" />
+                                    <input type="submit" value="Ajouter" class="btn btn-default" style="background-color:rgb(184, 210, 49)" />
                                 </div>
                             </div>
                         </div>

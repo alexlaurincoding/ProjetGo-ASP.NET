@@ -1,0 +1,114 @@
+﻿@model IEnumerable<ProjetGoEquipe2.Projet>
+
+@{
+    ViewBag.Title = "A Venir";
+}
+
+<br />
+<h2>Nos Projets</h2>
+
+<br /><hr />
+
+
+<!-- Partie principale de la page -->
+<main role="main" class="container-fluid">
+    <div class="row">
+
+        <div class="col-sm-3">
+
+            <div class="content-section" id="right-left">
+
+                <div class="btn-group-vertical" role="group">
+                    <button onclick="@("window.location.href='" + @Url.Action("Index") + "'");" type="button" class="btn btn-default" style="text-align:left;">Projets Actifs</button>
+                    <button onclick="@("window.location.href='" + @Url.Action("AVenir", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left;">Projets À Venir</button>
+                    @{
+                        if (Session["Connected"] != null && (bool)Session["Connected"] == true)
+                        {
+                            <button type="button" onclick="@("window.location.href='" + @Url.Action("Proposes", "Projets") + "'");" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Projets Proposés</button>
+
+                        }
+                    }
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Completes", "Projets") + "'");" class="btn btn-default" style="text-align:left">Projets Complétés</button>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="col-sm-9">
+            <div class="content-section main-section-top main-add">
+
+                <div class="content-section" id="sectionPrincipaleMembre">
+
+                    <h3 class="titre center">Projets Proposés</h3>
+                    <br /><br />
+
+                    <img src="~/Content/Images/projetsProposes.png" alt="Projets proposés" class="center-image" width="200"; />
+                    <br /><br />
+
+                    <table class="table">
+                        <tr>
+                            <th>
+                                Titre
+                            </th>
+
+                            <th>
+                                Description
+                            </th>
+
+                            <th>
+                                Début estimé
+                            </th>
+
+                            <th>
+                                Fin estiméee
+                            </th>
+
+                            <th>
+                                Budget estimé
+                            </th>
+
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Singleton.Instance.db.Projets.Where(projet => projet.statut == "Soumis" || projet.statut == "Propose").OrderByDescending(projet => projet.debutEstime))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.titre)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.descriptionCourte)
+                                </td>
+
+                                <td>
+                                    @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.debutEstime))
+                                </td>
+
+                                <td>
+                                    @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.finEstimee))
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.budget)$
+                                </td>
+
+
+                                <td>
+                                    @Html.ActionLink("Plus de détails", "Details", new { id = item.idProjet })
+                                </td>
+
+                            </tr>
+
+                        }
+                    </table>
+
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

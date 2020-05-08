@@ -1,0 +1,69 @@
+﻿@model ProjetGoEquipe2.CompteRendu
+
+@{
+    ViewBag.Title = "Effacer";
+}
+
+<br />
+<h2>Page de @Session["Usager"]</h2>
+<hr /><br />
+
+<!-- Partie principale de la page -->
+<main role="main" class="container-fluid">
+    <div class="row">
+
+        <div class="col-sm-3">
+
+            <div class="content-section" id="right-left">
+
+                <h4>Mes Sections</h4>
+
+                <div class="btn-group-vertical" role="group">
+                    <button onclick="@("window.location.href='" + @Url.Action("MesProjets", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left;">Mes Projets</button>
+                    <button onclick="@("window.location.href='" + @Url.Action("Ajouter", "Projets") + "'");" type="button" class="btn btn-default" style="text-align:left">Ajouter un Projet</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" class="btn btn-default" style="text-align:left; background-color:rgb(184, 210, 49)">Mes Compte-Rendus</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Ajouter", "CompteRendus") + "'");" class="btn btn-default" style="text-align:left">Ajouter un Compte-Rendu</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Cotisation", "Membres") + "'");" class="btn btn-default" style="text-align:left">Payer ma Cotisation</button>
+                    <button type="button" onclick="@("window.location.href='" + @Url.Action("Profil", "Membres") + "'");" class="btn btn-default" style="text-align:left">Mon Profil</button>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="col-sm-9">
+            <div class="content-section main-section-top main-add">
+
+                <div class="content-section" id="sectionPrincipaleMembre">
+
+                    <h4 class="titre">
+                        Supprimer Compte-Rendu du  @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateCompteRendu))<br /> pour "@Html.DisplayFor(model => model.Projet.titre)"
+                    </h4>
+
+                    <div style="text-align:center;">
+                        @Html.ActionLink("Revenir à mes compte-rendus", "Index")
+                    </div>
+
+                    <dl class="dl-horizontal">
+
+                        <div>
+                            <br /><br /><br />
+
+                            <h4>Êtes-vous vraiment certain de vouloir supprimer ce compte-rendu ?</h4>
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <br />
+                                <div class="form-actions no-color" style="text-align:center;">
+                                    <input type="submit" value="Effacer" class="btn btn-default" style="background-color:rgb(184, 210, 49)" />
+                                    <button onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" type="button" class="btn btn-default">Annuler</button>
+
+                                </div>
+                            }
+                        </div>
+                </div>
+            </div>
+</main>
