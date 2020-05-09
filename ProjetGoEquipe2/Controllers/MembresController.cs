@@ -130,7 +130,7 @@ namespace ProjetGoEquipe2.Controllers
           
             return View();
         }
-
+       
         // GET: Membre/Profil
         public ActionResult Profil()
         {
@@ -142,7 +142,7 @@ namespace ProjetGoEquipe2.Controllers
          
             return View(membre);
         }
-
+       
         // GET: Membre/Identifier
         public ActionResult EditMembre()
         {
@@ -153,6 +153,29 @@ namespace ProjetGoEquipe2.Controllers
             Membre membre = Singleton.Instance.db.Membres.Find((string)Session["Usager"]);
             
             return View(membre);
+        }
+        [HttpPost]
+        public ActionResult EditMembre(Membre membreModifier)
+        {
+            Membre ancienMembre = Singleton.Instance.db.Membres.Find((string)Session["Usager"]);
+            ancienMembre.nom = membreModifier.nom;
+            ancienMembre.prenom = membreModifier.prenom;
+            ancienMembre.email = membreModifier.email;
+            ancienMembre.numeroTel = membreModifier.numeroTel;
+            ancienMembre.adresse = membreModifier.adresse;
+            
+            try
+            {
+                
+                Singleton.Instance.db.SaveChanges();
+                MessageBox.Show("Midification effectuer avec succes");
+                return RedirectToAction("Profil");
+            }
+            catch
+            {
+                MessageBox.Show("Erreur sauvegarde membres");
+            }
+            return View(membreModifier);
         }
 
         // GET: Membre/Identifier
