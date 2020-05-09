@@ -261,6 +261,7 @@
     <Content Include="Views\CompteRendus\DetailsPublic.cshtml" />
     <Content Include="Views\CompteRendus\Public.cshtml" />
     <Content Include="Views\Shared\Menus.cshtml" />
+    <Content Include="Views\Membres\EditMembre.cshtml" />
     <Content Include="Views\Membres\Profil.cshtml" />
   </ItemGroup>
   <ItemGroup>

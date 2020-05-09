@@ -4,98 +4,103 @@
     ViewBag.Title = "Profil";
 }
 
-<h2>Profil</h2>
-
-<div>
-    <h4>Membre</h4>
+    <br />
+    <h2>Page de @Session["Usager"]</h2>
     <hr />
-    @{
-        Html.RenderAction("Menus", "Design", new { Categorie = "M", Emphase = "CO" });
-    }
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nom)
-        </dt>
+    <br />
 
-        <dd>
-            @Html.DisplayFor(model => model.nom)
-        </dd>
+    <div class="row">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.prenom)
-        </dt>
+        @{
+            Html.RenderAction("Menus", "Design", new { Categorie = "M", Emphase = "CO" });
+        }
+        <div class="col-sm-9">
+            <div class="content-section main-section-top main-add">
+                <dl class="dl-horizontal">
 
-        <dd>
-            @Html.DisplayFor(model => model.prenom)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
+                    <dt>
+                        Nom :
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.nom)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.numeroTel)
-        </dt>
+                    <dt>
+                        Prenom :
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.numeroTel)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.prenom)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.adresse)
-        </dt>
+                    <dt>
+                        Mot de Passe :
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.adresse)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.motPasse)
+                    </dd>
+                    <dt>
+                        Email :
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.dateAdhesion)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.email)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.dateAdhesion)
-        </dd>
+                    <dt>
+                        Telephone :
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.inscritMailingList)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.numeroTel)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.inscritMailingList)
-        </dd>
+                    <dt>
+                        Adresse :
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.statut)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.adresse)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.statut)
-        </dd>
+                    <dt>
+                        Date d'adhesion :
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.dateProchaineCotisation)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.dateAdhesion)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.dateProchaineCotisation)
-        </dd>
+                    <dt>
+                        Inscrit a la mailing liste :
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.montantProchaineCotisation)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.inscritMailingList)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.montantProchaineCotisation)
-        </dd>
+                    <dt>
+                        Statut :
+                    </dt>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.nomUsager }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                    <dd>
+                        @Html.DisplayFor(model => model.statut)
+                    </dd>
+
+                    <dt>
+                        Prochaine cotisation :
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.dateProchaineCotisation)
+                    </dd>
+
+                </dl>
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "EditMembre", new { id = Model.nomUsager }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>

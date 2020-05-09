@@ -131,10 +131,27 @@ namespace ProjetGoEquipe2.Controllers
             return View();
         }
 
-        // GET: Membre/Identifier
+        // GET: Membre/Profil
         public ActionResult Profil()
         {
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+            {
+                return RedirectToAction("Identifier");
+            }
             Membre membre = Singleton.Instance.db.Membres.Find((string)Session["Usager"]);
+         
+            return View(membre);
+        }
+
+        // GET: Membre/Identifier
+        public ActionResult EditMembre()
+        {
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+            {
+                return RedirectToAction("Identifier");
+            }
+            Membre membre = Singleton.Instance.db.Membres.Find((string)Session["Usager"]);
+            
             return View(membre);
         }
 
