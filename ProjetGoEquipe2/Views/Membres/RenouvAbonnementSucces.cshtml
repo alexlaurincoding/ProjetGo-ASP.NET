@@ -1,8 +1,41 @@
 ﻿
+
 @{
     ViewBag.Title = "RenouvAbonnementSucces";
 }
 
-<h2>RenouvAbonnementSucces</h2>
+@model IEnumerable<ProjetGoEquipe2.Projet>
 
- 
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<h2>Page de @Session["Usager"]</h2>
+<hr />
+<br />
+
+
+<!-- Partie principale de la page -->
+<main role="main" class="container-fluid">
+    <div class="row">
+
+        @{
+            Html.RenderAction("Menus", "Design", new { Categorie = "M", Emphase = "CO" });
+        }
+
+        <div class="col-sm-9">
+            <div class="content-section main-section-top main-add">
+
+                <div class="content-section" id="sectionPrincipaleMembre">
+                    <img src="~/Content/Images/renouvellement.png" alt="Projets proposés" class="center-image" width="400" ; />
+                    <h3 class="titre center">
+
+                        Merci d'avoir payer votre abonnement annuel.
+                    </h3>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

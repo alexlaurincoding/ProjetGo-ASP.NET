@@ -1,0 +1,101 @@
+﻿@model ProjetGoEquipe2.Membre
+
+@{
+    ViewBag.Title = "Profil";
+}
+
+<h2>Profil</h2>
+
+<div>
+    <h4>Membre</h4>
+    <hr />
+    @{
+        Html.RenderAction("Menus", "Design", new { Categorie = "M", Emphase = "CO" });
+    }
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prenom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prenom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numeroTel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numeroTel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adresse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adresse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateAdhesion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateAdhesion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.inscritMailingList)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.inscritMailingList)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.statut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.statut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateProchaineCotisation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateProchaineCotisation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.montantProchaineCotisation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.montantProchaineCotisation)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.nomUsager }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

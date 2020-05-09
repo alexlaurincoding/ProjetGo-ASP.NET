@@ -105,13 +105,6 @@ namespace ProjetGoEquipe2.Controllers
             try
             {
                 Singleton.Instance.db.SaveChanges();
-
-            }
-            catch
-            {
-                MessageBox.Show("Erreur sauvegarde cotisation");
-            }
-                
                 Membre membre = Singleton.Instance.db.Membres.Find((string)Session["Usager"]);
                 membre.dateProchaineCotisation = DateTime.Now.AddDays(365);
                 membre.statut = "Actif";
@@ -123,8 +116,12 @@ namespace ProjetGoEquipe2.Controllers
                 {
                     MessageBox.Show("Erreur sauvegarde membres");
                 }
-
-            
+            }
+            catch
+            {
+                MessageBox.Show("Erreur sauvegarde cotisation");
+            }
+ 
             return View();
         }
 
@@ -132,6 +129,13 @@ namespace ProjetGoEquipe2.Controllers
         {
           
             return View();
+        }
+
+        // GET: Membre/Identifier
+        public ActionResult Profil()
+        {
+            Membre membre = Singleton.Instance.db.Membres.Find((string)Session["Usager"]);
+            return View(membre);
         }
 
         // GET: Membre/Identifier
