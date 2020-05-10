@@ -1623,38 +1623,22 @@ pre code {
         margin-left:-15px;
     }
 
-    .carousel {
-        width:90%;
-    }
-
-    #left-col {
-        width:auto;
-    }
-
-    .video {
-        width:100%;
-    }
-
 }
 @media screen and (max-width:1000px) {
     
-    .container {
+    .col-sm-12 {
         width:100%;
     }
 
     .col-sm-6 {
-        margin:15px;
-        width: 100%;
+        width: auto
        }
-   #left-col {
-       width:50%;
-   }
-
+   
 }
 
-@media screen and (max-width: 500px) {
-    .container {
-        width:500px;
+@media screen and (max-width: 320px) {
+    .col-sm-12 {
+        width: 320px;
     }
 
 }
