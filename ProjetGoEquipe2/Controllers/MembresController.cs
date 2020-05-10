@@ -156,7 +156,7 @@ namespace ProjetGoEquipe2.Controllers
             return View(membre);
         }
         [HttpPost]
-        public ActionResult EditMembre(Membre membreModifier, string repeter)
+        public ActionResult EditMembre(Membre membreModifier, string repeter, string inscritMailingList)
         {
 
             if (membreModifier.motPasse.IsNullOrWhiteSpace() || membreModifier.nom.IsNullOrWhiteSpace() || membreModifier.prenom.IsNullOrWhiteSpace() || membreModifier.email.IsNullOrWhiteSpace())
@@ -177,6 +177,7 @@ namespace ProjetGoEquipe2.Controllers
             }
 
             Membre ancienMembre = Singleton.Instance.db.Membres.Find((string)Session["Usager"]);
+            ancienMembre.inscritMailingList = inscritMailingList == "1" ? true : false;
             ancienMembre.nom = membreModifier.nom;
             ancienMembre.prenom = membreModifier.prenom;
             ancienMembre.email = membreModifier.email;
@@ -187,12 +188,10 @@ namespace ProjetGoEquipe2.Controllers
             {
                 
                 Singleton.Instance.db.SaveChanges();
-                MessageBox.Show("Midification effectuer avec succes");
                 return RedirectToAction("Profil");
             }
             catch
             {
-                MessageBox.Show("Erreur sauvegarde membres");
             }
             return View(membreModifier);
         }
