@@ -220,6 +220,13 @@ namespace ProjetGoEquipe2.Controllers
         [HttpPost]
         public ActionResult Identifier(Membre membre)
         {
+            if (membre.motPasse.IsNullOrWhiteSpace() || membre.nomUsager.IsNullOrWhiteSpace())
+            {
+                ViewBag.Erreur = "Vide";
+                ViewBag.Message = "Les champs nom d'usager et mot de passe sont obligatoires.";
+                return View();
+
+            }
             foreach (Membre m in Singleton.Instance.db.Membres)
             {
                 if (m.nomUsager == membre.nomUsager)
@@ -232,7 +239,8 @@ namespace ProjetGoEquipe2.Controllers
                     }
                 }
             }
-            ViewBag.Erreur = "Informations invalides.";
+            ViewBag.Erreur = "Invalide";
+            ViewBag.Message = "Combinaison entrée invalide.";
             return View();
         }
 
