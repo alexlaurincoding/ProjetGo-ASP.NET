@@ -197,12 +197,6 @@ namespace ProjetGoEquipe2.Controllers
                 return View();
 
             }
-            if (membre.nomUsager.IsNullOrWhiteSpace())
-            {
-                ViewBag.Erreur = "Usager";
-                ViewBag.Message = "Entrer le nom d'Usager.";
-                return View();
-            }
             foreach (Membre m in Singleton.Instance.db.Membres)
             {
                 if (m.nomUsager == membre.nomUsager)
@@ -215,7 +209,8 @@ namespace ProjetGoEquipe2.Controllers
                     }
                 }
             }
-            ViewBag.Erreur = "Informations invalides.";
+            ViewBag.Erreur = "Invalide";
+            ViewBag.Message = "Combinaison entrée invalide.";
             return View();
         }
 
