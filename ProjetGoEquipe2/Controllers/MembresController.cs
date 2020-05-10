@@ -181,6 +181,7 @@ namespace ProjetGoEquipe2.Controllers
         // GET: Membre/Identifier
         public ActionResult Identifier()
         {
+       
             return View();
         }
 
@@ -189,6 +190,19 @@ namespace ProjetGoEquipe2.Controllers
         [HttpPost]
         public ActionResult Identifier(Membre membre)
         {
+            if (membre.motPasse.IsNullOrWhiteSpace() || membre.nomUsager.IsNullOrWhiteSpace())
+            {
+                ViewBag.Erreur = "Vide";
+                ViewBag.Message = "Les champs nom d'usager et mot de passe sont obligatoires.";
+                return View();
+
+            }
+            if (membre.nomUsager.IsNullOrWhiteSpace())
+            {
+                ViewBag.Erreur = "Usager";
+                ViewBag.Message = "Entrer le nom d'Usager.";
+                return View();
+            }
             foreach (Membre m in Singleton.Instance.db.Membres)
             {
                 if (m.nomUsager == membre.nomUsager)
