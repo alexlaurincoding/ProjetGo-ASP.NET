@@ -158,13 +158,13 @@ namespace ProjetGoEquipe2.Controllers
         [HttpPost]
         public ActionResult EditMembre(Membre membreModifier, string repeter, string inscritMailingList)
         {
+            Membre ancienMembre = Singleton.Instance.db.Membres.Find((string)Session["Usager"]);
 
             if (membreModifier.motPasse.IsNullOrWhiteSpace() || membreModifier.nom.IsNullOrWhiteSpace() || membreModifier.prenom.IsNullOrWhiteSpace() || membreModifier.email.IsNullOrWhiteSpace())
             {
                 ViewBag.Erreur = "Oubli";
                 ViewBag.Message = "Les champs nom, prenom, nom d'usager, mot de passe et courriel sont obligatoires.";
-                Membre membre = Singleton.Instance.db.Membres.Find((string)Session["Usager"]);
-                return View(membre);
+                return View(ancienMembre);
 
             }
 
@@ -172,11 +172,24 @@ namespace ProjetGoEquipe2.Controllers
             {
                 ViewBag.Erreur = "Repeter";
                 ViewBag.Message = "Le mot de passe n'a pas été répété correctement";
-                Membre membre = Singleton.Instance.db.Membres.Find((string)Session["Usager"]);
-                return View(membre);
+                return View(ancienMembre);
             }
 
-            Membre ancienMembre = Singleton.Instance.db.Membres.Find((string)Session["Usager"]);
+            if (membreModifier.email != ancienMembre.email)
+            {
+                foreach (Membre m in Singleton.Instance.db.Membres)
+                {
+                    if (m.email == membreModifier.email)
+                    {
+                        ViewBag.Erreur = "Existant";
+                        ViewBag.Message = "Ce courriel est déjà assigné à quelqu'un d'autre";
+                        return View(ancienMembre);
+                    }
+                }
+            
+                
+            }
+
             ancienMembre.inscritMailingList = inscritMailingList == "1" ? true : false;
             ancienMembre.nom = membreModifier.nom;
             ancienMembre.prenom = membreModifier.prenom;
