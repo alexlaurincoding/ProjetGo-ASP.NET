@@ -28,6 +28,12 @@
 
                         <h3 class="center titre">Soumettre un Compte-Rendu</h3>
                         <div class="form-horizontal">
+                            @{
+                                if (ViewBag.Erreur == "Oubli")
+                                {
+                                    <h8 class="col-md-10" style="color:red">@ViewBag.Message</h8>
+                                }
+                            }
 
                             <hr />
 
@@ -36,42 +42,42 @@
                                 <div class="col-md-9">
                                     <select class="form-control" name="idProjet">
 
-                                            @foreach (var item in Singleton.Instance.db.Projets)
+                                        @foreach (var item in Singleton.Instance.db.Projets)
+                                        {
+
+
+                                            if (item.idResponsable == (string)Session["Usager"])
                                             {
-
-
-                                                if (item.idResponsable == (string)Session["Usager"])
-                                                {
-                                                    <option value=@item.idProjet>@item.titre</option>
-                                                }
+                                                <option value=@item.idProjet>@item.titre</option>
                                             }
+                                        }
                                     </select>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <div class="control-label col-md-3">Informations à Jour</div>
+                                <div class="control-label col-md-3">Informations à Jour*</div>
                                 <div class="col-md-9">
                                     <textarea class="form-control col-md-9" rows="5" name="informationsAJour"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <div class="control-label col-md-3">Réalisations Complétées</div>
+                                <div class="control-label col-md-3">Réalisations Complétées*</div>
                                 <div class="col-md-9">
                                     <textarea class="form-control col-md-9" rows="5" name="sommaireRealisationsCompletees"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <div class="control-label col-md-3">Réalisations Reportées</div>
+                                <div class="control-label col-md-3">Réalisations Reportées*</div>
                                 <div class="col-md-9">
                                     <textarea class="form-control col-md-9" rows="5" name="realisationsReportees"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <div class="control-label col-md-3">État des Risques</div>
+                                <div class="control-label col-md-3">État des Risques*</div>
                                 <div class="col-md-9">
                                     <textarea class="form-control col-md-9" rows="5" name="etatRisques"></textarea>
                                 </div>
@@ -84,8 +90,8 @@
                                     <button onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" type="button" class="btn btn-default">Annuler</button>
                                 </div>
                             </div>
-                                
-                    </div>
+
+                        </div>
                             }
 
                     </div>

@@ -41,7 +41,7 @@
                             @Html.HiddenFor(model => model.idProjet)
 
                             <div class="form-group">
-                                <div class="control-label col-md-2">Titre</div>
+                                <div class="control-label col-md-2">Titre*</div>
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.titre, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.titre, "", new { @class = "text-danger" })
@@ -178,7 +178,7 @@
 
 
                             <div class="form-group">
-                                <div class="control-label col-md-2">Courte Description</div>
+                                <div class="control-label col-md-2">Courte Description*</div>
                                 <div class="col-md-10">
                                     <textarea class="form-control col-md-10" rows="5" name="description">@Model.descriptionCourte</textarea>
                                 </div>
@@ -193,14 +193,14 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="control-label col-md-2">Début estimé</div>
+                                <div class="control-label col-md-2">Début estimé*</div>
                                 <div class="col-md-10">
                                     <input type="date" class="form-control" name="debutEstime" value="@Convert.ToString(string.Format("{0:yyyy-MM-dd}", Model.debutEstime))" />
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <div class="control-label col-md-2">Fin estimée</div>
+                                <div class="control-label col-md-2">Fin estimée*</div>
                                 <div class="col-md-10">
                                     <input type="date" class="form-control" name="finEstimee" value="@Convert.ToString(string.Format("{0:yyyy-MM-dd}", Model.finEstimee))" />
                                 </div>

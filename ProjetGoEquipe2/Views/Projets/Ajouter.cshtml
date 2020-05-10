@@ -41,7 +41,7 @@
                             
 
                             <div class="form-group">
-                                <div class="control-label col-md-3">Titre</div>
+                                <div class="control-label col-md-3">Titre*</div>
                                 <div class="col-md-9">
                                     @Html.EditorFor(model => model.titre, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.titre, "", new { @class = "text-danger" })
@@ -75,7 +75,7 @@
 
 
                             <div class="form-group">
-                                <div class="control-label col-md-3">Courte Description:</div>
+                                <div class="control-label col-md-3">Courte Description*:</div>
                                 <div class="col-md-9">
                                     <textarea placeholder="Courte description du projet ici." class="form-control col-md-9" rows="5" name="descriptionCourte"></textarea>
                                 </div>
@@ -89,14 +89,14 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="control-label col-md-3">Début Estimé</div>
+                                <div class="control-label col-md-3">Début Estimé*</div>
                                 <div class="col-md-9">
                                     <input type="date" class="form-control" name="debutEstime" />
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <div class="control-label col-md-3">Fin Estimée</div>
+                                <div class="control-label col-md-3">Fin Estimée*</div>
                                 <div class="col-md-9">
                                     <input type="date" class="form-control" name="finEstimee" />
                                 </div>
