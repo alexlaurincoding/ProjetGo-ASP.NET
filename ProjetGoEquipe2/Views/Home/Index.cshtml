@@ -14,16 +14,16 @@
 </head>
 <body>
 
-    <main role="main" class="container-fluid">
+    <main role="main" class="col-sm-12">
 
 
 
 
         <h1>Bienvenue sur le site de ProjetGo</h1>
-            <div class="col-sm-12" style="margin-bottom:30px;">
+            <div class="col-sm-12">
                 <!-- Carousel
     ================================================== -->
-                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom:30px;">
                     <!-- Indicators -->
                     <ol class="carousel-indicators">
                         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -60,18 +60,18 @@
                         </div>
                     </div>
                 </div><!-- /.carousel -->
-            </div>
+           
        
 
         
-                <div class="col-sm-6">
+                <div id="left-col" class="col-sm-6">
 
                     <iframe width="500" height="315" src="https://www.youtube.com/embed/099_WKUBh6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
 
 
 
-                <div class="col-sm-6">
+                <div id="right-col" class="col-sm-6">
 
                     <marquee direction="down" class="newsFeed">
 
@@ -88,6 +88,7 @@
                         <br /><br />
                     </marquee>
                     </div>
+                </div>
         
     </main>
 
