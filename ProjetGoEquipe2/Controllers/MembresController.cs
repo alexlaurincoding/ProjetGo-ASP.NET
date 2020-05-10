@@ -77,6 +77,7 @@ namespace ProjetGoEquipe2.Controllers
                 Session["Usager"] = membre.nomUsager;
                 membre.statut = "Attente";
                 membre.dateProchaineCotisation = DateTime.Now.AddDays(28);
+                membre.dateAdhesion = DateTime.Now;
                 return RedirectToAction("Cotisation", "Membres");
             }
             catch
@@ -155,8 +156,26 @@ namespace ProjetGoEquipe2.Controllers
             return View(membre);
         }
         [HttpPost]
-        public ActionResult EditMembre(Membre membreModifier)
+        public ActionResult EditMembre(Membre membreModifier, string repeter)
         {
+
+            if (membreModifier.motPasse.IsNullOrWhiteSpace() || membreModifier.nom.IsNullOrWhiteSpace() || membreModifier.prenom.IsNullOrWhiteSpace() || membreModifier.email.IsNullOrWhiteSpace())
+            {
+                ViewBag.Erreur = "Oubli";
+                ViewBag.Message = "Les champs nom, prenom, nom d'usager, mot de passe et courriel sont obligatoires.";
+                Membre membre = Singleton.Instance.db.Membres.Find((string)Session["Usager"]);
+                return View(membre);
+
+            }
+
+            if (membreModifier.motPasse != repeter)
+            {
+                ViewBag.Erreur = "Repeter";
+                ViewBag.Message = "Le mot de passe n'a pas été répété correctement";
+                Membre membre = Singleton.Instance.db.Membres.Find((string)Session["Usager"]);
+                return View(membre);
+            }
+
             Membre ancienMembre = Singleton.Instance.db.Membres.Find((string)Session["Usager"]);
             ancienMembre.nom = membreModifier.nom;
             ancienMembre.prenom = membreModifier.prenom;

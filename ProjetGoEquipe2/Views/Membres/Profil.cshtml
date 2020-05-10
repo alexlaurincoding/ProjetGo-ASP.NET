@@ -4,11 +4,14 @@
     ViewBag.Title = "Profil";
 }
 
-    <br />
-    <h2>Page de @Session["Usager"]</h2>
-    <hr />
-    <br />
+<br />
+<h2>Page de @Session["Usager"]</h2>
+<hr />
+<br />
 
+
+<!-- Partie principale de la page -->
+<main role="main" class="container-fluid">
     <div class="row">
 
         @{
@@ -16,91 +19,149 @@
         }
         <div class="col-sm-9">
             <div class="content-section main-section-top main-add">
+
+                <h3 class="center titre">
+                    Mon Profil
+                </h3>
+
                 <dl class="dl-horizontal">
 
 
+                    <br />
+                    <div style="text-align:center;">
+                        @Html.ActionLink("Modifier mes informations", "EditMembre", new { id = Model.nomUsager })
+                    </div>
+
+
+                    <br />
+
                     <dt>
-                        Nom :
+                        Nom d'Usager
                     </dt>
 
                     <dd>
-                        @Html.DisplayFor(model => model.nom)
+                        @Html.DisplayFor(model => model.nomUsager)
                     </dd>
 
-                    <dt>
-                        Prenom :
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.prenom)
-                    </dd>
+                    <br />
 
                     <dt>
-                        Mot de Passe :
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.motPasse)
-                    </dd>
-                    <dt>
-                        Email :
+                        Email
                     </dt>
 
                     <dd>
                         @Html.DisplayFor(model => model.email)
                     </dd>
 
+                    <br />
+
                     <dt>
-                        Telephone :
+                        Mot de Passe
+                    </dt>
+
+                    @{
+                        string mdp = "";
+                        for (int i = 0; i < Model.motPasse.Length; i++)
+                        {
+                            mdp += "*";
+                        }
+
+                        <dd>@mdp</dd>
+                    }
+
+                    <br />
+
+                    <dt>
+                        Nom
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.nom)
+                    </dd>
+                    <br />
+
+                    <dt>
+                        Prenom
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.prenom)
+                    </dd>
+
+                    <br />
+
+                    <dt>
+                        Telephone
                     </dt>
 
                     <dd>
                         @Html.DisplayFor(model => model.numeroTel)
                     </dd>
 
+                    <br />
+
+
                     <dt>
-                        Adresse :
+                        Adresse
                     </dt>
 
                     <dd>
                         @Html.DisplayFor(model => model.adresse)
                     </dd>
 
+                    <br />
+
                     <dt>
-                        Date d'adhesion :
+                        Date d'adhesion
                     </dt>
 
                     <dd>
-                        @Html.DisplayFor(model => model.dateAdhesion)
+                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateAdhesion))
                     </dd>
 
+                    <br />
+
                     <dt>
-                        Inscrit a la mailing liste :
+                        Inscrit a la mailing liste
                     </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.inscritMailingList)
-                    </dd>
+                    @{
+                        if (Model.inscritMailingList == null || Model.inscritMailingList == false)
+                        {
+                            <dd>Non</dd>
+
+                        }
+                        else
+                        {
+                            <dd>Oui</dd>
+                        }
+                    }
+
+                    <br />
+
 
                     <dt>
-                        Statut :
+                        Statut
                     </dt>
 
                     <dd>
                         @Html.DisplayFor(model => model.statut)
                     </dd>
+                    <br />
+
 
                     <dt>
-                        Prochaine cotisation :
+                        Prochaine cotisation
                     </dt>
 
                     <dd>
-                        @Html.DisplayFor(model => model.dateProchaineCotisation)
+                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateProchaineCotisation))
                     </dd>
 
                 </dl>
             </div>
-            <p>
-                @Html.ActionLink("Edit", "EditMembre", new { id = Model.nomUsager }) |
-                @Html.ActionLink("Back to List", "Index")
-            </p>
+        </div>
+    </div>
+</main>
+
+
+
