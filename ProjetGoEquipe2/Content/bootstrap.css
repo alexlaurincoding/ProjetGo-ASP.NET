@@ -1603,47 +1603,40 @@ pre code {
 }
 
 
+
 .newsFeed {
+    border: 3px solid rgb(184, 210, 49);
+    text-align: center;
     padding-right: 15px;
     padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: 15px;
+    margin-left: 15px;
+    width: 500px;
+    height: 315px;
 }
 
-@media (min-width: 100px) {
-    .row {
-        .newsFeed {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-
-}
-
-
-
-@media (min-width: 1200px) {
-    .newsFeed {
-        width: 1200px;
+@media screen and (max-width:1920px) {
+    .container-fluid {
+        width: 100%;
     }
 }
-
-
-        
+@media screen and (max-width:1199px) {
+    .col-sm-6 {
+        margin:15px;
+        width: 100%;
+       }
+    .carousel {
+        width:100%;
     }
+
 }
 
-
-
-@media (min-width: 1200px) {
-    .newsFeed {
-        width: 1200px;
+@media screen and (max-width: 320px) {
+    .container-fluid {
+        width:500px;
     }
+
 }
-
-
-
-
 
 .container-fluid {
   padding-right: 15px;
