@@ -16,7 +16,12 @@
 
 <div class="form-horizontal main-add">
     <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @{
+        if (ViewBag.Erreur == "Vide" || ViewBag.Erreur == "Invalide")
+        {
+            <h8 class="col-md-10" style="color:red">@ViewBag.Message</h8>
+        }
+    }
     <div class="form-group">
         <div class="control-label col-md-2">Nom d'Usager</div>
         <div class="col-md-10">
