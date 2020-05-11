@@ -180,12 +180,16 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\blury-background.jpg" />
     <Content Include="Content\Images\current_projects.jpg" />
+    <Content Include="Content\Images\devenirMembre.png" />
+    <Content Include="Content\Images\faireundon.jpg" />
     <Content Include="Content\Images\Logo.jpg" />
     <Content Include="Content\Images\nosProjets.png" />
     <Content Include="Content\Images\Nous.jpg" />
     <Content Include="Content\Images\project-completion.jpg" />
     <Content Include="Content\Images\project_approved.jpg" />
+    <Content Include="Content\Images\projetsAVenirAccueil.jpg" />
     <Content Include="Content\Images\projetsProposes.png" />
     <Content Include="Content\Images\soupe-sans-abris.jpg" />
     <Content Include="Content\style.css" />

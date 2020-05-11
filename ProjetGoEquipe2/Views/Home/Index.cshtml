@@ -1,4 +1,4 @@
-﻿    @{
+﻿@{
     ViewBag.Title = "Home Page";
 }
 <!DOCTYPE html>
@@ -14,68 +14,76 @@
 </head>
 <body>
 
-    <main role="main" class="col-sm-12">
+    <main role="main" class="col-sm-12" style="margin-left:-15px;">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
 
 
+                    <h2 style="text-align:center;">Bienvenue sur le site de ProjetGo</h2>
+                    <br /><hr />
+                    <!-- Carousel
+                    ================================================== -->
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom:30px; width:auto;">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="item active" style="max-height:150px">
 
+                                <img src="~/Content/Images/projetsAVenirAccueil.jpg" alt="First slide">
+                                <div class="container">
+                                    <div class="carousel-caption">
+                                        <h1 style="text-align:left">@Html.ActionLink("Nos Projets À Venir", "AVenir", "Projets")</h1>
 
-        <h1>Bienvenue sur le site de ProjetGo</h1>
-                <!-- Carousel
-    ================================================== -->
-                <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom:30px; width:auto;">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="item active" style="max-height:150px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item" style="max-height:150px;">
+                                <img src="~/Content/Images/devenirMembre.png" alt="Second slide">
+                                <div class="container">
+                                    <div class="carousel-caption">
+                                        <h1 style="text-align:left">@Html.ActionLink("Devenez Membres", "Inscription", "Membres")</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item" style="max-height:150px;">
+                                <img src="~/Content/Images/faireundon.jpg" alt="Third slide">
+                                <div class="container">
+                                    <div class="carousel-caption">
+                                        <h1 style="text-align:left">@Html.ActionLink("Faites un Don", "Index", "Dons")</h1>
 
-                            <img src="~/Content/Images/ramasser-roche.jpg" alt="First slide">
-                            <div class="container">
-                                <div class="carousel-caption">
-                                    <h1>@Html.ActionLink("Nos Projets", "Index", "Projets")</h1>
-
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="item" style="max-height:150px;">
-                            <img src="~/Content/Images/vente-garage.jpg" alt="Second slide">
-                            <div class="container">
-                                <div class="carousel-caption">
-                                    <h1>@Html.ActionLink("Nos Projets", "Index", "Projets")</h1>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item" style="max-height:150px;">
-                            <img src="~/Content/Images/soupe-sans-abris.jpg" alt="Third slide">
-                            <div class="container">
-                                <div class="carousel-caption">
-                                    <h1>@Html.ActionLink("Nos Projets", "Index", "Projets")</h1>
+                    </div><!-- /.carousel -->
+                </div>
+            </div>
+        </div>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- /.carousel -->
-           
-       
+        <br /><br />
 
-        
-                <div id="left-col" class="col-sm-6">
 
-                    <iframe width="500" height="315" src="https://www.youtube.com/embed/099_WKUBh6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="container-fluid">
+            <div class="row">
+                <div id="left-col" class="col-md-6">
+
+                    <iframe width="400" height="315" src="https://www.youtube.com/embed/099_WKUBh6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
 
 
 
-                <div id="right-col" class="col-sm-6" style="width:auto; ">
+                <div id="right-col" class="col-md-6">
 
-                    <marquee direction="down" class="newsFeed">
+                    <marquee direction="down" class="newsFeed" style="background-color:cornsilk;">
 
 
-                        <h3 style="">Quoi de Neuf ?</h3>
+                        <h3 class="titre center">Quoi de Neuf ?</h3>
                         <br /> <br />
                         <p><b>Projet en cours : Liste des projets actif</b></p>
                         <br /><br />
@@ -86,8 +94,10 @@
                         <p><b>Arrêt temporaire des activités de projetGo due à la pandémie</b></p>
                         <br /><br />
                     </marquee>
-                    </div>
-        
+                </div>
+            </div>
+        </div>
+
     </main>
 
 </body>
