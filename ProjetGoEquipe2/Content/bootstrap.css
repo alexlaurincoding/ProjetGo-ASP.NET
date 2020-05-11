@@ -1601,6 +1601,49 @@ pre code {
     width: 1170px;
   }
 }
+
+
+
+.newsFeed {
+    border: 3px solid rgb(184, 210, 49);
+    text-align: center;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 500px;
+    height: 315px;
+}
+
+
+@media screen and (max-width:1920px) {
+    .col-sm-12 {
+        width: 100%;
+    }
+
+    .col-sm-6 {
+        margin-left:-15px;
+    }
+
+}
+@media screen and (max-width:1000px) {
+    
+    .col-sm-12 {
+        width:100%;
+    }
+
+    .col-sm-6 {
+        width: auto
+       }
+   
+}
+
+@media screen and (max-width: 320px) {
+    .col-sm-12 {
+        width: 320px;
+    }
+
+}
+
+
 .container-fluid {
   padding-right: 15px;
   padding-left: 15px;
