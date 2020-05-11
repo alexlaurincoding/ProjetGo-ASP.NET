@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -71,6 +72,12 @@ namespace ProjetGoEquipe2.Controllers
         [HttpPost]
         public ActionResult Ajouter(CompteRendu cr)
         {
+            if (cr.etatRisques.IsNullOrWhiteSpace() || cr.informationsAJour.IsNullOrWhiteSpace() || cr.sommaireRealisationsCompletees.IsNullOrWhiteSpace() || cr.realisationsReportees.IsNullOrWhiteSpace())
+            {
+                ViewBag.Erreur = "Oubli";
+                ViewBag.Message = "Tous les champs sont obligatoires.";
+                return View(cr);
+            }
 
             try
             {
@@ -113,6 +120,12 @@ namespace ProjetGoEquipe2.Controllers
         [HttpPost]
         public ActionResult Modifier(int id, CompteRendu crModifie)
         {
+            if (crModifie.etatRisques.IsNullOrWhiteSpace() || crModifie.informationsAJour.IsNullOrWhiteSpace() || crModifie.sommaireRealisationsCompletees.IsNullOrWhiteSpace() || crModifie.realisationsReportees.IsNullOrWhiteSpace())
+            {
+                ViewBag.Erreur = "Oubli";
+                ViewBag.Message = "Tous les champs sont obligatoires.";
+                return View(crModifie);
+            }
             try
             {
                 CompteRendu ancienneVersion = Singleton.Instance.db.CompteRendus.Where(c => c.idCompteRendu == id).FirstOrDefault();

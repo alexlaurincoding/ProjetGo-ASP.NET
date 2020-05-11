@@ -4,86 +4,149 @@
     ViewBag.Title = "EditMembre";
 }
 
-<h2>Edit</h2>
+<br />
+<h2>Page de @Session["Usager"]</h2>
+<hr />
+<br />
 
 
-<div class="form-horizontal">
-    <h4>Membre</h4>
-    <hr />
-
+<!-- Partie principale de la page -->
+<main role="main" class="container-fluid">
     <div class="row">
-        @{
 
+        @{
             Html.RenderAction("Menus", "Design", new { Categorie = "M", Emphase = "PL" });
         }
-
         <div class="col-sm-9">
             <div class="content-section main-section-top main-add">
+
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
 
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     @Html.HiddenFor(model => model.nomUsager)
 
-                    <div class="form-group">
-                        @Html.Label("Nom :", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.nom, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.nom, "", new { @class = "text-danger" })
-                        </div>
+                    <h3 class="center titre">
+                        Modifier mon Profil
+                    </h3>
+
+                    <div style="text-align:center;">
+                        @Html.ActionLink("Revenir à mes informations", "Profil", "Membres", new { id = Model.nomUsager })
                     </div>
 
-                    <div class="form-group">
-                        @Html.Label("Prenom :", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.prenom, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.prenom, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.Label("Mot de Passe", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.motPasse, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.motPasse, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+                    <br />
+                    {
+                        if (ViewBag.Erreur == "Oubli")
+                        {
+                            <h8 class="col-md-10" style="color:red">@ViewBag.Message</h8>
+                        }
+                    }
+            <dl class="form-horizontal">
 
-                    <div class="form-group">
-                        @Html.Label("Email :", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+                <br />
+                <br />
 
-                    <div class="form-group">
-                        @Html.Label("Telephone :", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.numeroTel, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.numeroTel, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.Label("Adresse :", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.adresse, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.adresse, "", new { @class = "text-danger" })
-                        </div>
+                <div class="form-group">
+                    <div class="control-label col-md-2">Nom*</div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.nom, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
-
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Save" class="btn btn-default" />
-                        </div>
-                    </div>
-
-                }
-            </div>
-                <div>
-                    @Html.ActionLink("Back to List", "Index")
                 </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-2">Prénom*</div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.prenom, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-2">Mot de Passe*</div>
+                    <div class="col-md-10">
+                        <input type="password" name="motPasse" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-2">Confirmer Mot de Passe*</div>
+                    <div class="col-md-10">
+                        <input type="password" name="repeter" class="form-control" />
+                        @{
+                            if (ViewBag.Erreur == "Repeter")
+                            {
+                                <h8 class="col-md-10" style="color:red">@ViewBag.Message</h8>
+                            }
+                        }
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-2">Courriel*</div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                    </div>
+                    @{
+                        if (ViewBag.Erreur == "Existant")
+                        {
+                            <h8 class="col-md-10" style="color:red">@ViewBag.Message</h8>
+                        }
+                    }
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-2">Téléphone</div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.numeroTel, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.numeroTel, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-2">Adresse</div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.adresse, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.adresse, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-2">Inscrit à la mailing liste</div>
+                    <div class="col-md-10">
+                        <select class="form-control" name="inscritMailingList" value=@Model.statut>
+
+                            @{if (Model.inscritMailingList == null || Model.inscritMailingList == false)
+                                {
+                                    <option value="1">Oui</option>
+                                    <option value="0" selected>Non</option>
+
+                                }
+                                else
+                                {
+                                    <option value="1" selected>Oui</option>
+                                    <option value="0">Non</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Modifier" class="btn btn-default" style="background-color:rgb(184, 210, 49)" />
+                        <button onclick="@("window.location.href='" + @Url.Action("Profil", "Membres") + "'");" type="button" class="btn btn-default">Annuler</button>
+                    </div>
+                </div>
+
+            </dl>
+                }
+
+            </div>
+        </div>
+    </div>
+</main>
 
 

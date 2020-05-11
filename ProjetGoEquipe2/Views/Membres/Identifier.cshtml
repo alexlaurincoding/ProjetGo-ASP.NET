@@ -7,44 +7,45 @@
 <br />
 <h3 class="center titre">Se Connecter</h3>
 
-<hr /><br />
+<hr />
+<br />
 
+@{
+    if (ViewBag.Erreur == "Vide" || ViewBag.Erreur == "Invalide")
+    {
+        <h8 class="col-md-10" style="color:red">@ViewBag.Message</h8>
+    }
+}
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal main-add">
-    
-    @{
-        if (ViewBag.Erreur == "Vide" || ViewBag.Erreur == "Invalide")
-        {
-            <h8 class="col-md-10" style="color:red">@ViewBag.Message</h8>
-        }
-    }
-    <br />
+    <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
         <div class="control-label col-md-2">Nom d'Usager</div>
         <div class="col-md-10">
             @Html.EditorFor(model => model.nomUsager, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.nomUsager, "", new { @class = "text-danger" })
         </div>
     </div>
 
-    <div class="form-group">
-        <div class="control-label col-md-2">Mot de Passe</div>
-        <div class="col-md-10">
-            <input type="password" name="motPasse" class="form-control" />
+        <div class="form-group">
+            <div class="control-label col-md-2">Mot de Passe</div>
+            <div class="col-md-10">
+                <input type="password" name="motPasse" class="form-control" />
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Se Connecter" class="btn btn-default" style="background-color:rgb(184, 210, 49)" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Se Connecter" class="btn btn-default" style="background-color:rgb(184, 210, 49)" />
+            </div>
         </div>
-    </div>
 
-</div>
+    </div>
 }
 
 <br />

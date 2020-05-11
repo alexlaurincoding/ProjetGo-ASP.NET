@@ -101,20 +101,20 @@ namespace ProjetGoEquipe2.Controllers
 
         // POST: Projets/Ajouter
         [HttpPost]
-        public ActionResult Ajouter(Projet projet, string visibilite, string statut, string description, string sommaire, string budget, DateTime debutEstime, DateTime finEstimee, string frequence)
+        public ActionResult Ajouter(Projet projet, string budget, string frequence)
         {
-            try { 
-            
+            try {
+                if (projet.titre == "" || projet.descriptionCourte == "" || projet.debutEstime == null || projet.finEstimee == null)
+                {
+                    ViewBag.Erreur = "Oubli";
+                    ViewBag.Message = "Les champs titre, description, début estimé et fin estimée sont obligatoires.";
+                    return View(projet);
+                }
 
                 int frequnceNum;
                 double budgetNum;
                 bool success;
-                projet.visibilite = visibilite;
                 projet.idResponsable = (string)Session["Usager"];
-                projet.descriptionCourte = description;
-                projet.sommaire = sommaire;
-                projet.debutEstime = debutEstime.Date;
-                projet.finEstimee = finEstimee.Date;
                 projet.totalFondsCollectes = 0;
                 success = Int32.TryParse(frequence, out frequnceNum);
                 if (success)    projet.frequenceComptesRendus = frequnceNum;

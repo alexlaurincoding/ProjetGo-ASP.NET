@@ -77,6 +77,7 @@ namespace ProjetGoEquipe2.Controllers
                 Session["Usager"] = membre.nomUsager;
                 membre.statut = "Attente";
                 membre.dateProchaineCotisation = DateTime.Now.AddDays(28);
+                membre.dateAdhesion = DateTime.Now;
                 return RedirectToAction("Cotisation", "Membres");
             }
             catch
@@ -155,9 +156,41 @@ namespace ProjetGoEquipe2.Controllers
             return View(membre);
         }
         [HttpPost]
-        public ActionResult EditMembre(Membre membreModifier)
+        public ActionResult EditMembre(Membre membreModifier, string repeter, string inscritMailingList)
         {
             Membre ancienMembre = Singleton.Instance.db.Membres.Find((string)Session["Usager"]);
+
+            if (membreModifier.motPasse.IsNullOrWhiteSpace() || membreModifier.nom.IsNullOrWhiteSpace() || membreModifier.prenom.IsNullOrWhiteSpace() || membreModifier.email.IsNullOrWhiteSpace())
+            {
+                ViewBag.Erreur = "Oubli";
+                ViewBag.Message = "Les champs nom, prenom, nom d'usager, mot de passe et courriel sont obligatoires.";
+                return View(ancienMembre);
+
+            }
+
+            if (membreModifier.motPasse != repeter)
+            {
+                ViewBag.Erreur = "Repeter";
+                ViewBag.Message = "Le mot de passe n'a pas été répété correctement";
+                return View(ancienMembre);
+            }
+
+            if (membreModifier.email != ancienMembre.email)
+            {
+                foreach (Membre m in Singleton.Instance.db.Membres)
+                {
+                    if (m.email == membreModifier.email)
+                    {
+                        ViewBag.Erreur = "Existant";
+                        ViewBag.Message = "Ce courriel est déjà assigné à quelqu'un d'autre";
+                        return View(ancienMembre);
+                    }
+                }
+            
+                
+            }
+
+            ancienMembre.inscritMailingList = inscritMailingList == "1" ? true : false;
             ancienMembre.nom = membreModifier.nom;
             ancienMembre.prenom = membreModifier.prenom;
             ancienMembre.email = membreModifier.email;
@@ -168,12 +201,10 @@ namespace ProjetGoEquipe2.Controllers
             {
                 
                 Singleton.Instance.db.SaveChanges();
-                MessageBox.Show("Midification effectuer avec succes");
                 return RedirectToAction("Profil");
             }
             catch
             {
-                MessageBox.Show("Erreur sauvegarde membres");
             }
             return View(membreModifier);
         }

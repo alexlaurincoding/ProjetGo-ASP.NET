@@ -39,34 +39,41 @@
 
                             <dl class="dl-horizontal">
 
+                                @{
+                                    if (ViewBag.Erreur == "Oubli")
+                                    {
+                                        <h8 class="col-md-10" style="color:red">@ViewBag.Message</h8>
+                                    }
+                                }
+
                                 <hr />
 
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 @Html.HiddenFor(model => model.idCompteRendu)
 
                                 <div class="form-group">
-                                    <div class="control-label col-md-2">Informations à Jour</div>
+                                    <div class="control-label col-md-2">Informations à Jour*</div>
                                     <div class="col-md-10">
                                         <textarea class="form-control col-md-10" rows="5" name="informationsAJour">@Model.informationsAJour</textarea>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="control-label col-md-2">Réalisations Complétées</div>
+                                    <div class="control-label col-md-2">Réalisations Complétées*</div>
                                     <div class="col-md-10">
                                         <textarea class="form-control col-md-10" rows="5" name="sommaireRealisationsCompletees">@Model.sommaireRealisationsCompletees</textarea>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="control-label col-md-2">Réalisations Reportées</div>
+                                    <div class="control-label col-md-2">Réalisations Reportées*</div>
                                     <div class="col-md-10">
                                         <textarea class="form-control col-md-10" rows="5" name="realisationsReportees">@Model.realisationsReportees</textarea>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="control-label col-md-2">État des Risques</div>
+                                    <div class="control-label col-md-2">État des Risques*</div>
                                     <div class="col-md-10">
                                         <textarea class="form-control col-md-10" rows="5" name="etatRisques">@Model.etatRisques</textarea>
                                     </div>
@@ -74,7 +81,8 @@
 
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
-                                        <input type="submit" value="Save" class="btn btn-default" />
+                                        <input type="submit" value="Modifier" class="btn btn-default" style="background-color:rgb(184, 210, 49)" />
+                                        <button onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" type="button" class="btn btn-default">Annuler</button>
                                     </div>
                                 </div>
                             </dl>
