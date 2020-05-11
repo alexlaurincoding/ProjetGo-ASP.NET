@@ -15,10 +15,8 @@ namespace ProjetGoEquipe2.Controllers
 
         }
 
-        public ActionResult About()
+        public ActionResult Nous()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 

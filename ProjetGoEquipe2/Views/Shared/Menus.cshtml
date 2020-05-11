@@ -4,7 +4,7 @@
 <div class="col-sm-3">
     <div class="content-section" id="right-left">
         <h4>Sections</h4>
-            <div class="btn-group-vertical" role="group">
+        <div class="btn-group-vertical" role="group">
 
             @{
                 bool connected = true;
@@ -52,7 +52,7 @@
                     <button type="button" onclick="@("window.location.href='" + @Url.Action("Profil", "Membres") + "'");" class="@(@Model["Emphase"] == "PL" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Mon Profil</button>
                 }
 
-                else
+                else if (Model["Categorie"] == "P")
                 {
                     <button onclick="@("window.location.href='" + @Url.Action("Actifs", "Projets") + "'");" type="button" class="@(@Model["Emphase"] == "PA" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Projets Actifs</button>
                     <button onclick="@("window.location.href='" + @Url.Action("AVenir", "Projets") + "'");" type="button" class="@(@Model["Emphase"] == "PV" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Projets À Venir</button>
@@ -62,6 +62,14 @@
 
                     }
                     <button type="button" onclick="@("window.location.href='" + @Url.Action("Completes", "Projets") + "'");" class="@(@Model["Emphase"] == "PC" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Projets Complétés</button>
+                }
+                else
+                {
+                    <button onclick="@("window.location.href='#'");" type="button" class="@(@Model["Emphase"] == "1" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">CA</button>
+                    <button onclick="@("window.location.href='#membres'");" type="button" class="@(@Model["Emphase"] == "2" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Membres</button>
+                    <button type="button" onclick="@("window.location.href='#benevoles'");" class="@(@Model["Emphase"] == "3" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Bénévoles</button>
+                    <button type="button" onclick="@("window.location.href='#siege'");" class="@(@Model["Emphase"] == "4" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Siège Social</button>
+
                 }
 
             }

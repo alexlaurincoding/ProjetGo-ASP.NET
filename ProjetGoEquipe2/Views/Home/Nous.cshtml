@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<br />
+<hr />
+
+
+<!-- Partie principale de la page -->
+<main role="main" class="container-fluid">
+    <div class="row">
+
+        <div class="col-sm-3">
+            @{
+
+                Html.RenderAction("Menus", "Design", new { Categorie = "N", Emphase = "1" });
+            }
+        </div>
+
+        <div class="col-sm-9">
+            <div class="content-section main-section-top main-add">
+
+                <div class="content-section" id="sectionPrincipaleMembre">
+
+                    <h3 class="titre center">
+                        À Propos de ProjetGo Inc.
+                    </h3>
+
+                    <img src="~/Content/Images/Nous.jpg" alt="Nous" class="center-image" width="200" ; />
+
+                    <br /><br />
+
+
+                    <div class=" col-md-6">
+                        <h3 class="ml-5">But de notre organisme</h3>
+                        <p class="ml-5">
+                            ProjetGo est un organisme à but non lucratif <br />
+                            et consiste a aidé les communautés à monter leurs projets <br />
+                            que ce soit au pays ou ailleurs dans le monde.
+                        <p>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Historique</h3>
+                        C'est en 1946 peu après la seconde guerre mondiale que se fire sentir<br />
+                        le besoin  d' entraide communautaire comme jamais auparavant, on retrouve nos pioniers<br />
+                        Jhon Gibson et Lisa Venderbek qui soignaient des soldats blessés aux Massasuchet, qu 'ils  eurent l' idée de rammasser des<br />
+                        dons pour construire locaux hospitaliers.De nombreux se joignirent à eux et ainsi naissait ProjetGo<br />
+                        De fil en aiguille l'organisme grandissait et pour franchir à notre époque des  frontières<br />
+                        jadis inatteignables  grace à l' ère de l' internet.<br />
+                        En 1961   l'organisme comptait déja plus de 700 membres et bénévoles.<br />
+
+                    </div>
+
+                    <br><br><br>
+                    <div class="col-12 ">
+                        <h3 id="ca">Conseil administratif</h3>
+
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <p>Président : Bernard St-Hubert </p>
+
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <p>Adjointe au président: Julia Ludwig</p>
+
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <p>directeur des opérations Quebec: Eric Dubé </p>
+
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <p>directeur des opérations États-Unis: Jim kornigham </p>
+
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <p>directeur des opérations Australie: Frank lua </p>
+
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <p>directeur des opérations Grande-Bretagne: Larry Mckenzie</p>
+
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <p>directeur des opérations aux Antiles: Loraine DuMontCalme</p>
+
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <p>directeur des opérations Asie-Centrales:  Frank lua </p>
+
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <p>directeur des opérations Amérique Latine: Brenda Perez</p>
+
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <p>directeur des opérations Canada: Lucie Begninton </p>
+
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="col-md-12">
+                        <h3 id="membres">Nos membres</h3>
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Amérique du nord
+                                <span class="badge badge-primary badge-pill">7000</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Amérique du sud
+                                <span class="badge badge-primary badge-pill">2000</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Europe
+                                <span class="badge badge-primary badge-pill">12800</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Asie
+                                <span class="badge badge-primary badge-pill">3000</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Afrique
+                                <span class="badge badge-primary badge-pill">500</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Océanie
+                                <span class="badge badge-primary badge-pill">100</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-12">
+                        <h3 id="benevoles">Bénévoles</h3>
+
+                        <p>
+                            ProjetGo peut en toute confiance compter <br />
+                            sur un réseau mondiale de bénévoles <br />
+                            prete à mettre la main à la patte
+                        </p>
+                    </div>
+
+                    <div class="col-md-12">
+                        <h3 id="siege">siège social</h3>
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <p>2008 Boul René-Levesque ouest</p>
+
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <p> 12 étages Montreal (Qc) </p>
+
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <p> h1h 3s2 </p>
+
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+

@@ -183,6 +183,7 @@
     <Content Include="Content\Images\current_projects.jpg" />
     <Content Include="Content\Images\Logo.jpg" />
     <Content Include="Content\Images\nosProjets.png" />
+    <Content Include="Content\Images\Nous.jpg" />
     <Content Include="Content\Images\project-completion.jpg" />
     <Content Include="Content\Images\project_approved.jpg" />
     <Content Include="Content\Images\projetsProposes.png" />
@@ -233,7 +234,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Nous.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Projets\Actifs.cshtml" />

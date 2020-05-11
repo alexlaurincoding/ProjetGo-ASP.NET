@@ -30,7 +30,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav" style="margin-top:10px;">
                         <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
-                        <li>@Html.ActionLink("À Propos", "About", "Home")</li>
+                        <li>@Html.ActionLink("À Propos", "Nous", "Home")</li>
                         <li>@Html.ActionLink("Nos Projets", "Actifs", "Projets")</li>
                         <li>@Html.ActionLink("Faire un Don", "Index", "Dons")</li>
 
@@ -54,10 +54,54 @@
     <div class="container body-content" style="margin-top:30px;">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - ProjetGo Inc.</p>
-        </footer>
     </div>
+        <footer>
+            <div class="footer-gray">
+                <div class="footer-custom">
+                    <div class="footer-lists">
+                        <div class="footer-list-wrap">
+                            <h6 class="ftr-hdr">Contactez-nous</h6>
+                            <ul class="ftr-links-sub">
+                                <li>1-800-projetgo</li>
+                            </ul>
+                        </div>
+                        <!--/.footer-list-wrap-->
+                        <div class="footer-list-wrap">
+                            <h6 class="ftr-hdr">Principal</h6>
+                            <ul class="ftr-links-sub">
+                                <li><a onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'");">Accueil</a></li>
+                                <li><a onclick="@("window.location.href='" + @Url.Action("Nous", "Home") + "'");">A Propos</a></li>
+                                <li><a onclick="@("window.location.href='" + @Url.Action("Inscription", "Membres") + "'");">Devenez Membres</a></li>
+                                <li><a onclick="@("window.location.href='" + @Url.Action("Index", "Dons") + "'");">Faites un Don</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-list-wrap">
+                            <h6 class="ftr-hdr">Nos Projets</h6>
+                            <ul class="ftr-links-sub">
+                                <li><a onclick="@("window.location.href='" + @Url.Action("Actifs", "Projets") + "'");">Actifs</a></li>
+                                <li><a onclick="@("window.location.href='" + @Url.Action("AVenir", "Projets") + "'");">À Venir</a></li>
+                                <li><a onclick="@("window.location.href='" + @Url.Action("Completes", "Projets") + "'");">Complétés</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-list-wrap">
+                            <h6 class="ftr-hdr">Commanditaires</h6>
+                            <ul class="ftr-links-sub">
+                                <li><a href="https://dotnet.microsoft.com/apps/aspnet">ASP.NET</a></li>
+                                <li><a href="https://www.microsoft.com/en-ca/microsoft-365/microsoft-teams/group-chat-software">Microsoft</a></li>
+                                <li><a href="http://www.crosemont.qc.ca">Collège Rosemont</a></li>
+                                <li><a href="https://www.ricardocuisine.com/themes">Les Recettes de Ricardo</a></li>
+                            </ul>
+                        </div>
+
+                        <!--/.footer-social-->
+                        <div class="footer-legal">
+                            <p>&copy;  @DateTime.Now.Year - ProjetGo Inc. Tous droits réservés | <a href="https://www.cafdn.org/for-youth/covid-19-youth-support-fund/">Combattons le Covid-19</a></p>
+                            <p>La Meilleure Équipe : AABS </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
