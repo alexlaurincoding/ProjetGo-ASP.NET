@@ -78,7 +78,7 @@ namespace ProjetGoEquipe2.Controllers
                 membre.statut = "Attente";
                 membre.dateProchaineCotisation = DateTime.Now.AddDays(28);
                 membre.dateAdhesion = DateTime.Now;
-                return RedirectToAction("Cotisation", "Membres");
+                return RedirectToAction("SendEmail", "Utils");
             }
             catch
             {
@@ -86,9 +86,30 @@ namespace ProjetGoEquipe2.Controllers
             }
         }
 
+        public ActionResult ConfirmationCreation()
+        {
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+            {
+                return RedirectToAction("Identifier");
+            }
+            Membre membre = Singleton.Instance.db.Membres.Find(Session["Usager"]);
+
+            //Envoyer email de confirmation
+            if (DateTime.Today == membre.dateAdhesion)
+            {
+
+            }
+
+            return View();
+        }
+
         // GET: Membre/Cotisation
         public ActionResult Cotisation()
         {
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+            {
+                return RedirectToAction("Identifier");
+            }
 
             return View();
         }
@@ -96,6 +117,11 @@ namespace ProjetGoEquipe2.Controllers
         // GET: Membre/RenouvAbonnementSucces
         public ActionResult RenouvAbonnementSucces()
         {
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+            {
+                return RedirectToAction("Identifier");
+            }
+
             Cotisation cotisation = new Cotisation();
             cotisation.nomUsager = (string)Session["Usager"];
             cotisation.montant = 10;
@@ -128,7 +154,10 @@ namespace ProjetGoEquipe2.Controllers
 
         public ActionResult RenouvAbonnementCancel()
         {
-          
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+            {
+                return RedirectToAction("Identifier");
+            }
             return View();
         }
        
@@ -247,61 +276,14 @@ namespace ProjetGoEquipe2.Controllers
 
         public ActionResult Deconnexion()
         {
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+            {
+                return RedirectToAction("Identifier");
+            }
 
             Session["Connected"] = false;
             return RedirectToAction("Index", "Home");
         }
 
-
-        // GET: Membre/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-
-        // GET: Membre/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Membre/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Membre/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Membre/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

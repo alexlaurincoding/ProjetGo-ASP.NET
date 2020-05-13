@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Confirmation Inscription";
+}
+
+
+
+<!-- Partie principale de la page -->
+<main role="main" class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="content-section main-section-top main-add">
+
+                <h4 class="titre center">Félicitations @Session["Usager"]!</h4>
+                <br />
+                <div class="content-section" id="sectionPrincipaleMembre">
+                    <img src="~/Content/Images/key2.jpg" alt="Confirmation inscription" class="center-image" width="400" ; />
+                    <br /><br />
+                    <h3>
+                        Vous êtes maintenant membre de ProjetGo!
+                    </h3>
+                    <br />
+                    <h5>
+                        Vous receverez un courriel de confirmation.
+                        <br /><br />Vous avez une période de 28 jours pour payer votre première cotisation annuelle. Durant cette période, vous pouvez explorer toutes les fonctionnalités dont bénéficient les membres en vous rendant sur votre section de membre.
+                    </h5>
+                    <br />
+                    @Html.ActionLink("Aller à ma page d'accueil de membres", "Cotisation", "Membres")
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

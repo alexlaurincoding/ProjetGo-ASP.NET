@@ -184,12 +184,14 @@
     <Content Include="Content\Images\background-grey2.jpg" />
     <Content Include="Content\Images\blury-background.jpg" />
     <Content Include="Content\Images\cathal-mac-an-bheatha-YaE8m2Oj36I-unsplash.jpg" />
+    <Content Include="Content\Images\cle-success.png" />
     <Content Include="Content\Images\current_projects.jpg" />
     <Content Include="Content\Images\desroches.png" />
     <Content Include="Content\Images\devenirMembre.png" />
     <Content Include="Content\Images\faireundon.jpg" />
     <Content Include="Content\Images\grey-background-for-site-41148330.jpg" />
     <Content Include="Content\Images\internet-connection-abstract-sense-science-260nw-554257006.jpg" />
+    <Content Include="Content\Images\key2.jpg" />
     <Content Include="Content\Images\Logo.jpg" />
     <Content Include="Content\Images\nosProjets.png" />
     <Content Include="Content\Images\Nous.jpg" />
@@ -276,12 +278,12 @@
     <Content Include="Views\Shared\Menus.cshtml" />
     <Content Include="Views\Membres\EditMembre.cshtml" />
     <Content Include="Views\Membres\Profil.cshtml" />
+    <Content Include="Views\Membres\ConfirmationCreation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Paypal\" />
-    <Folder Include="Views\Utils\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
