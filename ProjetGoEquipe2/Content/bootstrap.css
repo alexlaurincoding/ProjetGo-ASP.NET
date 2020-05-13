@@ -1609,8 +1609,9 @@ pre code {
     text-align: center;
     padding-right: 15px;
     padding-left: 15px;
-    width: 500px;
-    height: 315px;
+    width: 400px;
+    height: 400px;
+    margin-left:100px;
 }
 
 
