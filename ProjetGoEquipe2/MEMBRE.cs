@@ -28,6 +28,10 @@ namespace ProjetGoEquipe2
         public string email { get; set; }
         public string numeroTel { get; set; }
         public string adresse { get; set; }
+        public string adresse2 { get; set; }
+        public string ville { get; set; }
+        public string province { get; set; }
+        public string cp { get; set; }
         public Nullable<System.DateTime> dateAdhesion { get; set; }
         public Nullable<bool> inscritMailingList { get; set; }
         public string statut { get; set; }

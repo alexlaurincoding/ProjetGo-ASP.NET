@@ -18,6 +18,7 @@ namespace ProjetGoEquipe2
         public Projet()
         {
             this.CompteRendus = new HashSet<CompteRendu>();
+            this.LeveeFonds = new HashSet<LeveeFond>();
         }
     
         public int idProjet { get; set; }
@@ -40,6 +41,8 @@ namespace ProjetGoEquipe2
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CompteRendu> CompteRendus { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LeveeFond> LeveeFonds { get; set; }
         public virtual Membre Membre { get; set; }
     }
 }
