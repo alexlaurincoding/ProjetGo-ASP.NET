@@ -63,5 +63,24 @@ namespace ProjetGoEquipe2.Controllers
             }
             return View();
         }
+
+        // GET: LeveeFonds/MesLevees
+        public ActionResult ToggleCompletes()
+        {
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+            {
+                return RedirectToAction("Identifier", "Membres");
+            }
+
+            if (Session["Completes"] == null || (bool)Session["Completes"] == false)
+                Session["Completes"] = true;
+            else
+                Session["Completes"] = false;
+
+            string action = (string)TempData["Action"];
+            string controller = (string)TempData["Controller"];
+
+            return RedirectToAction(action, controller);
+        }
     }
 }

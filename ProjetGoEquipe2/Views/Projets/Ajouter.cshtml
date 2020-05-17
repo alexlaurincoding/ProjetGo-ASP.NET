@@ -35,7 +35,7 @@
 
                             <br />
                             @{
-                                if (ViewBag.Erreur == "Oubli")
+                                if (ViewBag.Erreur == "Oubli" || ViewBag.Erreur == "FinAvant")
                                 {
                                 <h8 class="col-md-10" style="color:red">@ViewBag.Message</h8>
                                 }

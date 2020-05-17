@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ProjetGoEquipe2.Projet>
 
 @{
-    ViewBag.Title = "MesProjets";   
+    ViewBag.Title = "MesProjets";
 }
 
 <br />
@@ -26,6 +26,23 @@
                     <h3 class="center titre">
                         Mes Projets
                     </h3>
+
+                    <br />
+
+                    @{
+                        if (ViewBag.Completes!= null && ViewBag.Completes == true)
+                        {
+                            <div style="text-align:center;">
+                                @{
+                                    string mot = Session["Completes"] == null || (bool)Session["Completes"] == false ? "Inclure" : "Exclure";
+                                    TempData["Action"] = "MesProjets";
+                                    TempData["Controller"] = "Projets";
+                                    @Html.ActionLink(mot + " Projets Complétés", "ToggleCompletes", "Utils")
+                                }
+                            </div>
+                        }
+                    }
+
 
                     <br />
 
@@ -61,95 +78,108 @@
 
                         </tr>
 
-                        @foreach (var item in Singleton.Instance.db.Projets.OrderBy(pr=>pr.statut))
+                        @foreach (var item in Singleton.Instance.db.Projets.OrderBy(pr => pr.statut))
                         {
 
                             if (item.idResponsable == (string)Session["Usager"])
                             {
+                                if (item.statut != "Termine" || Session["Completes"] != null && (bool)Session["Completes"] == true)
+                                {
 
-                                <tr>
-                                    <td>
-                                        @Html.ActionLink("Détails", "Details", new { id = item.idProjet })<br />
-                                        @Html.ActionLink("Modifier", "Modifier", new { id = item.idProjet })<br />
-                                        @Html.ActionLink("Effacer", "Effacer", new { id = item.idProjet })<br />
-                                    </td>
-
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.titre)
-                                    </td>
-
-                                    @if (item.statut == null)
-                                    {
-                                        <td> ---</td>
-                                    }
-                                    else
-                                    {
+                                    <tr>
+                                        @if (item.statut == "Termine")
+                                        {
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.statut)
+                                            <span style="font-style:italic;">Complété</span><br />
+                                            @Html.ActionLink("Détails", "Details", new { id = item.idProjet })
                                         </td>
-                                    }
-
-                                    @{
-                                        if (item.visibilite == null || item.visibilite == "Public")
-                                        {
-
-                                            <td>Public</td>
-                                        }
-                                        else if (item.visibilite == "Membres")
-                                        {
-                                            <td>Membres</td>
                                         }
                                         else
                                         {
-                                            <td>Privé</td>
+                                            <td>
+                                                @Html.ActionLink("Détails", "Details", new { id = item.idProjet })<br />
+                                                @Html.ActionLink("Modifier", "Modifier", new { id = item.idProjet })<br />
+                                                @Html.ActionLink("Effacer", "Effacer", new { id = item.idProjet })<br />
+                                            </td>
                                         }
-                                    }
-
-                                    @if (item.budget == null)
-                                    {
-                                        <td> ---</td>
-                                    }
-                                    else
-                                    {
 
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.budget)$
+                                            @Html.DisplayFor(modelItem => item.titre)
                                         </td>
-                                    }
-                                    @if (item.totalFondsCollectes == null)
-                                    {
-                                        <td> ---</td>
-                                    }
-                                    else
-                                    {
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.totalFondsCollectes)$
-                                        </td>
-                                    }
-                                    @if (item.totalDepenes == null)
-                                    {
-                                        <td> ---</td>
-                                    }
-                                    else
-                                    {
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.totalDepenes)$
-                                        </td>
-                                    }
-                                    @if (item.dateProchainCompteRendu == null)
-                                    {
-                                        <td> ---</td>
-                                    }
-                                    else
-                                    {
 
-                                        <td>
-                                            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dateProchainCompteRendu))
-                                        </td>
-                                    }
+                                        @if (item.statut == null)
+                                        {
+                                            <td> ---</td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.statut)
+                                            </td>
+                                        }
+
+                                        @{
+                                            if (item.visibilite == null || item.visibilite == "Public")
+                                            {
+
+                                                <td>Public</td>
+                                            }
+                                            else if (item.visibilite == "Membres")
+                                            {
+                                                <td>Membres</td>
+                                            }
+                                            else
+                                            {
+                                                <td>Privé</td>
+                                            }
+                                        }
+
+                                        @if (item.budget == null)
+                                        {
+                                            <td> ---</td>
+                                        }
+                                        else
+                                        {
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.budget)$
+                                            </td>
+                                        }
+                                        @if (item.totalFondsCollectes == null)
+                                        {
+                                            <td> ---</td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.totalFondsCollectes)$
+                                            </td>
+                                        }
+                                        @if (item.totalDepenes == null)
+                                        {
+                                            <td> ---</td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.totalDepenes)$
+                                            </td>
+                                        }
+                                        @if (item.dateProchainCompteRendu == null)
+                                        {
+                                            <td> ---</td>
+                                        }
+                                        else
+                                        {
+
+                                            <td>
+                                                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dateProchainCompteRendu))
+                                            </td>
+                                        }
 
 
-                                </tr>
+                                    </tr>
+                                }
                             }
                         }
 

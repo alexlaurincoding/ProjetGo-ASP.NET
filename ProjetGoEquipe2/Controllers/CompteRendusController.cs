@@ -17,6 +17,10 @@ namespace ProjetGoEquipe2.Controllers
             {
                 return RedirectToAction("Identifier", "Membres");
             }
+
+            string usager = (string)Session["Usager"];
+            ViewBag.Completes = Singleton.Instance.db.CompteRendus.Where(cr => cr.Projet.idResponsable == usager).Where(cr => cr.Projet.statut == "Termine").ToList().Count() == 0 ? false : true;
+
             return View();
         }
 

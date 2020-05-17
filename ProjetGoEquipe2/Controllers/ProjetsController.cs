@@ -50,6 +50,10 @@ namespace ProjetGoEquipe2.Controllers
             {
                 return RedirectToAction("Identifier", "Membres");
             }
+
+            string usager = (string)Session["Usager"];
+            ViewBag.Completes = Singleton.Instance.db.Projets.Where(pr => pr.idResponsable == usager).Where(pr => pr.statut == "Termine").ToList().Count() == 0 ? false : true;
+
             return View();
         }
 
@@ -108,6 +112,12 @@ namespace ProjetGoEquipe2.Controllers
                 {
                     ViewBag.Erreur = "Oubli";
                     ViewBag.Message = "Les champs titre, description, début estimé et fin estimée sont obligatoires.";
+                    return View(projet);
+                }
+                if (Convert.ToDateTime(projet.debutEstime) > Convert.ToDateTime(projet.finEstimee))
+                {
+                    ViewBag.Erreur = "FinAvant";
+                    ViewBag.Message = "La date de fin ne peut précéder la date de début.";
                     return View(projet);
                 }
 

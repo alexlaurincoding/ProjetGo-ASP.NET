@@ -27,19 +27,20 @@
 
                     <br />
 
-                    <div style="text-align:center;">
-                        @{
-                            if (Session["Completees"] == null || (bool)Session["Completees"] == false)
-                            {
-                                @Html.ActionLink("Inclure Levées de Fonds Complétées", "MesLeveesCompletees")
 
-                            }
-                            else
-                            {
-                                @Html.ActionLink("Exclure Levées de Fonds Complétées", "MesLeveesCompletees")
-                            }
+                    @{
+                        if (ViewBag.Completes != null && ViewBag.Completes == true)
+                        {
+                            <div style="text-align:center;">
+                                @{
+                                    string mot = Session["Completes"] == null || (bool)Session["Completes"] == false ? "Inclure" : "Exclure";
+                                    TempData["Action"] = "MesLevees";
+                                    TempData["Controller"] = "LeveeFonds";
+                                    @Html.ActionLink(mot + " Levées de Fonds Complétées", "ToggleCompletes", "Utils")
+                                }
+                            </div>
                         }
-                    </div>
+                    }
 
 
                     <table class="table">
@@ -60,24 +61,28 @@
 
                         </tr>
 
-                        @foreach (var item in Singleton.Instance.db.LeveeFonds.OrderByDescending(l => l.dateDebut))
+                        @foreach (var item in Singleton.Instance.db.LeveeFonds.OrderBy(l => l.dateDebut))
                         {
 
-                            if (item.Projet.idResponsable == (string)Session["Usager"] && item.dateFin > DateTime.Today)
+                            if (item.Projet.idResponsable == (string)Session["Usager"] && item.dateFin >= DateTime.Today)
                             {
 
                                 <tr>
                                     @{
-                                        if (item.dateFin > DateTime.Today)
+
+                                        if (item.dateDebut >= DateTime.Today)
                                         {
                                             <td>
+                                                <span style="font-style:italic">À Venir</span><br />
                                                 @Html.ActionLink("Modifier", "Modifier", new { id = item.IdLeveeFonds })<br />
+                                                @Html.ActionLink("Effacer", "Effacer", new { id = item.IdLeveeFonds })
                                             </td>
                                         }
-                                        if (item.dateDebut > DateTime.Today)
+                                        else
                                         {
                                             <td>
-                                                @Html.ActionLink("Effacer", "Effacer", new { id = item.IdLeveeFonds })
+                                                <span style="font-style:italic">En cours</span>
+                                                @Html.ActionLink("Modifier", "Modifier", new { id = item.IdLeveeFonds })
                                             </td>
                                         }
                                     }
@@ -131,89 +136,72 @@
                                 </tr>
                             }
                         }
-                        
 
-                            @if (ViewBag.Affiche == true)
+                        <!--Afficher les levees completees (s'il y en a et si l'usager veut les afficher)-->
+                        @if (Session["Completes"] != null && (bool)Session["Completes"] == true)
+                        {
+
+
+                            foreach (var item in Singleton.Instance.db.LeveeFonds.OrderByDescending(l => l.dateDebut))
                             {
 
-
-                                foreach (var item in Singleton.Instance.db.LeveeFonds.OrderByDescending(l => l.dateDebut))
+                                if (item.Projet.idResponsable == (string)Session["Usager"] && item.dateFin < DateTime.Today)
                                 {
 
-                                    if (item.Projet.idResponsable == (string)Session["Usager"] && item.dateFin <= DateTime.Today)
-                                    {
+                                    <tr>
+                                        <td style="font-style:italic">Complété</td>
+                                        <br />
 
-                                <tr>
-                                    <td>(Complété)</td>
-                                    @{
-                                        if (item.dateFin > DateTime.Today)
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Projet.titre)
+                                        </td>
+
+
+                                        @if (item.dateDebut == null)
                                         {
+                                            <td> ---</td>
+                                        }
+                                        else
+                                        {
+
                                             <td>
-                                                @Html.ActionLink("Modifier", "Modifier", new { id = item.IdLeveeFonds })<br />
+                                                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dateDebut))
                                             </td>
                                         }
-                                        if (item.dateDebut > DateTime.Today)
+
+
+                                        @if (item.dateFin == null)
                                         {
+                                            <td> ---</td>
+                                        }
+                                        else
+                                        {
+
                                             <td>
-                                                @Html.ActionLink("Effacer", "Effacer", new { id = item.IdLeveeFonds })
+                                                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dateFin))
                                             </td>
                                         }
-                                    }
 
-                                    <br />
-
-
-
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Projet.titre)
-                                    </td>
-
-
-                                    @if (item.dateDebut == null)
-                                    {
-                                        <td> ---</td>
-                                    }
-                                    else
-                                    {
-
-                                        <td>
-                                            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dateDebut))
-                                        </td>
-                                    }
-
-
-                                    @if (item.dateFin == null)
-                                    {
-                                        <td> ---</td>
-                                    }
-                                    else
-                                    {
-
-                                        <td>
-                                            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dateFin))
-                                        </td>
-                                    }
-
-                                    @if (item.montantObtenu == null)
-                                    {
-                                        <td> ---</td>
-                                    }
-                                    else
-                                    {
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.montantObtenu)$
-                                        </td>
-                                    }
-
-
-                                </tr>
-                                                }
-                                            }
+                                        @if (item.montantObtenu == null)
+                                        {
+                                            <td> ---</td>
                                         }
+                                        else
+                                        {
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.montantObtenu)$
+                                            </td>
+                                        }
+
+
+                                    </tr>
+                                }
+                            }
+                        }
 
                     </table>
                 </div>
-                </div>
             </div>
         </div>
-    </main>
+    </div>
+</main>

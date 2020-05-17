@@ -18,27 +18,15 @@ namespace ProjetGoEquipe2.Controllers
         public ActionResult MesLevees()
         {
            
-            ViewBag.Affiche = Session["Completees"] != null && (bool)Session["Completees"] == true ? true : false;
             if (Session["Connected"] == null || (bool)Session["Connected"] == false)
             {
                 return RedirectToAction("Identifier", "Membres");
             }
+
+            string usager = (string)Session["Usager"];
+            ViewBag.Completes = Singleton.Instance.db.LeveeFonds.Where(l => l.Projet.idResponsable == usager).Where(l => l.dateFin < DateTime.Today).ToList().Count() == 0 ? false : true;
+
             return View();
-        }
-
-        // GET: LeveeFonds/MesLevees
-        public ActionResult MesLeveesCompletees()
-        {
-            if (Session["Connected"] == null || (bool)Session["Connected"] == false)
-            {
-                return RedirectToAction("Identifier", "Membres");
-            }
-            if (Session["Completees"] == null || (bool)Session["Completees"] == false)
-                Session["Completees"] = true;
-            else
-                Session["Completees"] = false;
-
-            return RedirectToAction("MesLevees");
         }
 
         // GET: LeveeFonds/Ajouter
@@ -65,12 +53,25 @@ namespace ProjetGoEquipe2.Controllers
                     ViewBag.Message = "Veuillez entrer des dates de début et de fin.";
                     return View(levee);
                 }
+                if (levee.dateDebut > levee.dateFin)
+                {
+                    ViewBag.Erreur = "FinAvant";
+                    ViewBag.Message = "La date de fin ne peut précéder la date de début.";
+                    return View(levee);
+                }
+                if (levee.dateDebut < DateTime.Today)
+                {
+                    ViewBag.Erreur = "DebutPasse";
+                    ViewBag.Message = "La date de début ne peut être une date passée.";
+                    return View(levee);
+                }
+
 
                 levee.montantObtenu = 0;
                 Singleton.Instance.db.LeveeFonds.Add(levee);
 
                 Singleton.Instance.db.SaveChanges();
-                return RedirectToAction("MesProjets", "Projets");
+                return RedirectToAction("MesLevees");
 
             }
             catch

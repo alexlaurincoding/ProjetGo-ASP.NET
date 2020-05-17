@@ -27,6 +27,22 @@
 
                     <br />
 
+                    @{
+                        if (ViewBag.Completes != null && ViewBag.Completes == true)
+                        {
+                            <div style="text-align:center;">
+                                @{
+                                    string mot = Session["Completes"] == null || (bool)Session["Completes"] == false ? "Inclure" : "Exclure";
+                                    TempData["Action"] = "Index";
+                                    TempData["Controller"] = "CompteRendus";
+                                    @Html.ActionLink(mot + " Compte-Rendus de Projets Complétés", "ToggleCompletes", "Utils")
+                                }
+                            </div>
+                        }
+                    }
+                    <br />
+
+
                     <table class="table">
                         <tr>
                             <th></th>
@@ -42,9 +58,9 @@
 
                         </tr>
 
-                        @foreach (CompteRendu item in Singleton.Instance.db.CompteRendus.OrderByDescending(cr=>cr.dateCompteRendu))
+                        @foreach (CompteRendu item in Singleton.Instance.db.CompteRendus.OrderByDescending(cr => cr.dateCompteRendu))
                         {
-                            if (item.Projet.idResponsable != null && item.Projet.idResponsable == (string)Session["Usager"])
+                            if (item.Projet.idResponsable != null && item.Projet.idResponsable == (string)Session["Usager"] && item.Projet.statut != "Termine")
                             {
 
                                 <tr>
@@ -66,8 +82,40 @@
                             }
                         }
 
-                    </table>
-                    </div>
+
+                        <!--Afficher les compte-rendus de projets completes (s'il y en a et si l'usager veut les afficher)-->
+                        @if (Session["Completes"] != null && (bool)Session["Completes"] == true)
+                        {
+
+                            foreach (CompteRendu item in Singleton.Instance.db.CompteRendus.OrderByDescending(cr => cr.dateCompteRendu))
+                            {
+
+                                if (item.Projet.idResponsable != null && item.Projet.idResponsable == (string)Session["Usager"] && item.Projet.statut == "Termine")
+                                {
+
+                    <tr>
+                        <td><span style="font-style:italic">Projet Complété</span><br />
+                        @Html.ActionLink("Détails", "Details", new { id = item.idCompteRendu })
+                        </td>
+
+                        <br />
+
+                        <td>
+                            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dateCompteRendu))
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Projet.titre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.sommaireRealisationsCompletees)
+                        </td>
+                    </tr>
+                                    }
+                                }
+                            }
+
+                        </table>
+                </div>
                 </div>
             </div>
         </div>
