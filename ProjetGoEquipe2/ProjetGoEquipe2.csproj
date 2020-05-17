@@ -137,6 +137,7 @@
     <Compile Include="Controllers\DesignController.cs" />
     <Compile Include="Controllers\DonsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeveeFondsController.cs" />
     <Compile Include="Controllers\MembresController.cs" />
     <Compile Include="Controllers\ProjetsController.cs" />
     <Compile Include="Controllers\UtilsController.cs" />
@@ -288,6 +289,10 @@
     <Content Include="Views\Membres\EditMembre.cshtml" />
     <Content Include="Views\Membres\Profil.cshtml" />
     <Content Include="Views\Membres\ConfirmationCreation.cshtml" />
+    <Content Include="Views\LeveeFonds\MesLevees.cshtml" />
+    <Content Include="Views\LeveeFonds\Ajouter.cshtml" />
+    <Content Include="Views\LeveeFonds\Modifier.cshtml" />
+    <Content Include="Views\LeveeFonds\Effacer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,219 @@
+﻿@model IEnumerable<ProjetGoEquipe2.LeveeFond>
+
+@{
+    ViewBag.Title = "MesLevees";
+}
+
+<br />
+<h2>Page de @Session["Usager"]</h2>
+<hr />
+<br />
+
+<!-- Partie principale de la page -->
+<main role="main" class="container-fluid">
+    <div class="row">
+        @{
+
+            Html.RenderAction("Menus", "Design", new { Categorie = "M", Emphase = "LP" });
+        }
+        <div class="col-sm-9">
+            <div class="content-section main-section-top main-add">
+
+                <div class="content-section" id="sectionPrincipaleMembre">
+
+                    <h3 class="center titre">
+                        Mes Levées de Fonds
+                    </h3>
+
+                    <br />
+
+                    <div style="text-align:center;">
+                        @{
+                            if (Session["Completees"] == null || (bool)Session["Completees"] == false)
+                            {
+                                @Html.ActionLink("Inclure Levées de Fonds Complétées", "MesLeveesCompletees")
+
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Exclure Levées de Fonds Complétées", "MesLeveesCompletees")
+                            }
+                        }
+                    </div>
+
+
+                    <table class="table">
+                        <tr>
+                            <th></th>
+                            <th>
+                                Projet
+                            </th>
+                            <th>
+                                Début
+                            </th>
+                            <th>
+                                Fin
+                            </th>
+                            <th>
+                                Montant Obtenu
+                            </th>
+
+                        </tr>
+
+                        @foreach (var item in Singleton.Instance.db.LeveeFonds.OrderByDescending(l => l.dateDebut))
+                        {
+
+                            if (item.Projet.idResponsable == (string)Session["Usager"] && item.dateFin > DateTime.Today)
+                            {
+
+                                <tr>
+                                    @{
+                                        if (item.dateFin > DateTime.Today)
+                                        {
+                                            <td>
+                                                @Html.ActionLink("Modifier", "Modifier", new { id = item.IdLeveeFonds })<br />
+                                            </td>
+                                        }
+                                        if (item.dateDebut > DateTime.Today)
+                                        {
+                                            <td>
+                                                @Html.ActionLink("Effacer", "Effacer", new { id = item.IdLeveeFonds })
+                                            </td>
+                                        }
+                                    }
+
+                                    <br />
+
+
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Projet.titre)
+                                    </td>
+
+
+                                    @if (item.dateDebut == null)
+                                    {
+                                        <td> ---</td>
+                                    }
+                                    else
+                                    {
+
+                                        <td>
+                                            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dateDebut))
+                                        </td>
+                                    }
+
+
+                                    @if (item.dateFin == null)
+                                    {
+                                        <td> ---</td>
+                                    }
+                                    else
+                                    {
+
+                                        <td>
+                                            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dateFin))
+                                        </td>
+                                    }
+
+                                    @if (item.montantObtenu == null)
+                                    {
+                                        <td> ---</td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.montantObtenu)$
+                                        </td>
+                                    }
+
+
+                                </tr>
+                            }
+                        }
+                        
+
+                            @if (ViewBag.Affiche == true)
+                            {
+
+
+                                foreach (var item in Singleton.Instance.db.LeveeFonds.OrderByDescending(l => l.dateDebut))
+                                {
+
+                                    if (item.Projet.idResponsable == (string)Session["Usager"] && item.dateFin <= DateTime.Today)
+                                    {
+
+                                <tr>
+                                    <td>(Complété)</td>
+                                    @{
+                                        if (item.dateFin > DateTime.Today)
+                                        {
+                                            <td>
+                                                @Html.ActionLink("Modifier", "Modifier", new { id = item.IdLeveeFonds })<br />
+                                            </td>
+                                        }
+                                        if (item.dateDebut > DateTime.Today)
+                                        {
+                                            <td>
+                                                @Html.ActionLink("Effacer", "Effacer", new { id = item.IdLeveeFonds })
+                                            </td>
+                                        }
+                                    }
+
+                                    <br />
+
+
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Projet.titre)
+                                    </td>
+
+
+                                    @if (item.dateDebut == null)
+                                    {
+                                        <td> ---</td>
+                                    }
+                                    else
+                                    {
+
+                                        <td>
+                                            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dateDebut))
+                                        </td>
+                                    }
+
+
+                                    @if (item.dateFin == null)
+                                    {
+                                        <td> ---</td>
+                                    }
+                                    else
+                                    {
+
+                                        <td>
+                                            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dateFin))
+                                        </td>
+                                    }
+
+                                    @if (item.montantObtenu == null)
+                                    {
+                                        <td> ---</td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.montantObtenu)$
+                                        </td>
+                                    }
+
+
+                                </tr>
+                                                }
+                                            }
+                                        }
+
+                    </table>
+                </div>
+                </div>
+            </div>
+        </div>
+    </main>

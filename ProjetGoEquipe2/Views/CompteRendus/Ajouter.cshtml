@@ -38,13 +38,12 @@
                             <hr />
 
                             <div class="form-group">
-                                <div class="control-label col-md-3">Projet</div>
+                                <div class="control-label col-md-3">Projet*</div>
                                 <div class="col-md-9">
                                     <select class="form-control" name="idProjet">
 
                                         @foreach (var item in Singleton.Instance.db.Projets)
                                         {
-
 
                                             if (item.idResponsable == (string)Session["Usager"])
                                             {

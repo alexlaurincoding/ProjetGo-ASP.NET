@@ -1,0 +1,55 @@
+﻿@model ProjetGoEquipe2.LeveeFond
+
+@{
+    ViewBag.Title = "Effacer";
+}
+
+<br />
+<h2>Page de @Session["Usager"]</h2>
+<hr />
+<br />
+
+<!-- Partie principale de la page -->
+<main role="main" class="container-fluid">
+    <div class="row">
+        @{
+
+            Html.RenderAction("Menus", "Design", new { Categorie = "M", Emphase = "LP" });
+        }
+        <div class="col-sm-9">
+            <div class="content-section main-section-top main-add">
+
+                <div class="content-section" id="sectionPrincipaleMembre">
+
+                    <h4 class="titre">
+                        Supprimer Levée de Fonds du  @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateDebut)) au @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateFin))<br /> pour "@Html.DisplayFor(model => model.Projet.titre)"
+                    </h4>
+
+                    <div style="text-align:center;">
+                        @Html.ActionLink("Revenir à mes levées de fonds", "MesLevees")
+                    </div>
+
+                    <dl class="dl-horizontal">
+
+                        <div>
+                            <br /><br /><br />
+
+                            <h4>Êtes-vous vraiment certain de vouloir supprimer cette levée de fonds ?</h4>
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <br />
+                                <div class="form-actions no-color" style="text-align:center;">
+                                    <input type="submit" value="Effacer" class="btn btn-default" style="background-color:rgb(184, 210, 49)" />
+                                    <button onclick="@("window.location.href='" + @Url.Action("MesLevees", "LeveeFonds") + "'");" type="button" class="btn btn-default">Annuler</button>
+
+                                </div>
+                            }
+                        </div>
+                </div>
+            </div>
+            </div>
+        </div>
+</main>

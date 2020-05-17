@@ -1,0 +1,117 @@
+﻿@model ProjetGoEquipe2.LeveeFond
+
+@{
+    ViewBag.Title = "Modifier";
+}
+
+<br />
+<h2>Page de @Session["Usager"]</h2>
+<hr />
+<br />
+
+<main class="form-horizontal">
+
+    <!-- Partie principale de la page -->
+    <main role="main" class="container-fluid">
+        <div class="row">
+
+            @{
+
+                Html.RenderAction("Menus", "Design", new { Categorie = "M", Emphase = "LP" });
+            }
+
+            <div class="col-sm-9">
+                <div class="content-section main-section-top main-add">
+
+                    <di class="content-section" id="sectionPrincipaleMembre">
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <h4 class="titre">
+                                Modifier Levée de Fonds du @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateDebut)) au @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateFin))<br /> pour "@Html.DisplayFor(model => model.Projet.titre)"
+                            </h4>
+
+                            <div style="text-align:center;">
+                                @Html.ActionLink("Revenir à mes levées de fonds", "MesLevees")
+                            </div>
+                            <br />
+
+                            <dl class="dl-horizontal">
+
+                                @{
+                                    if (ViewBag.Erreur == "Oubli")
+                                    {
+                                        <h8 class="col-md-10" style="color:red">@ViewBag.Message</h8>
+                                    }
+                                }
+
+                                <hr />
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.IdLeveeFonds)
+
+                                @{
+                                    if (Model.dateDebut > DateTime.Today)
+                                    {
+                                        <div class="form-group">
+                                            <div class="control-label col-md-2">Début*</div>
+                                            <div class="col-md-10">
+                                                <input type="date" class="form-control" name="dateDebut" value="@Convert.ToString(string.Format("{0:yyyy-MM-dd}", Model.dateDebut))" />
+                                            </div>
+                                        </div>
+                                        <br />
+                                    }
+                                    else
+                                    {
+                                        <input type="hidden" class="form-control" name="dateDebut" value="@Convert.ToString(string.Format("{0:yyyy-MM-dd}", Model.dateDebut))" />
+
+                                        <h8 class="col-md-offset-2">Vous ne pouvez modifier la date de début d'une levée de fonds déjà entâmée.</h8>
+                                        <br />
+                                        <br />
+                                    }
+
+
+                                    if (Model.dateFin > DateTime.Today)
+                                    {
+                                        <div class="form-group">
+                                            <div class="control-label col-md-2">Fin*</div>
+                                            <div class="col-md-10">
+                                                <input type="date" class="form-control" name="dateFin" value="@Convert.ToString(string.Format("{0:yyyy-MM-dd}", Model.dateFin))" />
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <input type="hidden" class="form-control" name="dateFin" value="@Convert.ToString(string.Format("{0:yyyy-MM-dd}", Model.dateFin))" />
+
+                                        <h8 class="col-md-offset-2">Vous ne pouvez modifier la date de fin d'une levée de fonds déjà complétée.</h8>
+                                        <br />
+                                        <br />
+                                    }
+
+
+
+
+                                    if (Model.dateDebut > DateTime.Today || Model.dateFin > DateTime.Today)
+                                    {
+
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="hidden" class="form-control" name="montantObtenu" value="@Model.montantObtenu" />
+
+                                                <input type="submit" value="Modifier" class="btn btn-default" style="background-color:rgb(184, 210, 49)" />
+                                                <button onclick="@("window.location.href='" + @Url.Action("MesLevees", "LeveeFonds") + "'");" type="button" class="btn btn-default">Annuler</button>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </dl>
+
+                        }
+
+                </div>
+            </div>
+        </div>
+    </main>

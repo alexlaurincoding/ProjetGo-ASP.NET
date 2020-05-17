@@ -61,7 +61,7 @@
 
                         </tr>
 
-                        @foreach (var item in Singleton.Instance.db.Projets)
+                        @foreach (var item in Singleton.Instance.db.Projets.OrderBy(pr=>pr.statut))
                         {
 
                             if (item.idResponsable == (string)Session["Usager"])

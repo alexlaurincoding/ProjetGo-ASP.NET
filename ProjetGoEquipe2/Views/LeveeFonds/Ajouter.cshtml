@@ -1,0 +1,107 @@
+﻿@model ProjetGoEquipe2.LeveeFond
+
+
+
+@{
+    ViewBag.Title = "Ajouter";
+}
+
+
+<br />
+<h2>Page de @Session["Usager"]</h2>
+<hr />
+<br />
+
+<!-- Partie principale de la page -->
+<main role="main" class="container-fluid">
+    <div class="row">
+        @{
+            Html.RenderAction("Menus", "Design", new { Categorie = "M", Emphase = "LA" });
+        }
+
+        <div class="col-sm-9">
+            <div class="content-section main-section-top main-add">
+
+                <div class="content-section" id="sectionPrincipaleMembre">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <h3 class="titre center">Ajouter une Levée de Fonds</h3>
+                        <div class="form-horizontal">
+                            <hr />
+
+                            <br />
+                            @{
+                                if (ViewBag.Erreur == "Oubli")
+                                {
+                                    <h8 class="col-md-9" style="color:red">@ViewBag.Message</h8>
+                                }
+                            }
+
+                            <div class="form-group">
+                                <div class="control-label col-md-3">Projet*</div>
+                                <div class="col-md-9">
+                                    <select class="form-control" name="idProjet">
+
+                                        @foreach (var projet in Singleton.Instance.db.Projets)
+                                        {
+                                            if (projet != null && projet.idResponsable == (string)Session["Usager"])
+                                            {
+
+                                                bool actif = false;
+                                                foreach (var levee in projet.LeveeFonds)
+                                                {
+
+                                                    if (levee != null)
+                                                    {
+
+                                                        if (levee.dateDebut <= DateTime.Today && levee.dateFin >= DateTime.Today)
+                                                        {
+                                                            actif = true;
+                                                        }
+                                                    }
+                                                }
+                                                if (actif == false)
+                                                {
+                                                    <option value=@projet.idProjet>@projet.titre</option>
+                                                }
+
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <small class="col-md-offset-3">&nbsp;&nbsp; &nbsp;  Ne sont pas affichés les projets avec des levées de fonds déjà actives</small>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label col-md-3">Début*</div>
+                                <div class="col-md-9">
+                                    <input type="date" class="form-control" name="dateDebut" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label col-md-3">Fin*</div>
+                                <div class="col-md-9">
+                                    <input type="date" class="form-control" name="dateFin" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <input type="submit" value="Soumettre" class="btn btn-default" style="background-color:rgb(184, 210, 49);" />
+                                    <button onclick="@("window.location.href='" + @Url.Action("Index") + "'");" type="button" class="btn btn-default">Annuler</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
