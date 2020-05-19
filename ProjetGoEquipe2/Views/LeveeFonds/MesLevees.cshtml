@@ -41,6 +41,7 @@
                             </div>
                         }
                     }
+                    <br />
 
 
                     <table class="table">
@@ -71,24 +72,23 @@
                                     @{
 
                                         if (item.dateDebut >= DateTime.Today)
-                                        {
+            {
                                             <td>
                                                 <span style="font-style:italic">À Venir</span><br />
+                                                @Html.ActionLink("Détails", "Details", new { id = item.IdLeveeFonds })<br />
                                                 @Html.ActionLink("Modifier", "Modifier", new { id = item.IdLeveeFonds })<br />
                                                 @Html.ActionLink("Effacer", "Effacer", new { id = item.IdLeveeFonds })
                                             </td>
-                                        }
+            }
                                         else
                                         {
-                                            <td>
-                                                <span style="font-style:italic">En cours</span>
-                                                @Html.ActionLink("Modifier", "Modifier", new { id = item.IdLeveeFonds })
-                                            </td>
+                                <td>
+                                    <span style="font-style:italic">En cours</span><br />
+                                    @Html.ActionLink("Détails", "Details", new { id = item.IdLeveeFonds })<br />
+                                    @Html.ActionLink("Modifier", "Modifier", new { id = item.IdLeveeFonds })
+                                </td>
                                         }
                                     }
-
-                                    <br />
-
 
 
                                     <td>
@@ -149,8 +149,11 @@
                                 {
 
                                     <tr>
-                                        <td style="font-style:italic">Complété</td>
-                                        <br />
+                                        <td style="font-style:italic">
+                                            Complété<br />
+                                            @Html.ActionLink("Détails", "Details", new { id = item.IdLeveeFonds })
+                                            <br />
+                                        </td>
 
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Projet.titre)

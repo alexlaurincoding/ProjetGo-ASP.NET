@@ -34,6 +34,7 @@
                             bloquer = true;
                         }
                     }
+
                 }
 
 
@@ -65,7 +66,7 @@
                     }
                     <button type="button" onclick="@("window.location.href='" + @Url.Action("Completes", "Projets") + "'");" class="@(@Model["Emphase"] == "PC" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Projets Complétés</button>
                 }
-                else
+                else if (Model["Categorie"] == "N")
                 {
                     <button onclick="@("window.location.href='#'");" type="button" class="@(@Model["Emphase"] == "1" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">CA</button>
                     <button onclick="@("window.location.href='#membres'");" type="button" class="@(@Model["Emphase"] == "2" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Membres</button>

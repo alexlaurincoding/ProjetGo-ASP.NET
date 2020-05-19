@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Windows;
 
 namespace ProjetGoEquipe2.Controllers
 {
@@ -47,10 +50,10 @@ namespace ProjetGoEquipe2.Controllers
         {
             try
             {
-                if (levee.dateDebut == null || levee.dateFin == null)
+                if (levee.dateDebut == null || levee.dateFin == null || levee.message.IsNullOrWhiteSpace())
                 {
                     ViewBag.Erreur = "Oubli";
-                    ViewBag.Message = "Veuillez entrer des dates de début et de fin.";
+                    ViewBag.Message = "Tous les champs sont obligatoires.";
                     return View(levee);
                 }
                 if (levee.dateDebut > levee.dateFin)
@@ -65,8 +68,7 @@ namespace ProjetGoEquipe2.Controllers
                     ViewBag.Message = "La date de début ne peut être une date passée.";
                     return View(levee);
                 }
-
-
+               
                 levee.montantObtenu = 0;
                 Singleton.Instance.db.LeveeFonds.Add(levee);
 
@@ -109,6 +111,7 @@ namespace ProjetGoEquipe2.Controllers
                 ancienneVersion.montantObtenu = levModif.montantObtenu;
                 ancienneVersion.dateDebut = levModif.dateDebut;
                 ancienneVersion.dateFin = levModif.dateFin;
+                ancienneVersion.message = levModif.message;
                 Singleton.Instance.db.SaveChanges();
                 return RedirectToAction("MesLevees");
             }
@@ -117,6 +120,26 @@ namespace ProjetGoEquipe2.Controllers
                 return View();
             }
         }
+
+
+        // GET: LeveeFonds/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+            {
+                return RedirectToAction("Identifier", "Membres");
+            }
+
+            LeveeFond levee = Singleton.Instance.db.LeveeFonds.Find(id);
+
+            if (levee == null || levee.Projet.idResponsable != (string)Session["Usager"])
+            {
+                return RedirectToAction("MesLevees");
+            }
+
+            return View(levee);
+        }
+
 
         // GET: LeveeFonds/Effacer/5
         public ActionResult Effacer(int? id)

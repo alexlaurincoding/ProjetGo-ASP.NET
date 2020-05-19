@@ -1,0 +1,109 @@
+﻿@model ProjetGoEquipe2.LeveeFond
+@{
+    ViewBag.Title = "Details";
+}
+
+<br />
+<h2>Page de @Session["Usager"]</h2>
+
+<hr />
+<br />
+
+<!-- Partie principale de la page -->
+<main role="main" class="container-fluid">
+    <div class="row">
+
+        @{
+
+            Html.RenderAction("Menus", "Design", new { Categorie = "M", Emphase = "LP" });
+        }
+
+        <div class="col-sm-9">
+            <div class="content-section main-section-top main-add">
+
+                <div class="content-section" id="sectionPrincipaleMembre">
+
+                    <h4 class="titre">
+                        Détails de la Levée de Fonds du  @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateDebut)) au @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateFin)) <br /> pour "@Html.DisplayFor(model => model.Projet.titre)"
+                    </h4>
+                    <div style="text-align:center;">
+                        @Html.ActionLink("Revenir à mes levées de fonds", "MesLevees")
+                    </div>
+                    <br />
+
+                    <hr />
+
+                    <dl class="dl-horizontal">
+
+                        <dt>
+                            Début
+                        </dt>
+
+                        @if (Model.dateDebut == null)
+                        {
+                            <dd> ---</dd>
+                        }
+                        else
+                        {
+                            <dd>
+                                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateDebut))
+                            </dd>
+                        }
+                        <br />
+
+                        <dt>
+                            Fin
+                        </dt>
+
+                        @if (Model.dateFin == null)
+                        {
+                            <dd> ---</dd>
+                        }
+                        else
+                        {
+                            <dd>
+                                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateFin))
+                            </dd>
+                        }
+
+                        <br />
+
+                        <dt>
+                            Montant Obtenu
+                        </dt>
+
+                        @if (Model.montantObtenu == null)
+                        {
+                            <dd> ---</dd>
+                        }
+                        else
+                        {
+                            <dd>
+                                @Html.DisplayFor(model => model.montantObtenu)$
+                            </dd>
+                        }
+                        <br />
+
+
+                        <dt>
+                            Message
+                        </dt>
+
+                        @if (Model.message == "")
+                        {
+                            <dd> ---</dd>
+                        }
+                        else
+                        {
+                            <dd>
+                                @Html.DisplayFor(model => model.message)
+                            </dd>
+                        }
+
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

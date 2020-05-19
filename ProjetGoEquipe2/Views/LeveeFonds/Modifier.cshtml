@@ -81,12 +81,19 @@
                                                 <input type="date" class="form-control" name="dateFin" value="@Convert.ToString(string.Format("{0:yyyy-MM-dd}", Model.dateFin))" />
                                             </div>
                                         </div>
+
+                                        <div class="form-group">
+                                            <div class="control-label col-md-2">Message*</div>
+                                            <div class="col-md-10">
+                                                <textarea class="form-control col-md-10" rows="5" name="message">@Model.message</textarea>
+                                            </div>
+                                        </div>
                                     }
                                     else
                                     {
                                         <input type="hidden" class="form-control" name="dateFin" value="@Convert.ToString(string.Format("{0:yyyy-MM-dd}", Model.dateFin))" />
 
-                                        <h8 class="col-md-offset-2">Vous ne pouvez modifier la date de fin d'une levée de fonds déjà complétée.</h8>
+                                        <h8 class="col-md-offset-2">Vous ne pouvez modifier la date de fin d'une levée de fonds déjà complétée, ni le message présenté aux visiteurs.</h8>
                                         <br />
                                         <br />
                                     }

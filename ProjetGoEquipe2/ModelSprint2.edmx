@@ -58,6 +58,7 @@
           <Property Name="IdLeveeFonds" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="dateDebut" Type="date" />
           <Property Name="dateFin" Type="date" />
+          <Property Name="message" Type="varchar" MaxLength="1000" />
           <Property Name="montantObtenu" Type="int" />
           <Property Name="idProjet" Type="int" />
         </EntityType>
@@ -281,6 +282,7 @@
           <Property Name="IdLeveeFonds" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="dateDebut" Type="DateTime" Precision="0" />
           <Property Name="dateFin" Type="DateTime" Precision="0" />
+          <Property Name="message" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="montantObtenu" Type="Int32" />
           <Property Name="idProjet" Type="Int32" />
           <NavigationProperty Name="Dons" Relationship="Self.FK_DonLeveeFonds" FromRole="LeveeFonds" ToRole="Don" />
@@ -510,6 +512,7 @@
                 <ScalarProperty Name="IdLeveeFonds" ColumnName="IdLeveeFonds" />
                 <ScalarProperty Name="dateDebut" ColumnName="dateDebut" />
                 <ScalarProperty Name="dateFin" ColumnName="dateFin" />
+                <ScalarProperty Name="message" ColumnName="message" />
                 <ScalarProperty Name="montantObtenu" ColumnName="montantObtenu" />
                 <ScalarProperty Name="idProjet" ColumnName="idProjet" />
               </MappingFragment>

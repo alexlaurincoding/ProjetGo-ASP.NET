@@ -23,6 +23,7 @@ namespace ProjetGoEquipe2
         public int IdLeveeFonds { get; set; }
         public Nullable<System.DateTime> dateDebut { get; set; }
         public Nullable<System.DateTime> dateFin { get; set; }
+        public string message { get; set; }
         public Nullable<int> montantObtenu { get; set; }
         public Nullable<int> idProjet { get; set; }
     
