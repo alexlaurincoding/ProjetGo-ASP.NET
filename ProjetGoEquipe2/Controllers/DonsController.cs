@@ -20,6 +20,16 @@ namespace ProjetGoEquipe2.Controllers
             return View();
         }
 
+        public ActionResult DonCompleter()
+        {
+            return View();
+        }
+
+        public ActionResult DonAnnuler()
+        {
+            return View();
+        }
+
         // GET: Dons/Create
         public ActionResult Create()
         {
