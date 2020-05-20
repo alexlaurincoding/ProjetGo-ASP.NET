@@ -65,6 +65,17 @@
 
                     }
                     <button type="button" onclick="@("window.location.href='" + @Url.Action("Completes", "Projets") + "'");" class="@(@Model["Emphase"] == "PC" ? "button-emphasis btn btn-default" : "button-noemphasis btn btn-default")">Projets Complétés</button>
+
+                    <br />
+                    <hr />
+                    <br />
+                    <img class="center-image" src="~/Content/Images/penseeJour.jpg" alt="Pensee du Jour" />
+                    <br /><br />
+                    <div style="font-style:italic;">"Donnez à ceux que vous aimez des ailes pour voler, des racines pour revenir, et des raisons de rester."</div>
+                    <br />
+                    <div>-Dalaï Lama</div>
+
+
                 }
                 else if (Model["Categorie"] == "N")
                 {

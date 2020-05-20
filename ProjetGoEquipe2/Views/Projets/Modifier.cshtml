@@ -49,7 +49,7 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="control-label col-md-2">Statut</div>
+                                <div class="control-label col-md-2">Statut*</div>
                                 <div class="col-md-10">
                                     <select class="form-control" name="statut" value=@Model.statut>
                                         <option value="Propose">Proposé</option>
@@ -193,14 +193,14 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="control-label col-md-2">Début estimé*</div>
+                                <div class="control-label col-md-2">Début estimé</div>
                                 <div class="col-md-10">
                                     <input type="date" class="form-control" name="debutEstime" value="@Convert.ToString(string.Format("{0:yyyy-MM-dd}", Model.debutEstime))" />
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <div class="control-label col-md-2">Fin estimée*</div>
+                                <div class="control-label col-md-2">Fin estimée</div>
                                 <div class="col-md-10">
                                     <input type="date" class="form-control" name="finEstimee" value="@Convert.ToString(string.Format("{0:yyyy-MM-dd}", Model.finEstimee))" />
                                 </div>

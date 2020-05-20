@@ -91,6 +91,7 @@
                                         {
                                         <td>
                                             <span style="font-style:italic;">Complété</span><br />
+                                            @Html.ActionLink("Modifier", "Modifier", new { id = item.idProjet })<br />
                                             @Html.ActionLink("Détails", "Details", new { id = item.idProjet })
                                         </td>
                                         }

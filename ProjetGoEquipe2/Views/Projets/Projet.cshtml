@@ -1,0 +1,161 @@
+﻿@model ProjetGoEquipe2.Projet
+
+@{
+    ViewBag.Title = "Projet";
+
+    string emphase = Model.statut == "Actif" ? "PA" : Model.statut == "Termine" ? "PC" : Model.statut == "Approuve" ? "PV" : "PP";
+
+}
+
+<br />
+<hr />
+
+<!-- Partie principale de la page -->
+<main role="main" class="container-fluid">
+    <div class="row">
+        @{
+
+            Html.RenderAction("Menus", "Design", new { Categorie = "P", Emphase = emphase });
+        }
+
+        <div class="col-sm-9 main-border">
+            <h2 class="titre">
+                Bienvenue sur la Page du Projet
+            </h2>
+            <h1 class="titre-cool">@Html.DisplayFor(model => model.titre)</h1>
+
+            @{
+                Random r = new Random();
+                int rInt = r.Next(1, 200);
+
+                string urlImg = "https://picsum.photos/seed/" + rInt + "/1000/700";
+
+                <br /><br />
+                <img class="center-image" src="@urlImg">
+                <br /><br />
+            }
+            <br /><hr />
+            <br />
+            <div class="content-section main-section-top main-add">
+
+                <div class="content-section" id="sectionPrincipaleMembre">
+
+                    @{
+                        foreach (LeveeFond levee in Singleton.Instance.db.LeveeFonds.OrderByDescending(lv => lv.dateDebut).Where(l => l.Projet.idProjet == Model.idProjet))
+                        {
+                            if (levee != null && levee.Projet.visibilite == "Public" && levee.dateDebut <= DateTime.Today && levee.dateFin >= DateTime.Today)
+                            {
+                                <ul>
+                                    <h2 class="titre" style="color: rgb(184, 210, 49); font-weight:bold;">Campagne de Financement en Cours!</h2>
+
+                                    <li class="tohover li-class">
+                                        <img src="~/Content/Images/faireundon.jpg" width="100">
+                                        <h3 class="h3-class">Nous Avons Besoin de votre Aide!</h3>
+                                        <h6 style="text-align:center;">Donnez jusqu'au @Convert.ToString(string.Format("{0:dd/MM/yyyy}", levee.dateFin)) </h6>
+                                        <p>@levee.message</p>
+                                        <br />
+                                        <div class="form-actions no-color" style="text-align:right;">
+                                            <button onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" type="button" class="btn btn-default" style="background-color:rgb(184, 210, 49)">Faire un Don</button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            }
+                        }
+
+                        <img src="~/Content/Images/apropos-projet.png" alt="A props du projet" width="250" style="margin-left: 50px; margin-top: 50px;" />
+
+
+                        string dates = Model.statut == "Actif" ? " a été lancé par ProjetGo le " + @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.debutReel)) + " et doit se poursuivre jusqu'au " + @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.finReelle)) + "." : Model.statut == "Termine" ? " a été lancé le par ProjetGo le " + @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.debutReel)) + " et s'est conclus le " + @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.finReelle)) + "." : " devrait débuter le " + @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.debutEstime)) + " et pourrait s'étendre jusqu'au " + @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.finEstimee)) + "."; ;
+                        string intro = "Le projet '" + @Model.titre + "', supervisé par " + Model.Membre.prenom + " " + Model.Membre.nom + ", " + dates;
+
+
+                        <h4 style="margin:30px; line-height:40px;">&nbsp;&nbsp;&nbsp;@intro</h4>
+                        <h4 style="margin:30px; line-height:40px;">&nbsp;&nbsp;&nbsp;@Model.descriptionCourte</h4>
+                        <br />
+
+                        if (Session["Connected"] != null && (bool)Session["Connected"] == true)
+                        {
+                            <ul>
+                                <li class="tohover li-class">
+                                    <img src="~/Content/Images/top-secret.png" width="80" ; height="80">
+                                    <br />
+                                    <h3 class="h3-class">Détails réservés aux membres</h3>
+                                    <br /><br />
+                                    <h4>Budget du projet: @Model.budget$</h4>
+                                    <h4>Total des dépenses du projet: @Model.totalDepenes$</h4>
+                                    <h4>Total des fonds collectés: @Model.totalFondsCollectes$</h4>
+                                    <br />
+                                </li>
+                            </ul>
+                        }
+
+                        <br /><br /><hr />
+
+                        <img src="~/Content/Images/projet9.png" alt="Quoi de 9?" width="150" style="margin-left: 50px;" />
+
+                        <br /><br /><br />
+                        List<CompteRendu> listeCR = Singleton.Instance.db.CompteRendus.Where(cr => cr.Projet.idProjet == Model.idProjet).OrderByDescending(cr => cr.dateCompteRendu).ToList();
+
+                        if (Model.statut == "Termine")
+                        {
+                            <ul>
+                                <li class="tohover li-class">
+                                    <img src="~/Content/Images/compte-rendu300.jpg" width="80" height="80">
+                                    <h3 class="h3-class">Puisque le projet est clos, aucune nouvelle mise à jour ne sera affichée.</h3>
+                                </li>
+                            </ul>
+
+                        }
+                        else
+                        {
+
+                            if (listeCR.Count == 0)
+                            {
+                                <ul>
+                                    <li class="tohover li-class">
+                                        <img src="~/Content/Images/compte-rendu300.jpg" width="80" height="80">
+                                        <h3 class="h3-class">Le Projet n'a aucun compte-rendu</h3>
+                                        @{
+                                            <h4>Revenez régulièrement pour de nouvelles mises à jour sur le projet.</h4>
+                                        }
+                                    </li>
+                                </ul>
+                            }
+                            else
+                            {
+                                foreach (CompteRendu cr in listeCR)
+                                {
+                                    <ul>
+                                        <li class="tohover li-class">
+                                            <img src="~/Content/Images/compte-rendu300.jpg" width="80" height="80">
+                                            <h3 class="h3-class">Compte-Rendu du @Convert.ToString(string.Format("{0:dd/MM/yyyy}", cr.dateCompteRendu))</h3>
+                                            <br /><br />
+                                            <h4>Informations À Jour:</h4>
+                                            <h5>@cr.informationsAJour</h5>
+                                            <br />
+                                            <h4>Réalisations:</h4>
+                                            <h5>@cr.sommaireRealisationsCompletees</h5>
+                                            <br />
+                                            <h4>À Venir:</h4>
+                                            <h5>@cr.realisationsReportees</h5>
+                                            <br />
+                                            @if (Session["Connected"] != null && (bool)Session["Connected"] == true)
+                                            {
+                                                <h4 style="color:red; font-weight:bold;">État des risques (réservé aux membres):</h4>
+                                                <h5>@cr.etatRisques</h5>
+                                            }
+                                        </li>
+                                    </ul>
+                                    <br /> <hr /> <br />
+                                }
+
+                            }
+
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

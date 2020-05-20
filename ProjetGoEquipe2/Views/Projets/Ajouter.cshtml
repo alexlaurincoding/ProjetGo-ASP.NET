@@ -37,11 +37,11 @@
                             @{
                                 if (ViewBag.Erreur == "Oubli" || ViewBag.Erreur == "FinAvant")
                                 {
-                                <h8 class="col-md-10" style="color:red">@ViewBag.Message</h8>
+                                    <h8 class="col-md-10" style="color:red">@ViewBag.Message</h8>
                                 }
                             }
                             <br />
-                            
+
 
                             <div class="form-group">
                                 <div class="control-label col-md-3">Titre*</div>
@@ -54,13 +54,11 @@
                             <div class="form-group">
                                 <div class="control-label col-md-3">Statut</div>
                                 <div class="col-md-9">
-                                    <select class="form-control" name="statut">
+                                    <select class="form-control" name="statut" id="statut" onchange="afficherReel();">
                                         <option value="Propose">Proposé</option>
                                         <option value="Soumis">Soumis</option>
                                         <option value="Approuve">Approuvé</option>
                                         <option value="Actif">Actif</option>
-                                        <option value="Termine">Terminé</option>
-                                        <option value="Gele">Gelé</option>
                                     </select>
                                 </div>
                             </div>
@@ -91,15 +89,23 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="control-label col-md-3">Début Estimé*</div>
+                            <div class="form-group" id="debutE">
+                                <div class="control-label col-md-3">Début Estimé</div>
                                 <div class="col-md-9">
                                     <input type="date" class="form-control" name="debutEstime" />
                                 </div>
                             </div>
 
+                            <div class="form-group" id="debutR" style="display:none;">
+                                <div class="control-label col-md-3">Début Réel</div>
+                                <div class="col-md-9">
+                                    <input type="date" class="form-control" name="debutReel" />
+                                </div>
+                            </div>
+
+
                             <div class="form-group">
-                                <div class="control-label col-md-3">Fin Estimée*</div>
+                                <div class="control-label col-md-3">Fin Estimée</div>
                                 <div class="col-md-9">
                                     <input type="date" class="form-control" name="finEstimee" />
                                 </div>
@@ -144,3 +150,21 @@
         </div>
     </div>
 </main>
+
+<script>
+    const afficherReel = () => {
+        let debutR = document.getElementById("debutR");
+        let debutE = document.getElementById("debutE");
+        let finE = document.getElementById("finE");
+        let statut = document.getElementById("statut");
+
+        if (statut.value == "Actif") {
+            debutR.style.display = "block";
+            debutE.style.display = "none";
+        }
+        else {
+            debutR.style.display = "none";
+            debutE.style.display = "block";
+        }
+    }
+</script>

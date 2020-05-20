@@ -75,8 +75,8 @@ namespace ProjetGoEquipe2.Controllers
             return View(projet);
         }
 
-        // GET: Projets/DetailsPublic/5
-        public ActionResult DetailsPublic(int? id)
+        // GET: Projets/Projet/5
+        public ActionResult Projet(int? id)
         {
 
             Projet projet = Singleton.Instance.db.Projets.Find(id);
@@ -108,13 +108,13 @@ namespace ProjetGoEquipe2.Controllers
         public ActionResult Ajouter(Projet projet, string budget, string frequence)
         {
             try {
-                if (projet.titre == "" || projet.descriptionCourte == "" || projet.debutEstime == null || projet.finEstimee == null)
+                if (projet.titre == "" || projet.descriptionCourte == "")
                 {
                     ViewBag.Erreur = "Oubli";
-                    ViewBag.Message = "Les champs titre, description, début estimé et fin estimée sont obligatoires.";
+                    ViewBag.Message = "Les champs titre et description sont obligatoires.";
                     return View(projet);
                 }
-                if (Convert.ToDateTime(projet.debutEstime) > Convert.ToDateTime(projet.finEstimee))
+                if (Convert.ToDateTime(projet.debutEstime) > Convert.ToDateTime(projet.finEstimee) || Convert.ToDateTime(projet.debutReel) > Convert.ToDateTime(projet.finEstimee))
                 {
                     ViewBag.Erreur = "FinAvant";
                     ViewBag.Message = "La date de fin ne peut précéder la date de début.";

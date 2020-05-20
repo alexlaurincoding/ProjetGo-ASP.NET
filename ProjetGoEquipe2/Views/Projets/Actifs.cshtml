@@ -5,93 +5,61 @@
 }
 
 <br />
-<h2>Nos Projets</h2>
-
-<br /><hr />
-
-
+<hr />
 <!-- Partie principale de la page -->
 <main role="main" class="container-fluid">
     <div class="row">
 
-        <div class="col-sm-3">
             @{
 
                 Html.RenderAction("Menus", "Design", new { Categorie = "P", Emphase = "PA" });
             }
-        </div>
 
-        <div class="col-sm-9">
+        <div class="col-sm-9 main-border">
+
+            <h1 class="titre">
+                Nos Projets Actifs
+            </h1>
+            <br />
+            <img src="~/Content/Images/current_projects.jpg" alt="Projets proposés" class="center-image" width="200" ; />
+
+            <br /><br />
             <div class="content-section main-section-top main-add">
 
                 <div class="content-section" id="sectionPrincipaleMembre">
 
-                    <h3 class="titre center">
-                        Projets Actifs
-                    </h3>
 
-                    <img src="~/Content/Images/current_projects.jpg" alt="Projets proposés" class="center-image" width="200" ; />
+                    <div>
+                        <ul class="ul-class">
+                        @{
+                            Random r = new Random();
+                            int rInt = r.Next(1, 200);
 
-                    <br /><br />
-
-                    <table class="table">
-                        <tr>
-                            <th>
-                                Titre
-                            </th>
-
-                            <th>
-                                Description
-                            </th>
-
-                            <th>
-                                Début
-                            </th>
-
-                            <th>
-                                Fin estimée
-                            </th>
-
-                            <th>
-                                Fonds collectés
-                            </th>
-
-                            <th></th>
-                        </tr>
-
-                        @foreach (var item in Singleton.Instance.db.Projets.Where(projet => projet.statut == "Actif").OrderByDescending(projet => projet.debutReel))
-                        {
-                            if (item.visibilite == null || item.visibilite == "Public" || item.visibilite == "Membres" && Session["Connected"] != null && (bool)Session["Connected"] == true)
+                            foreach (var item in Singleton.Instance.db.Projets.Where(projet => projet.statut == "Actif").OrderByDescending(projet => projet.debutReel))
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.titre)
-                                    </td>
+                                if (item.visibilite == null || item.visibilite == "Public" || item.visibilite == "Membres" && Session["Connected"] != null && (bool)Session["Connected"] == true)
+                                {
+                                    rInt++;
+                                    string urlImg = "https://picsum.photos/seed/" + rInt + "/80";
+                            <hr />
+                            <li class="tohover li-class">
+                                <img src="@urlImg">
+                                <h3 class="h3-class">@item.titre</h3>
+                                <h6 style="text-align:center;">Du @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.debutReel)) au @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.finEstimee)) (estimé)</h6>
+                                <p>@item.descriptionCourte</p>
+                                <br />
+                                <div class="form-actions no-color" style="text-align:right;">
+                                    <button onclick="@("window.location.href='" + @Url.Action("Projet", "Projets", new { id = item.idProjet }) + "'");" type="button" class="btn btn-default" style="background-color: rgb(184, 210, 49)">Page du Projet</button>
+                                </div>
+                            </li>
 
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.descriptionCourte)
-                                    </td>
-
-                                    <td>
-                                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.debutReel))
-                                    </td>
-                                    <td>
-                                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.finEstimee))
-                                    </td>
-
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.totalFondsCollectes)$
-                                    </td>
-
-                                    <td>
-                                        @Html.ActionLink("Plus de détails", "DetailsPublic", new { id = item.idProjet })
-                                    </td>
-
-                                </tr>
+                                    }
+                                }
                             }
-                        }
 
-                    </table>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>

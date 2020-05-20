@@ -3,7 +3,8 @@
     ViewBag.Title = "Index";
 }
 
-
+<br />
+<hr />
 <!-- Partie principale de la page -->
 <main role="main" class="container-fluid">
     <div class="row">
@@ -12,12 +13,14 @@
             <div class="content-section main-add" id="right-left" padding-left:15px;">
                 <h4 style="text-align:center">Un Mot de notre Président</h4>
                 <img class="center-image" src="~/Content/Images/notre-president.jpg" width="200px" alt="Notre President" />
-                <br /><p style="font-style:italic; ">Chers amis,<br /><br />En ces temps difficiles, nous avons plus que jamais besoin de votre aide. Malgré les politiques de confinement, ProjetGo continue de venir en aide à des milliers de personnes et d'organismes dans le besoin. Soyez assurés que vos dons généreux seront ENTIÈREMENT consacrés à la réalisation de nos projets - sauf une infime portion allant à mes honoraires personnels. <br /><br />Merci d'être solidaires et de continuer à donner généreusement.<br /><br />Bernard St-Hubert<br />Président à vie de ProjetGo</p>    
+                <br /><p style="font-style:italic; ">Chers amis,<br /><br />En ces temps difficiles, nous avons plus que jamais besoin de votre aide. Malgré les politiques de confinement, ProjetGo continue de venir en aide à des milliers de personnes et d'organismes dans le besoin. Soyez assurés que vos dons généreux seront ENTIÈREMENT consacrés à la réalisation de nos projets - sauf une infime portion allant à mes honoraires personnels. <br /><br />Merci d'être solidaires et de continuer à donner généreusement.<br /><br />Bernard St-Hubert<br />Président à vie de ProjetGo</p>
+                <img src="~/Content/Images/sceau-royal.png"/>
+
             </div>
-            </div>
+        </div>
 
 
-                <div class="col-sm-8">
+                <div class="col-sm-8 main-border">
                     <div class="content-section main-section-top main-add">
 
                         <div class="content-section" id="sectionPrincipaleMembre">
@@ -27,20 +30,25 @@
                             </h1>
                             <br />
 
-                            <img src="~/Content/Images/charity-heart.jpg" alt="Donner avec votre coeur!" class="center-image" width="200" ; />
+                            <img src="~/Content/Images/charity-heart.jpg" alt="Donnez avec votre coeur!" class="center-image" width="200" ; />
 
                             <br /><br />
 
                             <div>
                                 <ul class="ul-class">
+                                    @{
 
-                                    @foreach (LeveeFond item in Singleton.Instance.db.LeveeFonds.OrderByDescending(lv => lv.dateDebut))
-                                    {
-                                        if (item != null && item.Projet.visibilite == "Public" && item.dateDebut <= DateTime.Today && item.dateFin >= DateTime.Today)
+                                        Random r = new Random();
+                                        int rInt = r.Next(1, 200);
+
+
+                                        foreach (LeveeFond item in Singleton.Instance.db.LeveeFonds.OrderByDescending(lv => lv.dateDebut))
                                         {
-                                            Random r = new Random();
-                                            int rInt = r.Next(1, 200);
-                                            string urlImg = "https://picsum.photos/id/" + rInt +"/80?random="+rInt;
+                                            if (item != null && item.Projet.visibilite == "Public" && item.dateDebut <= DateTime.Today && item.dateFin >= DateTime.Today)
+                                            {
+                                                rInt++;
+
+                                                string urlImg = "https://picsum.photos/seed/" + rInt + "/80/";
                                             <hr />
                                             <li class="tohover li-class">
                                                 <img src="@urlImg">
@@ -50,13 +58,14 @@
                                                 <br />
                                                 <div class="form-actions no-color" style="text-align:right;">
                                                     <button onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" type="button" class="btn btn-default" style="background-color:rgb(184, 210, 49)">Faire un Don</button>
-                                                    <button onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" type="button" class="btn btn-default">Voir Projet</button>
+                                                    <button onclick="@("window.location.href='" + @Url.Action("Projet", "Projets", new { id = item.idProjet }) + "'");" type="button" class="btn btn-default">Voir Projet</button>
 
                                                 </div>
                                             </li>
 
+                                                }
+                                            }
                                         }
-                                    }
 
                                 </ul>
                             </div>

@@ -1,6 +1,5 @@
 ﻿body {
     padding-top: 50px;
-    padding-bottom: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -39,11 +38,18 @@ textarea {
 }
 
 .titre {
-    background-color: rgb(184, 210, 49);
-    padding: 5px;
-    border: 3px solid black;
-    text-align: center;
+    text-align:center; 
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-variant: small-caps;
+}
+
+.titre-cool {
+    text-align: center;
+    font-family: 'Comic Sans MS';
+    border-bottom: 2px groove rgb(184, 210, 49);
+    padding-bottom: 30px;
+    padding-top: 10px;
+    color:dimgrey;
 }
 
 .main-add {
@@ -66,8 +72,8 @@ textarea {
     display: none;
 }
 
-.footer-gray {
-    background-color: #EFEFEF;
+.footer-black {
+    background-color: #101010;
     width: 100%;
 }
 
@@ -93,7 +99,7 @@ textarea {
 }
 
 .ftr-hdr {
-    color: #000;
+    color: rgb(184, 210, 49);
     font: 22px/1.4 'BebasNeueRegular', BebasNeue, 'Bebas Neue', Arial, sans-serif;
     margin: 1em 0 0;
 }
@@ -301,6 +307,7 @@ textarea {
 .footer-legal {
     padding: 15px 0 0;
     clear: left;
+    color: rgb(184, 210, 49);
 }
 
 .footer-payment {
@@ -390,4 +397,9 @@ li p {
 
 li.tohover:hover {
     background: #eee;
+}
+
+.main-border {
+    border-left:2px groove rgb(184, 210, 49); 
+    border-right:2px ridge rgb(184, 210, 49);
 }

@@ -49,7 +49,7 @@ namespace ProjetGoEquipe2.Controllers
             return View(cr);
         }
 
-        // GET: CompteRendus/DetailsPublic/5
+        // GET: CompteRendus/Projet/5
         public ActionResult DetailsPublic(int? id)
         {
             CompteRendu cr = Singleton.Instance.db.CompteRendus.Find(id);
