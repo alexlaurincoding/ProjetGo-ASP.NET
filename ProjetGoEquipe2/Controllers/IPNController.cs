@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -29,7 +30,7 @@ namespace ProjetGoEquipe2.Controllers
         private void VerifyTask(HttpRequestBase ipnRequest)
         {
             var verificationResponse = string.Empty;
-
+            
             try
             {
                 var verificationRequest = (HttpWebRequest)WebRequest.Create("https://www.sandbox.paypal.com/cgi-bin/webscr");
@@ -52,6 +53,7 @@ namespace ProjetGoEquipe2.Controllers
                 //Send the request to PayPal and get the response
                 var streamIn = new StreamReader(verificationRequest.GetResponse().GetResponseStream());
                 verificationResponse = streamIn.ReadToEnd();
+                MessageBox.Show(verificationResponse);
                 streamIn.Close();
 
             }
@@ -66,6 +68,7 @@ namespace ProjetGoEquipe2.Controllers
 
         private void LogRequest(HttpRequestBase request)
         {
+
             // Persist the request values into a database or temporary data store
         }
 
@@ -73,6 +76,8 @@ namespace ProjetGoEquipe2.Controllers
         {
             if (verificationResponse.Equals("VERIFIED"))
             {
+                MessageBox.Show(verificationResponse);
+                
                 // check that Payment_status=Completed
                 // check that Txn_id has not been previously processed
                 // check that Receiver_email is your Primary PayPal email
