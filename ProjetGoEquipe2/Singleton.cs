@@ -12,7 +12,6 @@ namespace ProjetGoEquipe2
 
         public ProjetGoDataEntities db = new ProjetGoDataEntities();
 
-
         private Singleton()
         {
         }

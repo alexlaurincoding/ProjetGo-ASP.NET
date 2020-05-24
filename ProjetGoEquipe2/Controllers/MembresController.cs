@@ -265,6 +265,10 @@ namespace ProjetGoEquipe2.Controllers
                     {
                         Session["Connected"] = true;
                         Session["Usager"] = membre.nomUsager;
+                        if (membre.nomUsager == "Admin")
+                        {
+                            return RedirectToAction("Threads", "Utils");
+                        }
                         return RedirectToAction("Index");
                     }
                 }

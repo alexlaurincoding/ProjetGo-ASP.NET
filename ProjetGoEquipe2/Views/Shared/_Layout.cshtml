@@ -41,8 +41,16 @@
                         }
                         @if (Session["Connected"] != null && (bool)Session["Connected"] == true)
                         {
-                            <li>@Html.ActionLink("Page de " + (string)Session["Usager"], "Index", "Membres")</li>
-                            <li>@Html.ActionLink("Déconnexion", "Deconnexion", "Membres")</li>
+                            if ((string)Session["Usager"] == "Admin")
+                            {
+                                <li>@Html.ActionLink("Gérer les Threads", "Threads", "Utils")</li>
+                                <li>@Html.ActionLink("Déconnexion", "Deconnexion", "Membres")</li>
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("Page de " + (string)Session["Usager"], "Index", "Membres")</li>
+                                <li>@Html.ActionLink("Déconnexion", "Deconnexion", "Membres")</li>
+                            }
                         }
 
 

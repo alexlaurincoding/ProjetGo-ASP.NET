@@ -44,10 +44,12 @@
 
                                         @foreach (var item in Singleton.Instance.db.Projets)
                                         {
+                                            if (item.idResponsable == (string)Session["Usager"]){
 
-                                            if (item.idResponsable == (string)Session["Usager"])
-                                            {
+                                                if (item != null && item.statut == "Actif" || item.statut == "Approuve")
+                                                {
                                                 <option value=@item.idProjet>@item.titre</option>
+                                                }
                                             }
                                         }
                                     </select>

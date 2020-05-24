@@ -127,7 +127,15 @@ namespace ProjetGoEquipe2.Controllers
                 projet.idResponsable = (string)Session["Usager"];
                 projet.totalFondsCollectes = 0;
                 success = Int32.TryParse(frequence, out frequnceNum);
-                if (success)    projet.frequenceComptesRendus = frequnceNum;
+                if (success)
+                {
+                    projet.frequenceComptesRendus = frequnceNum;
+                    if (frequnceNum != 0 && projet.statut == "Actif" || projet.statut == "Approuve")
+                    {
+                        int joursAvantProchain = (int)projet.frequenceComptesRendus * 7;
+                        projet.dateProchainCompteRendu = DateTime.Now.AddDays(joursAvantProchain);
+                    }
+                }
                 success = Double.TryParse(budget, out budgetNum);
                 if (success)    projet.budget = budgetNum;
                 Singleton.Instance.db.Projets.Add(projet);
@@ -162,12 +170,14 @@ namespace ProjetGoEquipe2.Controllers
 
         // POST: Projets/Edit/5
         [HttpPost]
-        public ActionResult Modifier(int id, Projet projetModifie, string description, string visibilite)
+        public ActionResult Modifier(int id, Projet projetModifie, string description, string visibilite, string frequence)
         {
+            int frequnceNum;
+            double budgetNum;
+            bool success;
             Projet ancienneVersion = Singleton.Instance.db.Projets.Where(p => p.idProjet == id).FirstOrDefault();
             ancienneVersion.visibilite = visibilite;
             ancienneVersion.budget = projetModifie.budget;
-            ancienneVersion.dateProchainCompteRendu = projetModifie.dateProchainCompteRendu;
             ancienneVersion.debutEstime = projetModifie.debutEstime;
             ancienneVersion.debutReel = projetModifie.debutReel;
             ancienneVersion.descriptionCourte = description;
@@ -180,6 +190,17 @@ namespace ProjetGoEquipe2.Controllers
             ancienneVersion.titre = projetModifie.titre;
             ancienneVersion.totalFondsCollectes = projetModifie.totalFondsCollectes;
             ancienneVersion.totalDepenes = projetModifie.totalDepenes;
+            success = Int32.TryParse(frequence, out frequnceNum);
+            if (success && projetModifie.statut == "Actif" || projetModifie.statut == "Approuve")
+            {
+                ancienneVersion.frequenceComptesRendus = frequnceNum;
+
+                if (ancienneVersion.frequenceComptesRendus != 0 && ancienneVersion.dateProchainCompteRendu == null)
+                {
+                    int joursAvantProchain = frequnceNum * 7;
+                    ancienneVersion.dateProchainCompteRendu = DateTime.Now.AddDays(joursAvantProchain);
+                }
+            }
 
 
             try

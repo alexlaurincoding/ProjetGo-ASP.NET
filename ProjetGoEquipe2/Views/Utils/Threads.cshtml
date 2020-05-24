@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Threads";
+}
+
+<h2 class="center titre">Gestion des Threads</h2>
+<hr />
+
+<br />
+<div>
+    <div>
+        @{
+            if (ViewBag.Actif == true)
+            {
+                <h3>La Vérification automatique des comptes-rendus manquants est présentement <span style="color:green">activée</span></h3>
+                <br>
+                <div style="text-align:center; font-size:large;">
+                    <a href="/Utils/modifierThreadCompteRendus/2">Désactiver la vérification automatique</a>
+                </div>
+            }
+            else
+            {
+                <h3>La Vérification automatique des comptes-rendus manquants est présentement <span style="color:red">désactivée</span></h3>
+                <br>
+                <div style="text-align:center; font-size:large;">
+                    <a href="/Utils/modifierThreadCompteRendus/1">Activer la vérification automatique</a>
+                </div>
+            }
+        }
+        <br /><br />
+
+
+    </div>
+</div>

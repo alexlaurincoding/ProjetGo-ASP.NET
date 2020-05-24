@@ -54,7 +54,7 @@
                             <div class="form-group">
                                 <div class="control-label col-md-3">Statut</div>
                                 <div class="col-md-9">
-                                    <select class="form-control" name="statut" id="statut" onchange="afficherReel();">
+                                    <select class="form-control" name="statut" id="statut" onchange="gererStatut();">
                                         <option value="Propose">Proposé</option>
                                         <option value="Soumis">Soumis</option>
                                         <option value="Approuve">Approuvé</option>
@@ -119,11 +119,11 @@
                             </div>
 
 
-                            <div class="form-group">
+                            <div class="form-group" id="frequence" style="display:none;">
                                 <div class="control-label col-md-3">Fréquence Compte-Rendus (semaines)</div>
                                 <div class="col-md-9">
                                     <select class="form-control" name="frequence">
-                                        <option value="1">aucun</option>
+                                        <option value="0">aucun</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -152,19 +152,29 @@
 </main>
 
 <script>
-    const afficherReel = () => {
+    const gererStatut = () => {
         let debutR = document.getElementById("debutR");
         let debutE = document.getElementById("debutE");
         let finE = document.getElementById("finE");
         let statut = document.getElementById("statut");
+        let frequence = document.getElementById("frequence");
 
         if (statut.value == "Actif") {
             debutR.style.display = "block";
             debutE.style.display = "none";
+            frequence.style.display = "block";
         }
         else {
             debutR.style.display = "none";
             debutE.style.display = "block";
+
+            if (statut.value == "Approuve") {
+                frequence.style.display = "block";
+            }
+            else {
+                frequence.style.display = "none";
+            }
         }
     }
+
 </script>

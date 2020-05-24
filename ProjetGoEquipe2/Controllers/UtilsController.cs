@@ -82,5 +82,62 @@ namespace ProjetGoEquipe2.Controllers
 
             return RedirectToAction(action, controller);
         }
+
+        public ActionResult modifierThreadCompteRendus(int id)
+        {
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false || (string)Session["Usager"] != "Admin" )
+            {
+                return RedirectToAction("Identifier", "Membres");
+            }
+
+            Gestion gestionnaire = Singleton.Instance.db.Gestions.Find("Admin");
+
+            if (id == 1)
+            {   // Lancer le thread
+                gestionnaire.VerifierCompteRendusAbsents = true;
+                try
+                {
+                    Singleton.Instance.db.SaveChanges();
+                    ThreadCompteRendus thr = new ThreadCompteRendus();
+                    ViewBag.Actif = true;
+                }
+                catch (Exception e) { }
+            }
+
+            if (id == 2)
+            {   // terminer le thread
+                gestionnaire.VerifierCompteRendusAbsents = false;
+                try
+                {
+                    Singleton.Instance.db.SaveChanges();
+                    ViewBag.Actif = false;
+
+                }
+                catch (Exception e) { }
+            }
+            return View("Threads");
+        }
+
+        public ActionResult Threads()
+        {
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false || (string)Session["Usager"] != "Admin")
+            {
+                return RedirectToAction("Identifier", "Membres");
+            }
+            Gestion gestion = Singleton.Instance.db.Gestions.Find("Admin");
+            
+            if (gestion.VerifierCompteRendusAbsents == true)
+            {
+                ViewBag.Actif = true;
+            }
+            else
+            {
+                ViewBag.Actif = false;
+            }
+
+            return View();
+        }
+
+
     }
 }

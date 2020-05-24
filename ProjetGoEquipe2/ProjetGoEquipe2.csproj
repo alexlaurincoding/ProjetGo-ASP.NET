@@ -130,6 +130,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Check.cs" />
     <Compile Include="CompteRendu.cs">
       <DependentUpon>ModelSprint2.tt</DependentUpon>
     </Compile>
@@ -148,6 +149,9 @@
       <DependentUpon>ModelSprint2.tt</DependentUpon>
     </Compile>
     <Compile Include="Donateur.cs">
+      <DependentUpon>ModelSprint2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Gestion.cs">
       <DependentUpon>ModelSprint2.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -174,10 +178,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelSprint2.edmx</DependentUpon>
     </Compile>
-    <Compile Include="PaypalConfiguration.cs" />
     <Compile Include="Projet.cs">
       <DependentUpon>ModelSprint2.tt</DependentUpon>
     </Compile>
+    <Compile Include="ThreadCompteRendus.cs" />
+    <Compile Include="PaypalConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Singleton.cs" />
     <Compile Include="Tresorier.cs">
@@ -304,6 +309,7 @@
     <Content Include="Views\LeveeFonds\Effacer.cshtml" />
     <Content Include="Views\LeveeFonds\Index.cshtml" />
     <Content Include="Views\LeveeFonds\Details.cshtml" />
+    <Content Include="Views\Utils\Threads.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

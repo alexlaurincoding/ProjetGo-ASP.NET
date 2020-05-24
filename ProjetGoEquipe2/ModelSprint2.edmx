@@ -51,6 +51,13 @@
           <Property Name="cpDonateur" Type="varchar" MaxLength="8" />
           <Property Name="emailDonateur" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="Gestion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="VerifierCompteRendusAbsents" Type="bit" />
+          <Property Name="id" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="LeveeFonds">
           <Key>
             <PropertyRef Name="IdLeveeFonds" />
@@ -190,6 +197,7 @@
           <EntitySet Name="Cotisation" EntityType="Self.Cotisation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Don" EntityType="Self.Don" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Donateur" EntityType="Self.Donateur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gestion" EntityType="Self.Gestion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LeveeFonds" EntityType="Self.LeveeFonds" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Membre" EntityType="Self.Membre" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projet" EntityType="Self.Projet" Schema="dbo" store:Type="Tables" />
@@ -274,6 +282,13 @@
           <Property Name="cpDonateur" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="emailDonateur" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Dons" Relationship="Self.FK_DonDonateur" FromRole="Donateur" ToRole="Don" />
+        </EntityType>
+        <EntityType Name="Gestion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="VerifierCompteRendusAbsents" Type="Boolean" />
+          <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="LeveeFond">
           <Key>
@@ -421,6 +436,7 @@
           <EntitySet Name="Cotisations" EntityType="Self.Cotisation" />
           <EntitySet Name="Dons" EntityType="Self.Don" />
           <EntitySet Name="Donateurs" EntityType="Self.Donateur" />
+          <EntitySet Name="Gestions" EntityType="Self.Gestion" />
           <EntitySet Name="LeveeFonds" EntityType="Self.LeveeFond" />
           <EntitySet Name="Membres" EntityType="Self.Membre" />
           <EntitySet Name="Projets" EntityType="Self.Projet" />
@@ -503,6 +519,14 @@
                 <ScalarProperty Name="provinceDonateur" ColumnName="provinceDonateur" />
                 <ScalarProperty Name="cpDonateur" ColumnName="cpDonateur" />
                 <ScalarProperty Name="emailDonateur" ColumnName="emailDonateur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gestions">
+            <EntityTypeMapping TypeName="ProjetGoDataModel.Gestion">
+              <MappingFragment StoreEntitySet="Gestion">
+                <ScalarProperty Name="VerifierCompteRendusAbsents" ColumnName="VerifierCompteRendusAbsents" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
