@@ -1604,16 +1604,6 @@ pre code {
 
 
 
-.newsFeed {
-    border: 3px solid rgb(184, 210, 49);
-    text-align: center;
-    padding-right: 15px;
-    padding-left: 15px;
-    width: 500px;
-    height: 315px;
-}
-
-
 @media screen and (max-width:1920px) {
     .col-sm-12 {
         width: 100%;

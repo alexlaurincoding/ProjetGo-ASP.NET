@@ -12,7 +12,7 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body style="background-image:url('/Content/Images/background-grey2.jpg'); background-repeat: no-repeat; background-size:cover;">
+<body>
 
     <main role="main" class="col-sm-12" style="margin-left:-15px;">
 
@@ -21,11 +21,11 @@
                 <div class="col-lg-12">
 
 
-                    <h1 style="text-align:center; font-style:italic; font-family: 'Times New Roman', Arial, Helvetica, sans-serif;">Bienvenue sur le site de ProjetGo</h1>
-                    <br /><hr />
+                    <h1 class="titre-cool">Bienvenue sur le site de ProjetGo</h1>
+                    <br /><br />
                     <!-- Carousel
-                    ================================================== -->
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom:30px; width:auto;">
+                ================================================== -->
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom:30px">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
                             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -33,31 +33,31 @@
                             <li data-target="#myCarousel" data-slide-to="2"></li>
                         </ol>
                         <div class="carousel-inner">
-                            <div class="item active" style="max-height:150px">
+                            <div class="item active">
+                                <img src="~/Content/Images/devenirMembre2.jpg" style="height:320px; width: 800px;" alt="First slide">
 
-                                <img src="~/Content/Images/projetsAVenirAccueil.jpg" alt="First slide">
-                                <div class="container">
-                                    <div class="carousel-caption">
-                                        <h1 style="text-align:left">@Html.ActionLink("Nos Projets À Venir", "AVenir", "Projets")</h1>
-
-                                    </div>
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h2>@Html.ActionLink("Devenez Membres", "Inscription", "Membres")</h2>
+                                    <p>Joignez-vous à notre grande famille de membres et mettez votre touche personnelle à nos projets.</p>
                                 </div>
                             </div>
-                            <div class="item" style="max-height:150px;">
-                                <img src="~/Content/Images/devenirMembre.png" alt="Second slide">
-                                <div class="container">
-                                    <div class="carousel-caption">
-                                        <h1 style="text-align:left">@Html.ActionLink("Devenez Membres", "Inscription", "Membres")</h1>
-                                    </div>
+
+                            <div class="item">
+
+                                <img src="~/Content/Images/projectstocome.jpg" style="height:320px; width: 800px;" alt="Second slide">
+
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h2>@Html.ActionLink("Nos Projets À Venir", "AVenir", "Projets")</h2>
+                                    <p>Nos membres travaillent jour et nuit pour développer de nouveaux projets. Voyez tous nos projets approuvés, qui devraient débuter sous peu.</p>
                                 </div>
                             </div>
-                            <div class="item" style="max-height:150px;">
-                                <img src="~/Content/Images/faireundon.jpg" alt="Third slide">
-                                <div class="container">
-                                    <div class="carousel-caption">
-                                        <h1 style="text-align:left">@Html.ActionLink("Faites un Don", "Index", "Dons")</h1>
 
-                                    </div>
+                            <div class="item">
+                                <img src="~/Content/Images/faireundon.jpg" style="height:320px; width: 800px;" alt="Third slide">
+
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h2>@Html.ActionLink("Faites un Don", "Index", "LeveeFonds")</h2>
+                                    <p>Sans votre soutien, nous ne serions rien. En ces temps difficiles où la planète entière est confinée, nous avons plus que jamais besoin de votre aide.</p>
                                 </div>
                             </div>
                         </div>
@@ -65,54 +65,188 @@
                 </div>
             </div>
         </div>
-
-        <br <hr />
         <br />
+
+
+
+        <div class="row">
+            <br /><br />
+            <div class="col-sm-4">
+                <div class="content-section main-add" id="right-left" padding-left:15px;">
+                    <h4 style="text-align:center">Un Mot de notre Président</h4>
+                    <img class="center-image" src="~/Content/Images/notre-president.jpg" width="200px" alt="Notre President" />
+                    <br /><p style="font-style:italic; ">Chers amis,<br /><br />En ces temps difficiles, nous avons plus que jamais besoin de votre aide. Malgré les politiques de confinement, ProjetGo continue de venir en aide à des milliers de personnes et d'organismes dans le besoin. Soyez assurés que vos dons généreux seront ENTIÈREMENT consacrés à la réalisation de nos projets - sauf une infime portion allant à mes honoraires personnels. <br /><br />Merci d'être solidaires et de continuer à donner généreusement.<br /><br />Bernard St-Hubert<br />Président à vie de ProjetGo</p>
+                    <img src="~/Content/Images/sceau-royal.png" />
+
+                </div>
+
+            </div>
+
+            <!-- Projets a l'honneur-->
+
+            <div class="col-sm-8 main-border">
+                <div class="content-section main-section-top main-add">
+
+                    <div class="content-section" id="sectionPrincipaleMembre">
+
+                        <h2 style="text-align:center; font-family:'Comic Sans MS'">
+                            Nos Projets à l'Honneur
+                        </h2>
+                        <br />
+
+                        <div>
+                            <ul class="ul-class">
+                                @{
+
+                                    Random r = new Random();
+                                    int rInt = r.Next(1, 200);
+                                    int compteur = 0;
+
+                                    foreach (Projet item in Singleton.Instance.db.Projets.OrderByDescending(pr => pr.debutReel))
+                                    {
+                                        if (compteur == 3)
+                                        {
+                                            break;
+                                        }
+
+                                        if (item != null && item.visibilite == "Public" && item.statut == "Actif")
+                                        {
+                                            rInt++;
+                                            compteur++;
+
+                                            string urlImg = "https://picsum.photos/seed/" + rInt + "/80/";
+                                            <hr />
+                                            <li class="tohover li-class">
+                                                <img src="@urlImg">
+                                                <h3 class="h3-class">@item.titre</h3>
+
+                                                <p>@item.descriptionCourte</p>
+                                                <br />
+                                                <div class="form-actions no-color" style="text-align:right;">
+                                                    <button onclick="@("window.location.href='" + @Url.Action("Projet", "Projets", new { id = item.idProjet }) + "'");" type="button" class="btn btn-default" style="background-color:rgb(184, 210, 49)">Voir Projet</button>
+
+                                                </div>
+                                            </li>
+
+                                        }
+                                    }
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br /><br /><br /><img class="center-block" src="~/Content/Images/curveyline.gif" alt="Transition" /><br /><br /><br />
+
 
         <div class="container-fluid">
             <div class="row">
-                <div id="left-col" class="col-md-6">
 
-                    <iframe width="400" height="315" src="https://www.youtube.com/embed/099_WKUBh6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="col-sm-7">
+                    <div class="content-section main-section-top main-add">
+
+                        <div class="content-section" id="sectionPrincipaleMembre">
+                            <h3 class="titre" style="border-bottom: 2px groove rgb(184, 210, 49); padding-bottom:20px;">
+                                Qui sommes-nous?
+                            </h3>
+                            <br /><br />
+
+                            <iframe class="center-block" width="480" height="315" src="https://www.youtube.com/embed/099_WKUBh6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <br /><br /><br />
+                        <div style="border-top:2px groove rgb(184, 210, 49); padding-top: 30px;"></div>
+                        <br />
+
+                        <li class="tohover li-class">
+                            <img src="~/Content/Images/history-clock.jpeg" alt="Notre histoire" width="100" height="100">
+                            <h3 class="h3-class">Découvrez notre histoire</h3>
+
+                            <p>Apprenez-en plus sur notre compagnie, notamment sur notre histoire, notre CA actuel, etc.</p>
+                            <br />
+                            <div class="form-actions no-color" style="text-align:right;">
+                                <button onclick="@("window.location.href='" + @Url.Action("Nous", "Home") + "'");" type="button" class="btn btn-default" style="background-color:rgb(184, 210, 49)">Voir page</button>
+                            </div>
+                        </li>
+                    </div>
                 </div>
 
-                <div id="right-col" class="col-md-6">
+                <div id="right-col" class="col-md-5 main-add">
+                    <h3 class="titre" style="border-bottom: 2px groove rgb(184, 210, 49); padding-bottom:20px;">
+                        Quoi de 9?
+                    </h3>
+                    <br /><br />
 
-                    <marquee direction="down" class="newsFeed" style="background-color:cornsilk;">
+                    <marquee direction="down" class="newsFeed">
+                        @{
+                            for (int i = 0; i < 1000; i++)
+                            {
 
+                                <li class="blackItem">
+                                    <br />
+                                    <h4 class="text-center" style="margin:0 15px 15px 15px;">Bernard St-Hubert réélu pour un mandat à vie!!</h4>
+                                    <h6 style="text-align:center;">18/05/2020 </h6>
 
-                        <h3 class="titre center">Quoi de Neuf ?</h3>
-                        <br /> <br />
-                        <p><a href="~/Projets/Projets/Actifs">Projet en cours : Liste des projets actifs</a></p>
-                        <br /><br />
-                        <p><b>Bernard St-Hubert: notre Président réélu pour un mandat à vie!!</b></p>
-                        <br /><br />
-                        <p><b>Les opposants au règne de Bernard St-Hubert manquent toujours à l'apppel. Si vous avez des informations concernant leur mystérieuse disparation, contactez le 911.</b></p>
-                        <br /><br />
-                        <p><b>Qui dit ProjetGo dit: Projet et Go.</b></p>
-                        <br /><br />
-                        <p><b>La pandémie va tous nous avoir!!!!</b></p>
-                        <br /><br />
-                        <p><b>Nous acceptons de nouveau les demandes de projets</b></p>
-                        <br /><br />
-                        <p><b>Reprise des activités de projetGo suite à la pandémie</b></p>
-                        <br /><br />
-                        <p><b>Arrêt temporaire des activités de projetGo dû à la pandémie</b></p>
-                        <br /><br />
-                        <h3 class="titre center">Quoi de Neuf ?</h3>
-                        <br /> <br />
+                                    <p style="margin:0 15px 0 15px;">Les opposants au règne de Bernard St-Hubert manquent toujours à l'apppel. Si vous avez des informations concernant leur mystérieuse disparation, contactez le 911.</p>
+                                    <br /> <br />
+                                </li>
+
+                                <li class="yellowItem">
+                                    <br />
+                                    <h4 class="text-center" style="margin:0 15px 15px 15px;">Qui dit ProjetGo dit: Projet et Go!</h4>
+                                    <h6 style="text-align:center;">10/05/2020 </h6>
+
+                                    <p style="margin:0 15px 0 15px;">C'est aussi simple que cela...</p>
+                                    <br /> <br />
+                                </li>
+
+                                <li class="blackItem">
+                                    <br />
+                                    <h4 class="text-center" style="margin:0 15px 15px 15px;">Reprise des activités de projetGo suite à la pandémie</h4>
+                                    <h6 style="text-align:center;">27/04/2020 </h6>
+
+                                    <p style="margin:0 15px 0 15px;">Excusez notre message précédent. Notre webmaster avait un peu trop bu. Ensemble, nous vaincrons!</p>
+                                    <br /> <br />
+                                </li>
+                                <li class="yellowItem">
+                                    <br />
+                                    <h4 class="text-center" style="margin:0 15px 15px 15px;">Arrêt temporaire des activités de projetGo dû à la pandémie</h4>
+                                    <h6 style="text-align:center;">03/04/2020 </h6>
+
+                                    <p style="margin:0 15px 0 15px;">LA COVID VA TOUS NOUS AVOIR! SAUVEZ-VOUS PENDANT QU'IL EST ENCORE TEMPS!!!</p>
+                                    <br /> <br />
+                                </li>
+                                <li class="blackItem">
+                                    <br />
+                                    <h4 class="text-center" style="margin:0 15px 15px 15px;">ProjetGo remporte le prix "I can't believe it's not butter!"</h4>
+                                    <h6 style="text-align:center;">19/02/2020 </h6>
+                                    <p style="margin:0 15px 0 15px;">On ne nous a pas clairement expliqué en quoi consistait ce prix, ni pourquoi il nous était accordé... mais nous l'acceptons avec joie!</p>
+                                    <br /> <br />
+                                </li>
+                                <li class="yellowItem">
+                                    <br />
+                                    <h4 class="text-center" style="margin:0 15px 15px 15px;">Le Projet de l'Année!</h4>
+                                    <h6 style="text-align:center;">30/12/2019 </h6>
+                                    <p style="margin:0 15px 0 15px;">Comme le veut la tradition, nous décernons en cette fin d'année un prix au projet le plus inspirant de ProjetGo. Le gagnang cette année: le ramassage de roches à Chibougamau! Bravo!</p>
+                                    <br /> <br />
+                                </li>
+                            }
+                        }
                     </marquee>
                 </div>
             </div>
         </div>
         <br /> <hr />
-        <br />
+        <!-- Projets a l'honneur-->
+
         <div class="container-fluid">
             <div class="row">
-                <h2 style="text-align:center; font-style:italic; font-family: 'Times New Roman', Arial, Helvetica, sans-serif;">Nos Projets à l'Honneur</h2>
+                <h2 style="text-align:center; font-style:italic; font-family: 'Times New Roman', Arial, Helvetica, sans-serif;">Des Projets qui Font la Différence</h2>
                 <br />
 
-                <div class="col-md-4">
+                <div class="col-sm-4">
                     <a href="~/Projets/DetailsPublic/8">
                         <img src="~/Content/Images/soupe-sans-abris.jpg" alt="Soupe sans abri" width="100%" height="200px" />
                         <div>
@@ -121,7 +255,7 @@
                     </a>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-sm-4">
                     <a href="~/Projets/DetailsPublic/9">
                         <img src="~/Content/Images/roches2.jpg" alt="Roches à Chibougamau" width="100%" height="200px" />
                         <div>
@@ -129,7 +263,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-md-4">
+                <div class="col-sm-4">
                     <a href="~/Projets/DetailsPublic/10">
                         <img src="~/Content/Images/petanque.jpg" alt="Pétanque Limoilou" width="100%" height="200px" />
                         <div>

@@ -204,10 +204,13 @@
     <Content Include="Content\Images\cle-success.png" />
     <Content Include="Content\Images\compte-rendu300.jpg" />
     <Content Include="Content\Images\current_projects.jpg" />
+    <Content Include="Content\Images\curveyline.gif" />
     <Content Include="Content\Images\desroches.png" />
     <Content Include="Content\Images\devenirMembre.png" />
+    <Content Include="Content\Images\devenirMembre2.jpg" />
     <Content Include="Content\Images\faireundon.jpg" />
     <Content Include="Content\Images\grey-background-for-site-41148330.jpg" />
+    <Content Include="Content\Images\history-clock.jpeg" />
     <Content Include="Content\Images\internet-connection-abstract-sense-science-260nw-554257006.jpg" />
     <Content Include="Content\Images\key2.jpg" />
     <Content Include="Content\Images\Logo.jpg" />
@@ -217,6 +220,7 @@
     <Content Include="Content\Images\penseeJour.jpg" />
     <Content Include="Content\Images\petanque.jpg" />
     <Content Include="Content\Images\project-completion.jpg" />
+    <Content Include="Content\Images\projectstocome.jpg" />
     <Content Include="Content\Images\project_approved.jpg" />
     <Content Include="Content\Images\projet9.png" />
     <Content Include="Content\Images\projetsAVenirAccueil.jpg" />
@@ -226,7 +230,6 @@
     <Content Include="Content\Images\sceau-royal.png" />
     <Content Include="Content\Images\soupe-sans-abris.jpg" />
     <Content Include="Content\Images\top-secret.png" />
-    <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
