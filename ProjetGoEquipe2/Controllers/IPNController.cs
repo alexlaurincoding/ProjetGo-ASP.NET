@@ -135,9 +135,10 @@ namespace ProjetGoEquipe2.Controllers
                     Singleton.Instance.db.Dons.Add(don);
                     Singleton.Instance.db.SaveChanges();
 
-                    //Updater le montant obtenu dans la Levee de Fonds
+                    //Updater le montant obtenu dans la Levee de Fonds et le Projet
                     LeveeFond levee = Singleton.Instance.db.LeveeFonds.Find(idLevee);
                     levee.montantObtenu += montantDouble;
+                    levee.Projet.totalFondsCollectes += montantDouble;
                     try
                     {
                         Singleton.Instance.db.SaveChanges();
