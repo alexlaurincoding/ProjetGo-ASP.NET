@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -77,13 +79,62 @@ namespace ProjetGoEquipe2.Controllers
             if (verificationResponse.Equals("VERIFIED"))
             {
                 MessageBox.Show(verificationResponse);
+
+                List<Donateur> donateur = new List<Donateur>();
+
+                string nomDonateur = Request.Form["last_name"];
+                string prenomDonateur = Request.Form["first_name"];
+                string adresseDonateur = Request.Form["address_street"];
+                string villeDonateur = Request.Form["address_city"];
+                string provinceDonateur = Request.Form["address_state"];
+                string codePostal = Request.Form["adress_zip"];
+                string payerEmail = Request.Form["payer_email"];
+
+                foreach(Donateur d in Singleton.Instance.db.Donateurs)
+                {
+                    if (d.emailDonateur == payerEmail)
+                    {
+                        donateur.Add(d);
+                    }
+                }
+
+                if (donateur.Count == 0)
+                {
+                   Donateur donateur1 = new Donateur();
+                    donateur1.nomDonateur = nomDonateur;
+                    donateur1.prenomDonateur = prenomDonateur;
+                    donateur1.adresseDonateur = adresseDonateur;
+                    donateur1.villeDonateur = villeDonateur;
+                    donateur1.provinceDonateur = provinceDonateur;
+                    donateur1.cpDonateur = codePostal;
+                    donateur1.emailDonateur = payerEmail;
+                    try
+                    {
+
+                    }
+                    catch
+                    {
+
+                    }
+                }
+
+                string transactionId = Request.Form["txn_id"];
+                string dateDon = Request.Form["payment_date"];
+                string amount = Request.Form["mc_gross"];
+                //string idDonateur
+                //string idLeveeDeFond
+
+                //string paymentStatus = Request.Form["payment_status"];
+                //string receiverEmail = Request.Form["receiver_email"];
+                
+               
                 
                 // check that Payment_status=Completed
                 // check that Txn_id has not been previously processed
                 // check that Receiver_email is your Primary PayPal email
                 // check that Payment_amount/Payment_currency are correct
                 // process payment
-                MessageBox.Show("payment recu sti");
+               
                 
             }
             else if (verificationResponse.Equals("INVALID"))
