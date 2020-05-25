@@ -9,13 +9,33 @@ namespace ProjetGoEquipe2.Controllers
     public class DonsController : Controller
     {
         // GET: Dons
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            LeveeFond levee = Singleton.Instance.db.LeveeFonds.Find(id);
+            if (levee != null)
+            {
+                Session["LeveeDon"] = id;
+                return View();
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Dons/Details/5
         public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        public ActionResult DonCompleter()
+        {
+            return View();
+        }
+
+        public ActionResult DonAnnuler()
         {
             return View();
         }
