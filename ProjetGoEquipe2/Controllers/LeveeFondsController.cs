@@ -175,5 +175,18 @@ namespace ProjetGoEquipe2.Controllers
                 return View();
             }
         }
+
+        // GET: LeveeFonds/Dons/5
+        public ActionResult Dons(int? id)
+        {
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+            {
+                return RedirectToAction("Identifier", "Membres");
+            }
+
+            LeveeFond lev = Singleton.Instance.db.LeveeFonds.Find(id);
+
+            return View(lev);
+        }
     }
 }

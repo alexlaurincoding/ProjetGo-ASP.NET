@@ -59,6 +59,10 @@
                             <th>
                                 Montant Obtenu
                             </th>
+                            <th>
+                                Donateurs et Dons
+                            </th>
+
 
                         </tr>
 
@@ -131,6 +135,7 @@
                                             @Html.DisplayFor(modelItem => item.montantObtenu)$
                                         </td>
                                     }
+                                    <td>@Html.ActionLink("Voir Infos", "Dons", new { id = item.IdLeveeFonds })</td>
 
 
                                 </tr>

@@ -1,0 +1,114 @@
+﻿@model ProjetGoEquipe2.LeveeFond
+
+@{
+    List<Don> dons = Singleton.Instance.db.Dons.Where(d => d.idLeveeFonds == Model.IdLeveeFonds).ToList();
+}
+
+@{
+    ViewBag.Title = "MesProjets";
+}
+
+<br />
+<h2>Page de @Session["Usager"]</h2>
+<hr />
+<br />
+
+
+
+<!-- Partie principale de la page -->
+<main role="main" class="container-fluid">
+    <div class="row">
+        @{
+
+            Html.RenderAction("Menus", "Design", new { Categorie = "M", Emphase = "LP" });
+        }
+        <div class="col-sm-9">
+            <div class="content-section main-section-top main-add">
+
+                <div class="content-section" id="sectionPrincipaleMembre">
+
+                    <h4 class="titre">
+                        Dons et Donateurs <br />pour la Levée de Fonds du @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateDebut)) au @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dateFin)) <br /> pour "@Html.DisplayFor(model => model.Projet.titre)"
+
+                    </h4>
+
+                    <br />
+                    <div style="text-align:center;">
+                        @Html.ActionLink("Revenir à la liste de mes Levées de Fonds", "MesLevees", "LeveeFonds")
+                        <br />
+                        @Html.ActionLink("Revenir aux détails de ce Projet", "Details", "Projets", new { id = Model.Projet.idProjet }, null)
+                    </div>
+
+                    <br />
+
+
+                    <table class="table">
+                        <tr>
+                            <th></th>
+                            <th>
+                                Date du Don
+                            </th>
+                            <th>
+                                Donateur
+                            </th>
+
+                            <th>
+                                Courriel
+                            </th>
+
+                            <th>
+                                Montant
+                            </th>
+                        </tr>
+                        <tr>
+
+                            @foreach (Don don in dons)
+                            {
+                                if (don.dateDon == null)
+                                {
+                                    <td>---</td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", don.dateDon))
+                                    </td>
+                                }
+
+                                if (don.Donateur.prenomDonateur == null || don.Donateur.nomDonateur == null)
+                                {
+                                    <td>---</td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        @don.Donateur.prenomDonateur @don.Donateur.nomDonateur
+                                    </td>
+                                }
+
+                                if (don.Donateur.emailDonateur == null)
+                                {
+                                    <td>---</td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        @don.Donateur.emailDonateur
+                                    </td>
+                                }
+
+                                <td>
+                                    @don.montantDon$
+                                </td>
+                            }
+
+                        </tr>
+
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

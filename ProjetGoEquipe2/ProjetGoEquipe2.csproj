@@ -279,7 +279,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Projets\Actifs.cshtml" />
-    <Content Include="Views\Dons\Index.cshtml" />
     <Content Include="Views\Membres\Index.cshtml" />
     <Content Include="Views\Membres\Inscription.cshtml" />
     <Content Include="Views\Membres\Identifier.cshtml" />
@@ -313,6 +312,7 @@
     <Content Include="Views\LeveeFonds\Index.cshtml" />
     <Content Include="Views\LeveeFonds\Details.cshtml" />
     <Content Include="Views\Utils\Threads.cshtml" />
+    <Content Include="Views\LeveeFonds\Dons.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
