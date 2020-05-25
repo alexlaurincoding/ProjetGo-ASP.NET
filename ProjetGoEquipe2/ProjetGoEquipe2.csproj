@@ -323,6 +323,7 @@
     <Content Include="Views\LeveeFonds\Dons.cshtml" />
     <Content Include="Views\Dons\DonCompleter.cshtml" />
     <Content Include="Views\Dons\DonAnnuler.cshtml" />
+    <Content Include="Views\Dons\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,10 +4,10 @@
     int? id = (int?)Session["LeveeDon"];
 
     LeveeFond levee = Singleton.Instance.db.LeveeFonds.Find(id);
-    string idDon =  id.ToString();
+    string idDon = id.ToString();
     string titreProjet = levee.Projet.titre;
-    
-    }
+
+}
 
 <h2>Faire un Don pour le Projet "@titreProjet"</h2>
 
