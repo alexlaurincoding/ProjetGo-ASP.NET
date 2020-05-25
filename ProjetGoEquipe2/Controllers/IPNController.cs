@@ -100,7 +100,7 @@ namespace ProjetGoEquipe2.Controllers
                     donateur.adresseDonateur = Request.Form["address_street"];
                     donateur.villeDonateur = Request.Form["address_city"];
                     donateur.provinceDonateur = Request.Form["address_state"];
-                    donateur.cpDonateur = Request.Form["adress_zip"];
+                    donateur.cpDonateur = Request.Form["address_zip"];
                     donateur.emailDonateur = Request.Form["payer_email"];
 
                     try
@@ -113,9 +113,12 @@ namespace ProjetGoEquipe2.Controllers
                         Console.WriteLine(e.Message);
                     }
                 }
-
+                string id = Request.Form["item_name"];
+              
                 //Ajouter le Don a partir du Donateur.
-                int? idLevee = (int?)Session["LeveeDon"];
+               
+                MessageBox.Show(id);
+                int idLevee = Int32.Parse(id);
                 string idTransactionId = Request.Form["txn_id"];
                 string montant = Request.Form["mc_gross"];
                 double montantDouble = Double.Parse(montant);

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\girou\Desktop\RosemontExtra\ProjetFinal\ProjetGoEquipe2\ModelSprint2.edmx'. 
+﻿// T4 code generation is enabled for model 'G:\Etape5\ASP.NET_MVC\Repos\ProjetGoEquipe2\ProjetGoEquipe2\ModelSprint2.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
