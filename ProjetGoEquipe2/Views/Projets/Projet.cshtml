@@ -64,9 +64,13 @@
 
                         <img src="~/Content/Images/apropos-projet.png" alt="A props du projet" width="250" style="margin-left: 50px; margin-top: 50px;" />
 
+                        string dates = "";
+                        string debut = Model.debutReel == null ? @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.debutEstime)) : @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.debutReel));
+                        string fin = Model.finReelle == null ? @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.finEstimee)) : @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.finReelle));
 
-                        string dates = Model.statut == "Actif" ? " a été lancé par ProjetGo le " + @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.debutReel)) + " et doit se poursuivre jusqu'au " + @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.finReelle)) + "." : Model.statut == "Termine" ? " a été lancé le par ProjetGo le " + @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.debutReel)) + " et s'est conclus le " + @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.finReelle)) + "." : " devrait débuter le " + @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.debutEstime)) + " et pourrait s'étendre jusqu'au " + @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.finEstimee)) + "."; ;
-                        string intro = "Le projet '" + @Model.titre + "', supervisé par " + Model.Membre.prenom + " " + Model.Membre.nom + ", " + dates;
+
+                        dates = Model.statut == "Actif" ? " a été lancé par ProjetGo le " + debut + " et doit se poursuivre jusqu'au " + fin + "." : Model.statut == "Termine" ? " a été lancé le par ProjetGo le " + debut + " et s'est conclu le " + fin + "." : " devrait débuter le " + debut + " et pourrait s'étendre jusqu'au " + fin + ".";
+                        string intro = "Le projet '" + Model.titre + "', supervisé par " + Model.Membre.prenom + " " + Model.Membre.nom + ", " + dates;
 
 
                         <h4 style="margin:30px; line-height:40px;">&nbsp;&nbsp;&nbsp;@intro</h4>

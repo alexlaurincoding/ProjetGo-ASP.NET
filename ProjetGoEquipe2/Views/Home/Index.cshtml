@@ -90,7 +90,7 @@
                     <div class="content-section" id="sectionPrincipaleMembre">
 
                         <h2 style="text-align:center; font-family:'Comic Sans MS'">
-                            Nos Projets à l'Honneur
+                            Des Projets qui ont Besoin de Votre Aide
                         </h2>
                         <br />
 
@@ -102,29 +102,29 @@
                                     int rInt = r.Next(1, 200);
                                     int compteur = 0;
 
-                                    foreach (Projet item in Singleton.Instance.db.Projets.OrderByDescending(pr => pr.debutReel))
+                                    foreach (LeveeFond item in Singleton.Instance.db.LeveeFonds.OrderByDescending(lv => lv.dateDebut))
                                     {
-                                        if (compteur == 3)
+                                        if (item != null && item.Projet.visibilite == "Public" && item.dateDebut <= DateTime.Today && item.dateFin >= DateTime.Today)
                                         {
-                                            break;
-                                        }
+                                            if (compteur == 3)
+                                            {
+                                                break;
+                                            }
 
-                                        if (item != null && item.visibilite == "Public" && item.statut == "Actif")
-                                        {
-                                            rInt++;
-                                            compteur++;
+                                                rInt++;
+                                                compteur++;
 
-                                            string urlImg = "https://picsum.photos/seed/" + rInt + "/80/";
+                                                string urlImg = "https://picsum.photos/seed/" + rInt + "/80/";
                                             <hr />
                                             <li class="tohover li-class">
                                                 <img src="@urlImg">
-                                                <h3 class="h3-class">@item.titre</h3>
+                                                <h3 class="h3-class">@item.Projet.titre</h3>
 
-                                                <p>@item.descriptionCourte</p>
+                                                <p>@item.message</p>
                                                 <br />
                                                 <div class="form-actions no-color" style="text-align:right;">
-                                                    <button onclick="@("window.location.href='" + @Url.Action("Projet", "Projets", new { id = item.idProjet }) + "'");" type="button" class="btn btn-default" style="background-color:rgb(184, 210, 49)">Voir Projet</button>
-
+                                                    <button onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" type="button" class="btn btn-default" style="background-color:rgb(184, 210, 49)">Faire un Don</button>
+                                                    <button onclick="@("window.location.href='" + @Url.Action("Projet", "Projets", new { id = item.idProjet }) + "'");" type="button" class="btn btn-default">Voir Projet</button>
                                                 </div>
                                             </li>
 
