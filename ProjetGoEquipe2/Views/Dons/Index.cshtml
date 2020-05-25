@@ -1,14 +1,18 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-}
+    int? id = (int?)Session["LeveeDon"];
 
-<h2>Page des Dons</h2>
+    LeveeFond levee = Singleton.Instance.db.LeveeFonds.Find(id);
+
+    }
+
+<h2>Faire un Don pour le Projet "@levee.Projet.titre"</h2>
 
 
 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
     <input type="hidden" name="cmd" value="_s-xclick" />
     <input type="hidden" name="hosted_button_id" value="BDM43NVESVC9A" />
-    <input type="image" src="https://www.paypalobjects.com/fr_CA/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Bouton Faire un don avec PayPal" />
+    <input type="image" src="https://www.paypalobjects.com/fr_CA/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="Fair un don avec PayPal" alt="Bouton Faire un don avec PayPal" />
     <img alt="" border="0" src="https://www.sandbox.paypal.com/fr_CA/i/scr/pixel.gif" width="1" height="1" />
 </form>

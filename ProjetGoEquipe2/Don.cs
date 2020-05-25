@@ -16,9 +16,10 @@ namespace ProjetGoEquipe2
     {
         public int IdDon { get; set; }
         public System.DateTime dateDon { get; set; }
-        public int montantDon { get; set; }
+        public double montantDon { get; set; }
         public Nullable<int> idDonateur { get; set; }
         public Nullable<int> idLeveeFonds { get; set; }
+        public string numTransaction { get; set; }
     
         public virtual Donateur Donateur { get; set; }
         public virtual LeveeFond LeveeFond { get; set; }

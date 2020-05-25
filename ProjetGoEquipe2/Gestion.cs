@@ -12,10 +12,9 @@ namespace ProjetGoEquipe2
     using System;
     using System.Collections.Generic;
     
-    public partial class Tresorier
+    public partial class Gestion
     {
-        public string nomUsager { get; set; }
-        public string motPasse { get; set; }
-        public string email { get; set; }
+        public Nullable<bool> VerifierCompteRendusAbsents { get; set; }
+        public string id { get; set; }
     }
 }

@@ -161,6 +161,9 @@
     <Compile Include="Donateur.cs">
       <DependentUpon>ModelSprint2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Gestion.cs">
+      <DependentUpon>ModelSprint2.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -191,9 +194,6 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Singleton.cs" />
-    <Compile Include="Tresorier.cs">
-      <DependentUpon>ModelSprint2.tt</DependentUpon>
-    </Compile>
     <Compile Include="Views\CompteRenduController.cs" />
   </ItemGroup>
   <ItemGroup>

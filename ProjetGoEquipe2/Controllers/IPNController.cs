@@ -80,61 +80,74 @@ namespace ProjetGoEquipe2.Controllers
             {
                 MessageBox.Show(verificationResponse);
 
-                List<Donateur> donateur = new List<Donateur>();
-
-                string nomDonateur = Request.Form["last_name"];
-                string prenomDonateur = Request.Form["first_name"];
-                string adresseDonateur = Request.Form["address_street"];
-                string villeDonateur = Request.Form["address_city"];
-                string provinceDonateur = Request.Form["address_state"];
-                string codePostal = Request.Form["adress_zip"];
-                string payerEmail = Request.Form["payer_email"];
-
+                //Verifier si ce donateur est deja dans notre BD
+                bool donateurExistant = false;
+                Donateur donateur = new Donateur();
                 foreach(Donateur d in Singleton.Instance.db.Donateurs)
                 {
-                    if (d.emailDonateur == payerEmail)
+                    //Si donateur trouvé, le récupérer
+                    if (d.emailDonateur == Request.Form["payer_email"])
                     {
-                        donateur.Add(d);
+                        donateur = d;
+                        break;
                     }
                 }
-
-                if (donateur.Count == 0)
+                //Si donateur pas trouvé, l'ajotuer à la BD
+                if (donateurExistant == false)
                 {
-                   Donateur donateur1 = new Donateur();
-                    donateur1.nomDonateur = nomDonateur;
-                    donateur1.prenomDonateur = prenomDonateur;
-                    donateur1.adresseDonateur = adresseDonateur;
-                    donateur1.villeDonateur = villeDonateur;
-                    donateur1.provinceDonateur = provinceDonateur;
-                    donateur1.cpDonateur = codePostal;
-                    donateur1.emailDonateur = payerEmail;
+                    donateur.nomDonateur = Request.Form["last_name"];
+                    donateur.prenomDonateur = Request.Form["first_name"];
+                    donateur.adresseDonateur = Request.Form["address_street"];
+                    donateur.villeDonateur = Request.Form["address_city"];
+                    donateur.provinceDonateur = Request.Form["address_state"];
+                    donateur.cpDonateur = Request.Form["adress_zip"];
+                    donateur.emailDonateur = Request.Form["payer_email"];
+
                     try
                     {
-
+                        Singleton.Instance.db.Donateurs.Add(donateur);
+                        Singleton.Instance.db.SaveChanges();
                     }
-                    catch
+                    catch (Exception e)
                     {
-
+                        Console.WriteLine(e.Message);
                     }
                 }
 
-                string transactionId = Request.Form["txn_id"];
-                string dateDon = Request.Form["payment_date"];
-                string amount = Request.Form["mc_gross"];
-                //string idDonateur
-                //string idLeveeDeFond
+                //Ajouter le Don a partir du Donateur.
+                int? idLevee = (int?)Session["LeveeDon"];
+                string idTransactionId = Request.Form["txn_id"];
+                string montant = Request.Form["mc_gross"];
+                double montantDouble = Double.Parse(montant);
 
-                //string paymentStatus = Request.Form["payment_status"];
-                //string receiverEmail = Request.Form["receiver_email"];
-                
-               
-                
-                // check that Payment_status=Completed
-                // check that Txn_id has not been previously processed
-                // check that Receiver_email is your Primary PayPal email
-                // check that Payment_amount/Payment_currency are correct
-                // process payment
-               
+                Don don = new Don();
+                don.dateDon = DateTime.Today;
+                don.montantDon = montantDouble;
+                don.idDonateur = donateur.idDonateur;
+                don.idLeveeFonds = idLevee;
+                don.numTransaction = idTransactionId;
+
+                try
+                {
+                    Singleton.Instance.db.Dons.Add(don);
+                    Singleton.Instance.db.SaveChanges();
+
+                    //Updater le montant obtenu dans la Levee de Fonds
+                    LeveeFond levee = Singleton.Instance.db.LeveeFonds.Find(idLevee);
+                    levee.montantObtenu += montantDouble;
+                    try
+                    {
+                        Singleton.Instance.db.SaveChanges();
+                    }
+                    catch(Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
                 
             }
             else if (verificationResponse.Equals("INVALID"))
