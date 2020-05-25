@@ -33,6 +33,5 @@ namespace ProjetGoEquipe2
         public virtual DbSet<LeveeFond> LeveeFonds { get; set; }
         public virtual DbSet<Membre> Membres { get; set; }
         public virtual DbSet<Projet> Projets { get; set; }
-        public virtual DbSet<Tresorier> Tresoriers { get; set; }
     }
 }

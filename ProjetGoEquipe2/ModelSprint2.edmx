@@ -112,16 +112,10 @@
           <Property Name="idResponsable" Type="varchar" MaxLength="50" />
           <Property Name="visibilite" Type="varchar" MaxLength="10" />
         </EntityType>
-        <EntityType Name="Tresorier">
-          <Key>
-            <PropertyRef Name="nomUsager" />
-          </Key>
-          <Property Name="nomUsager" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="motPasse" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_CotisationMembre">
-          <End Role="Membre" Type="Self.Membre" Multiplicity="1" />
+        <Association Name="FK_CotisationMembre_Cascade">
+          <End Role="Membre" Type="Self.Membre" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Cotisation" Type="Self.Cotisation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Membre">
@@ -132,8 +126,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DonDonateur">
-          <End Role="Donateur" Type="Self.Donateur" Multiplicity="0..1" />
+        <Association Name="FK_DonDonateur_Cascade">
+          <End Role="Donateur" Type="Self.Donateur" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Don" Type="Self.Don" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Donateur">
@@ -144,8 +140,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DonLeveeFonds">
-          <End Role="LeveeFonds" Type="Self.LeveeFonds" Multiplicity="0..1" />
+        <Association Name="FK_DonLeveeFonds_Cascade">
+          <End Role="LeveeFonds" Type="Self.LeveeFonds" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Don" Type="Self.Don" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LeveeFonds">
@@ -170,8 +168,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProjetLeveeFonds">
-          <End Role="Projet" Type="Self.Projet" Multiplicity="0..1" />
+        <Association Name="FK_ProjetLeveeFonds_Cascade">
+          <End Role="Projet" Type="Self.Projet" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="LeveeFonds" Type="Self.LeveeFonds" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Projet">
@@ -182,8 +182,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Responsable">
-          <End Role="Membre" Type="Self.Membre" Multiplicity="0..1" />
+        <Association Name="FK_Responsable_Cascade">
+          <End Role="Membre" Type="Self.Membre" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Projet" Type="Self.Projet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Membre">
@@ -203,16 +205,15 @@
           <EntitySet Name="LeveeFonds" EntityType="Self.LeveeFonds" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Membre" EntityType="Self.Membre" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projet" EntityType="Self.Projet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Tresorier" EntityType="Self.Tresorier" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_CotisationMembre" Association="Self.FK_CotisationMembre">
+          <AssociationSet Name="FK_CotisationMembre_Cascade" Association="Self.FK_CotisationMembre_Cascade">
             <End Role="Membre" EntitySet="Membre" />
             <End Role="Cotisation" EntitySet="Cotisation" />
           </AssociationSet>
-          <AssociationSet Name="FK_DonDonateur" Association="Self.FK_DonDonateur">
+          <AssociationSet Name="FK_DonDonateur_Cascade" Association="Self.FK_DonDonateur_Cascade">
             <End Role="Donateur" EntitySet="Donateur" />
             <End Role="Don" EntitySet="Don" />
           </AssociationSet>
-          <AssociationSet Name="FK_DonLeveeFonds" Association="Self.FK_DonLeveeFonds">
+          <AssociationSet Name="FK_DonLeveeFonds_Cascade" Association="Self.FK_DonLeveeFonds_Cascade">
             <End Role="LeveeFonds" EntitySet="LeveeFonds" />
             <End Role="Don" EntitySet="Don" />
           </AssociationSet>
@@ -220,11 +221,11 @@
             <End Role="Projet" EntitySet="Projet" />
             <End Role="CompteRendu" EntitySet="CompteRendu" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProjetLeveeFonds" Association="Self.FK_ProjetLeveeFonds">
+          <AssociationSet Name="FK_ProjetLeveeFonds_Cascade" Association="Self.FK_ProjetLeveeFonds_Cascade">
             <End Role="Projet" EntitySet="Projet" />
             <End Role="LeveeFonds" EntitySet="LeveeFonds" />
           </AssociationSet>
-          <AssociationSet Name="FK_Responsable" Association="Self.FK_Responsable">
+          <AssociationSet Name="FK_Responsable_Cascade" Association="Self.FK_Responsable_Cascade">
             <End Role="Membre" EntitySet="Membre" />
             <End Role="Projet" EntitySet="Projet" />
           </AssociationSet>
@@ -255,7 +256,7 @@
           <Property Name="dateTransaction" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="montant" Type="Int32" Nullable="false" />
           <Property Name="nomUsager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Membre" Relationship="Self.FK_CotisationMembre" FromRole="Cotisation" ToRole="Membre" />
+          <NavigationProperty Name="Membre" Relationship="Self.FK_CotisationMembre_Cascade" FromRole="Cotisation" ToRole="Membre" />
         </EntityType>
         <EntityType Name="Don">
           <Key>
@@ -266,8 +267,8 @@
           <Property Name="montantDon" Type="Int32" Nullable="false" />
           <Property Name="idDonateur" Type="Int32" />
           <Property Name="idLeveeFonds" Type="Int32" />
-          <NavigationProperty Name="Donateur" Relationship="Self.FK_DonDonateur" FromRole="Don" ToRole="Donateur" />
-          <NavigationProperty Name="LeveeFond" Relationship="Self.FK_DonLeveeFonds" FromRole="Don" ToRole="LeveeFonds" />
+          <NavigationProperty Name="Donateur" Relationship="Self.FK_DonDonateur_Cascade" FromRole="Don" ToRole="Donateur" />
+          <NavigationProperty Name="LeveeFond" Relationship="Self.FK_DonLeveeFonds_Cascade" FromRole="Don" ToRole="LeveeFonds" />
         </EntityType>
         <EntityType Name="Donateur">
           <Key>
@@ -283,7 +284,7 @@
           <Property Name="provinceDonateur" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="cpDonateur" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="emailDonateur" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Dons" Relationship="Self.FK_DonDonateur" FromRole="Donateur" ToRole="Don" />
+          <NavigationProperty Name="Dons" Relationship="Self.FK_DonDonateur_Cascade" FromRole="Donateur" ToRole="Don" />
         </EntityType>
         <EntityType Name="Gestion">
           <Key>
@@ -302,8 +303,8 @@
           <Property Name="message" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="montantObtenu" Type="Int32" />
           <Property Name="idProjet" Type="Int32" />
-          <NavigationProperty Name="Dons" Relationship="Self.FK_DonLeveeFonds" FromRole="LeveeFonds" ToRole="Don" />
-          <NavigationProperty Name="Projet" Relationship="Self.FK_ProjetLeveeFonds" FromRole="LeveeFonds" ToRole="Projet" />
+          <NavigationProperty Name="Dons" Relationship="Self.FK_DonLeveeFonds_Cascade" FromRole="LeveeFonds" ToRole="Don" />
+          <NavigationProperty Name="Projet" Relationship="Self.FK_ProjetLeveeFonds_Cascade" FromRole="LeveeFonds" ToRole="Projet" />
         </EntityType>
         <EntityType Name="Membre">
           <Key>
@@ -325,8 +326,8 @@
           <Property Name="statut" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="dateProchaineCotisation" Type="DateTime" Precision="0" />
           <Property Name="montantProchaineCotisation" Type="Double" />
-          <NavigationProperty Name="Cotisations" Relationship="Self.FK_CotisationMembre" FromRole="Membre" ToRole="Cotisation" />
-          <NavigationProperty Name="Projets" Relationship="Self.FK_Responsable" FromRole="Membre" ToRole="Projet" />
+          <NavigationProperty Name="Cotisations" Relationship="Self.FK_CotisationMembre_Cascade" FromRole="Membre" ToRole="Cotisation" />
+          <NavigationProperty Name="Projets" Relationship="Self.FK_Responsable_Cascade" FromRole="Membre" ToRole="Projet" />
         </EntityType>
         <EntityType Name="Projet">
           <Key>
@@ -350,16 +351,8 @@
           <Property Name="idResponsable" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="visibilite" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CompteRendus" Relationship="Self.FK_ProjetCompteRendu_Cascade" FromRole="Projet" ToRole="CompteRendu" />
-          <NavigationProperty Name="LeveeFonds" Relationship="Self.FK_ProjetLeveeFonds" FromRole="Projet" ToRole="LeveeFonds" />
-          <NavigationProperty Name="Membre" Relationship="Self.FK_Responsable" FromRole="Projet" ToRole="Membre" />
-        </EntityType>
-        <EntityType Name="Tresorier">
-          <Key>
-            <PropertyRef Name="nomUsager" />
-          </Key>
-          <Property Name="nomUsager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="motPasse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="LeveeFonds" Relationship="Self.FK_ProjetLeveeFonds_Cascade" FromRole="Projet" ToRole="LeveeFonds" />
+          <NavigationProperty Name="Membre" Relationship="Self.FK_Responsable_Cascade" FromRole="Projet" ToRole="Membre" />
         </EntityType>
         <Association Name="FK_ProjetCompteRendu_Cascade">
           <End Role="Projet" Type="Self.Projet" Multiplicity="0..1">
@@ -375,8 +368,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CotisationMembre">
-          <End Role="Membre" Type="Self.Membre" Multiplicity="1" />
+        <Association Name="FK_CotisationMembre_Cascade">
+          <End Role="Membre" Type="Self.Membre" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Cotisation" Type="Self.Cotisation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Membre">
@@ -387,8 +382,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DonDonateur">
-          <End Role="Donateur" Type="Self.Donateur" Multiplicity="0..1" />
+        <Association Name="FK_DonDonateur_Cascade">
+          <End Role="Donateur" Type="Self.Donateur" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Don" Type="Self.Don" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Donateur">
@@ -399,8 +396,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DonLeveeFonds">
-          <End Role="LeveeFonds" Type="Self.LeveeFond" Multiplicity="0..1" />
+        <Association Name="FK_DonLeveeFonds_Cascade">
+          <End Role="LeveeFonds" Type="Self.LeveeFond" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Don" Type="Self.Don" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LeveeFonds">
@@ -411,8 +410,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProjetLeveeFonds">
-          <End Role="Projet" Type="Self.Projet" Multiplicity="0..1" />
+        <Association Name="FK_ProjetLeveeFonds_Cascade">
+          <End Role="Projet" Type="Self.Projet" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="LeveeFonds" Type="Self.LeveeFond" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Projet">
@@ -423,8 +424,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Responsable">
-          <End Role="Membre" Type="Self.Membre" Multiplicity="0..1" />
+        <Association Name="FK_Responsable_Cascade">
+          <End Role="Membre" Type="Self.Membre" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Projet" Type="Self.Projet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Membre">
@@ -444,28 +447,27 @@
           <EntitySet Name="LeveeFonds" EntityType="Self.LeveeFond" />
           <EntitySet Name="Membres" EntityType="Self.Membre" />
           <EntitySet Name="Projets" EntityType="Self.Projet" />
-          <EntitySet Name="Tresoriers" EntityType="Self.Tresorier" />
           <AssociationSet Name="FK_ProjetCompteRendu_Cascade" Association="Self.FK_ProjetCompteRendu_Cascade">
             <End Role="Projet" EntitySet="Projets" />
             <End Role="CompteRendu" EntitySet="CompteRendus" />
           </AssociationSet>
-          <AssociationSet Name="FK_CotisationMembre" Association="Self.FK_CotisationMembre">
+          <AssociationSet Name="FK_CotisationMembre_Cascade" Association="Self.FK_CotisationMembre_Cascade">
             <End Role="Membre" EntitySet="Membres" />
             <End Role="Cotisation" EntitySet="Cotisations" />
           </AssociationSet>
-          <AssociationSet Name="FK_DonDonateur" Association="Self.FK_DonDonateur">
+          <AssociationSet Name="FK_DonDonateur_Cascade" Association="Self.FK_DonDonateur_Cascade">
             <End Role="Donateur" EntitySet="Donateurs" />
             <End Role="Don" EntitySet="Dons" />
           </AssociationSet>
-          <AssociationSet Name="FK_DonLeveeFonds" Association="Self.FK_DonLeveeFonds">
+          <AssociationSet Name="FK_DonLeveeFonds_Cascade" Association="Self.FK_DonLeveeFonds_Cascade">
             <End Role="LeveeFonds" EntitySet="LeveeFonds" />
             <End Role="Don" EntitySet="Dons" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProjetLeveeFonds" Association="Self.FK_ProjetLeveeFonds">
+          <AssociationSet Name="FK_ProjetLeveeFonds_Cascade" Association="Self.FK_ProjetLeveeFonds_Cascade">
             <End Role="Projet" EntitySet="Projets" />
             <End Role="LeveeFonds" EntitySet="LeveeFonds" />
           </AssociationSet>
-          <AssociationSet Name="FK_Responsable" Association="Self.FK_Responsable">
+          <AssociationSet Name="FK_Responsable_Cascade" Association="Self.FK_Responsable_Cascade">
             <End Role="Membre" EntitySet="Membres" />
             <End Role="Projet" EntitySet="Projets" />
           </AssociationSet>
@@ -588,15 +590,6 @@
                 <ScalarProperty Name="dateProchainCompteRendu" ColumnName="dateProchainCompteRendu" />
                 <ScalarProperty Name="idResponsable" ColumnName="idResponsable" />
                 <ScalarProperty Name="visibilite" ColumnName="visibilite" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tresoriers">
-            <EntityTypeMapping TypeName="ProjetGoDataModel.Tresorier">
-              <MappingFragment StoreEntitySet="Tresorier">
-                <ScalarProperty Name="nomUsager" ColumnName="nomUsager" />
-                <ScalarProperty Name="motPasse" ColumnName="motPasse" />
-                <ScalarProperty Name="email" ColumnName="email" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
