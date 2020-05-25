@@ -156,8 +156,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProjetCompteRendu">
-          <End Role="Projet" Type="Self.Projet" Multiplicity="0..1" />
+        <Association Name="FK_ProjetCompteRendu_Cascade">
+          <End Role="Projet" Type="Self.Projet" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CompteRendu" Type="Self.CompteRendu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Projet">
@@ -214,7 +216,7 @@
             <End Role="LeveeFonds" EntitySet="LeveeFonds" />
             <End Role="Don" EntitySet="Don" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProjetCompteRendu" Association="Self.FK_ProjetCompteRendu">
+          <AssociationSet Name="FK_ProjetCompteRendu_Cascade" Association="Self.FK_ProjetCompteRendu_Cascade">
             <End Role="Projet" EntitySet="Projet" />
             <End Role="CompteRendu" EntitySet="CompteRendu" />
           </AssociationSet>
@@ -243,7 +245,7 @@
           <Property Name="realisationsReportees" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
           <Property Name="etatRisques" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
           <Property Name="idProjet" Type="Int32" />
-          <NavigationProperty Name="Projet" Relationship="Self.FK_ProjetCompteRendu" FromRole="CompteRendu" ToRole="Projet" />
+          <NavigationProperty Name="Projet" Relationship="Self.FK_ProjetCompteRendu_Cascade" FromRole="CompteRendu" ToRole="Projet" />
         </EntityType>
         <EntityType Name="Cotisation">
           <Key>
@@ -347,7 +349,7 @@
           <Property Name="dateProchainCompteRendu" Type="DateTime" Precision="0" />
           <Property Name="idResponsable" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="visibilite" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="CompteRendus" Relationship="Self.FK_ProjetCompteRendu" FromRole="Projet" ToRole="CompteRendu" />
+          <NavigationProperty Name="CompteRendus" Relationship="Self.FK_ProjetCompteRendu_Cascade" FromRole="Projet" ToRole="CompteRendu" />
           <NavigationProperty Name="LeveeFonds" Relationship="Self.FK_ProjetLeveeFonds" FromRole="Projet" ToRole="LeveeFonds" />
           <NavigationProperty Name="Membre" Relationship="Self.FK_Responsable" FromRole="Projet" ToRole="Membre" />
         </EntityType>
@@ -359,8 +361,10 @@
           <Property Name="motPasse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <Association Name="FK_ProjetCompteRendu">
-          <End Role="Projet" Type="Self.Projet" Multiplicity="0..1" />
+        <Association Name="FK_ProjetCompteRendu_Cascade">
+          <End Role="Projet" Type="Self.Projet" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CompteRendu" Type="Self.CompteRendu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Projet">
@@ -441,7 +445,7 @@
           <EntitySet Name="Membres" EntityType="Self.Membre" />
           <EntitySet Name="Projets" EntityType="Self.Projet" />
           <EntitySet Name="Tresoriers" EntityType="Self.Tresorier" />
-          <AssociationSet Name="FK_ProjetCompteRendu" Association="Self.FK_ProjetCompteRendu">
+          <AssociationSet Name="FK_ProjetCompteRendu_Cascade" Association="Self.FK_ProjetCompteRendu_Cascade">
             <End Role="Projet" EntitySet="Projets" />
             <End Role="CompteRendu" EntitySet="CompteRendus" />
           </AssociationSet>

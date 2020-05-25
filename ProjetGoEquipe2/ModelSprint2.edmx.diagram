@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1fe9c21b50f341e5a4d78a8b55483f50" Name="Diagram1">
+      <Diagram DiagramId="1a1a171c69dd43789f77ed0aa269ce27" Name="Diagram1">
         <EntityTypeShape EntityType="ProjetGoDataModel.CompteRendu" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjetGoDataModel.Cotisation" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjetGoDataModel.Don" Width="1.5" PointX="7.5" PointY="7.375" IsExpanded="true" />
@@ -14,7 +14,7 @@
         <EntityTypeShape EntityType="ProjetGoDataModel.Membre" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjetGoDataModel.Projet" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjetGoDataModel.Tresorier" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="ProjetGoDataModel.FK_ProjetCompteRendu" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjetGoDataModel.FK_ProjetCompteRendu_Cascade" ManuallyRouted="false" />
         <AssociationConnector Association="ProjetGoDataModel.FK_CotisationMembre" ManuallyRouted="false" />
         <AssociationConnector Association="ProjetGoDataModel.FK_DonDonateur" ManuallyRouted="false" />
         <AssociationConnector Association="ProjetGoDataModel.FK_DonLeveeFonds" ManuallyRouted="false" />
