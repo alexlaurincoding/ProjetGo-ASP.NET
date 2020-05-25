@@ -24,7 +24,7 @@ namespace ProjetGoEquipe2
         public Nullable<System.DateTime> dateDebut { get; set; }
         public Nullable<System.DateTime> dateFin { get; set; }
         public string message { get; set; }
-        public Nullable<int> montantObtenu { get; set; }
+        public Nullable<double> montantObtenu { get; set; }
         public Nullable<int> idProjet { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

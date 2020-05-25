@@ -32,9 +32,10 @@
           </Key>
           <Property Name="IdDon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="dateDon" Type="date" Nullable="false" />
-          <Property Name="montantDon" Type="int" Nullable="false" />
+          <Property Name="montantDon" Type="float" Nullable="false" />
           <Property Name="idDonateur" Type="int" />
           <Property Name="idLeveeFonds" Type="int" />
+          <Property Name="numTransaction" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Donateur">
           <Key>
@@ -66,7 +67,7 @@
           <Property Name="dateDebut" Type="date" />
           <Property Name="dateFin" Type="date" />
           <Property Name="message" Type="varchar" MaxLength="1000" />
-          <Property Name="montantObtenu" Type="int" />
+          <Property Name="montantObtenu" Type="float" />
           <Property Name="idProjet" Type="int" />
         </EntityType>
         <EntityType Name="Membre">
@@ -264,9 +265,10 @@
           </Key>
           <Property Name="IdDon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="dateDon" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="montantDon" Type="Int32" Nullable="false" />
+          <Property Name="montantDon" Type="Double" Nullable="false" />
           <Property Name="idDonateur" Type="Int32" />
           <Property Name="idLeveeFonds" Type="Int32" />
+          <Property Name="numTransaction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Donateur" Relationship="Self.FK_DonDonateur_Cascade" FromRole="Don" ToRole="Donateur" />
           <NavigationProperty Name="LeveeFond" Relationship="Self.FK_DonLeveeFonds_Cascade" FromRole="Don" ToRole="LeveeFonds" />
         </EntityType>
@@ -301,7 +303,7 @@
           <Property Name="dateDebut" Type="DateTime" Precision="0" />
           <Property Name="dateFin" Type="DateTime" Precision="0" />
           <Property Name="message" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="montantObtenu" Type="Int32" />
+          <Property Name="montantObtenu" Type="Double" />
           <Property Name="idProjet" Type="Int32" />
           <NavigationProperty Name="Dons" Relationship="Self.FK_DonLeveeFonds_Cascade" FromRole="LeveeFonds" ToRole="Don" />
           <NavigationProperty Name="Projet" Relationship="Self.FK_ProjetLeveeFonds_Cascade" FromRole="LeveeFonds" ToRole="Projet" />
@@ -509,6 +511,7 @@
                 <ScalarProperty Name="montantDon" ColumnName="montantDon" />
                 <ScalarProperty Name="idDonateur" ColumnName="idDonateur" />
                 <ScalarProperty Name="idLeveeFonds" ColumnName="idLeveeFonds" />
+                <ScalarProperty Name="numTransaction" ColumnName="numTransaction" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
