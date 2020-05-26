@@ -186,7 +186,30 @@ namespace ProjetGoEquipe2.Controllers
 
             LeveeFond lev = Singleton.Instance.db.LeveeFonds.Find(id);
 
+            if (lev == null || lev.Projet.idResponsable != (string)Session["Usager"])
+            {
+                return RedirectToAction("MesLevees");
+            }
+
             return View(lev);
+        }
+
+        // GET: LeveeFonds/Dons/5
+        public ActionResult Donateurs(int? id)
+        {
+            if (Session["Connected"] == null || (bool)Session["Connected"] == false)
+            {
+                return RedirectToAction("Identifier", "Membres");
+            }
+
+            Donateur donateur = Singleton.Instance.db.Donateurs.Find(id);
+
+            if (donateur == null)
+            {
+                return RedirectToAction("MesLevees");
+            }
+
+            return View(donateur);
         }
     }
 }

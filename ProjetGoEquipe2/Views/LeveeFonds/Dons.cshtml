@@ -44,7 +44,6 @@
 
                     <table class="table">
                         <tr>
-                            <th></th>
                             <th>
                                 Date du Don
                             </th>
@@ -59,11 +58,15 @@
                             <th>
                                 Montant
                             </th>
+
+                            <th></th>
+
                         </tr>
                         <tr>
 
                             @foreach (Don don in dons)
                             {
+
                                 if (don.dateDon == null)
                                 {
                                     <td>---</td>
@@ -100,6 +103,13 @@
                                 <td>
                                     @don.montantDon$
                                 </td>
+
+
+                                <td>
+                                    @Html.ActionLink("Détails sur le Donateur", "Donateurs", new { id = don.idDonateur })<br />
+
+                                </td>
+
                             }
 
                         </tr>
