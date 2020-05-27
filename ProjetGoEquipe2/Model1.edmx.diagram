@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5cbb5ac74b354274a22834494f27c5cb" Name="Diagram1">
+      <Diagram DiagramId="ad93738a24154f928532791c4bc9005f" Name="Diagram1">
         <EntityTypeShape EntityType="ProjetGoDataModel.CompteRendu" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjetGoDataModel.Cotisation" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjetGoDataModel.Don" Width="1.5" PointX="7.5" PointY="7.25" IsExpanded="true" />
