@@ -123,7 +123,7 @@
                                                 <p>@item.message</p>
                                                 <br />
                                                 <div class="form-actions no-color" style="text-align:right;">
-                                                    <button onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" type="button" class="btn btn-default" style="background-color:rgb(184, 210, 49)">Faire un Don</button>
+                                                    <button onclick="@("window.location.href='" + @Url.Action("Index", "Dons", new { id = item.IdLeveeFonds }) + "'");" type="button" class="btn btn-default" style="background-color:rgb(184, 210, 49)">Faire un Don</button>
                                                     <button onclick="@("window.location.href='" + @Url.Action("Projet", "Projets", new { id = item.idProjet }) + "'");" type="button" class="btn btn-default">Voir Projet</button>
                                                 </div>
                                             </li>
