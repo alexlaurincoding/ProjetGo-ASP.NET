@@ -62,12 +62,13 @@
                             <th></th>
 
                         </tr>
-                        <tr>
+                        
 
                             @foreach (Don don in dons)
                             {
+                                <tr>
 
-                                if (don.dateDon == null)
+                                @if (don.dateDon == null)
                                 {
                                     <td>---</td>
                                 }
@@ -78,7 +79,7 @@
                                     </td>
                                 }
 
-                                if (don.Donateur.prenomDonateur == null || don.Donateur.nomDonateur == null)
+                                @if (don.Donateur.prenomDonateur == null || don.Donateur.nomDonateur == null)
                                 {
                                     <td>---</td>
                                 }
@@ -89,7 +90,7 @@
                                     </td>
                                 }
 
-                                if (don.Donateur.emailDonateur == null)
+                                @if (don.Donateur.emailDonateur == null)
                                 {
                                     <td>---</td>
                                 }
@@ -109,10 +110,9 @@
                                     @Html.ActionLink("Détails sur le Donateur", "Donateurs", new { id = don.idDonateur })<br />
 
                                 </td>
+                                    </tr>
 
                             }
-
-                        </tr>
 
 
                     </table>
