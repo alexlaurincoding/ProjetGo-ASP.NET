@@ -142,7 +142,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Check.cs" />
     <Compile Include="CompteRendu.cs">
-      <DependentUpon>ModelSprint2.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\CompteRendusController.cs" />
     <Compile Include="Controllers\DesignController.cs" />
@@ -154,43 +154,43 @@
     <Compile Include="Controllers\ProjetsController.cs" />
     <Compile Include="Controllers\UtilsController.cs" />
     <Compile Include="Cotisation.cs">
-      <DependentUpon>ModelSprint2.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Don.cs">
-      <DependentUpon>ModelSprint2.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Donateur.cs">
-      <DependentUpon>ModelSprint2.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Gestion.cs">
-      <DependentUpon>ModelSprint2.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LeveeFond.cs">
-      <DependentUpon>ModelSprint2.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Membre.cs">
-      <DependentUpon>ModelSprint2.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelSprint2.Context.cs">
+    <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelSprint2.Context.tt</DependentUpon>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelSprint2.cs">
+    <Compile Include="Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelSprint2.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelSprint2.Designer.cs">
+    <Compile Include="Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelSprint2.edmx</DependentUpon>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Projet.cs">
-      <DependentUpon>ModelSprint2.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ThreadCompteRendus.cs" />
     <Compile Include="PaypalConfiguration.cs" />
@@ -216,6 +216,7 @@
     <Content Include="Content\Images\desroches.png" />
     <Content Include="Content\Images\devenirMembre.png" />
     <Content Include="Content\Images\devenirMembre2.jpg" />
+    <Content Include="Content\Images\faire-un-don-png-7.png" />
     <Content Include="Content\Images\faireundon.jpg" />
     <Content Include="Content\Images\grey-background-for-site-41148330.jpg" />
     <Content Include="Content\Images\history-clock.jpeg" />
@@ -243,24 +244,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="ModelSprint2.Context.tt">
+    <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelSprint2.edmx</DependentUpon>
-      <LastGenOutput>ModelSprint2.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="ModelSprint2.tt">
+    <Content Include="Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelSprint2.edmx</DependentUpon>
-      <LastGenOutput>ModelSprint2.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="ModelSprint2.edmx">
+    <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelSprint2.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="ModelSprint2.edmx.diagram">
-      <DependentUpon>ModelSprint2.edmx</DependentUpon>
+    <Content Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
