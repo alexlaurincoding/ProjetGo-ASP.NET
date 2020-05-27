@@ -120,6 +120,12 @@ namespace ProjetGoEquipe2.Controllers
                     ViewBag.Message = "La date de fin ne peut précéder la date de début.";
                     return View(projet);
                 }
+                if (Convert.ToDateTime(projet.debutEstime) < DateTime.Today)
+                {
+                    ViewBag.Erreur = "DebutPasse";
+                    ViewBag.Message = "La date de début ne peut être une date passée.";
+                    return View(projet);
+                }
 
                 int frequnceNum;
                 double budgetNum;

@@ -33,14 +33,15 @@
           <Property Name="IdDon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="dateDon" Type="date" Nullable="false" />
           <Property Name="montantDon" Type="float" Nullable="false" />
-          <Property Name="emailDonateur" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="idDonateur" Type="int" Nullable="false" />
           <Property Name="idLeveeFonds" Type="int" />
           <Property Name="numTransaction" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Donateur">
           <Key>
-            <PropertyRef Name="emailDonateur" />
+            <PropertyRef Name="idDonateur" />
           </Key>
+          <Property Name="idDonateur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nomDonateur" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="prenomDonateur" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="numeroTelDonateur" Type="varchar" MaxLength="20" />
@@ -133,10 +134,10 @@
           <End Role="Don" Type="Self.Don" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Donateur">
-              <PropertyRef Name="emailDonateur" />
+              <PropertyRef Name="idDonateur" />
             </Principal>
             <Dependent Role="Don">
-              <PropertyRef Name="emailDonateur" />
+              <PropertyRef Name="idDonateur" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -265,7 +266,7 @@
           <Property Name="IdDon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="dateDon" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="montantDon" Type="Double" Nullable="false" />
-          <Property Name="emailDonateur" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idDonateur" Type="Int32" Nullable="false" />
           <Property Name="idLeveeFonds" Type="Int32" />
           <Property Name="numTransaction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Donateur" Relationship="Self.FK_DonDonateur_Cascade" FromRole="Don" ToRole="Donateur" />
@@ -273,8 +274,9 @@
         </EntityType>
         <EntityType Name="Donateur">
           <Key>
-            <PropertyRef Name="emailDonateur" />
+            <PropertyRef Name="idDonateur" />
           </Key>
+          <Property Name="idDonateur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nomDonateur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="prenomDonateur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="numeroTelDonateur" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -389,10 +391,10 @@
           <End Role="Don" Type="Self.Don" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Donateur">
-              <PropertyRef Name="emailDonateur" />
+              <PropertyRef Name="idDonateur" />
             </Principal>
             <Dependent Role="Don">
-              <PropertyRef Name="emailDonateur" />
+              <PropertyRef Name="idDonateur" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -507,7 +509,7 @@
                 <ScalarProperty Name="IdDon" ColumnName="IdDon" />
                 <ScalarProperty Name="dateDon" ColumnName="dateDon" />
                 <ScalarProperty Name="montantDon" ColumnName="montantDon" />
-                <ScalarProperty Name="emailDonateur" ColumnName="emailDonateur" />
+                <ScalarProperty Name="idDonateur" ColumnName="idDonateur" />
                 <ScalarProperty Name="idLeveeFonds" ColumnName="idLeveeFonds" />
                 <ScalarProperty Name="numTransaction" ColumnName="numTransaction" />
               </MappingFragment>
@@ -516,6 +518,7 @@
           <EntitySetMapping Name="Donateurs">
             <EntityTypeMapping TypeName="ProjetGoDataModel.Donateur">
               <MappingFragment StoreEntitySet="Donateur">
+                <ScalarProperty Name="idDonateur" ColumnName="idDonateur" />
                 <ScalarProperty Name="nomDonateur" ColumnName="nomDonateur" />
                 <ScalarProperty Name="prenomDonateur" ColumnName="prenomDonateur" />
                 <ScalarProperty Name="numeroTelDonateur" ColumnName="numeroTelDonateur" />
