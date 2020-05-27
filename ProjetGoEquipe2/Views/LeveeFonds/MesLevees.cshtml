@@ -153,56 +153,58 @@
                                 if (item.Projet.idResponsable == (string)Session["Usager"] && item.dateFin < DateTime.Today)
                                 {
 
-                                    <tr>
-                                        <td style="font-style:italic">
-                                            Complété<br />
-                                            @Html.ActionLink("Détails", "Details", new { id = item.IdLeveeFonds })
-                                            <br />
-                                        </td>
+                    <tr>
+                        <td style="font-style:italic">
+                            Complété<br />
+                            @Html.ActionLink("Détails", "Details", new { id = item.IdLeveeFonds })
+                            <br />
+                        </td>
 
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Projet.titre)
-                                        </td>
-
-
-                                        @if (item.dateDebut == null)
-                                        {
-                                            <td> ---</td>
-                                        }
-                                        else
-                                        {
-
-                                            <td>
-                                                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dateDebut))
-                                            </td>
-                                        }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Projet.titre)
+                        </td>
 
 
-                                        @if (item.dateFin == null)
-                                        {
-                                            <td> ---</td>
-                                        }
-                                        else
-                                        {
+                        @if (item.dateDebut == null)
+                        {
+                            <td> ---</td>
+                        }
+                        else
+                        {
 
-                                            <td>
-                                                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dateFin))
-                                            </td>
-                                        }
-
-                                        @if (item.montantObtenu == null)
-                                        {
-                                            <td> ---</td>
-                                        }
-                                        else
-                                        {
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.montantObtenu)$
-                                            </td>
-                                        }
+                            <td>
+                                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dateDebut))
+                            </td>
+                        }
 
 
-                                    </tr>
+                        @if (item.dateFin == null)
+                        {
+                            <td> ---</td>
+                        }
+                        else
+                        {
+
+                            <td>
+                                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.dateFin))
+                            </td>
+                        }
+
+                        @if (item.montantObtenu == null)
+                        {
+                            <td> ---</td>
+                        }
+                        else
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.montantObtenu)$
+                            </td>
+                        }
+                        <td>@Html.ActionLink("Voir Infos", "Dons", new { id = item.IdLeveeFonds })</td>
+
+
+
+                    </tr>
                                 }
                             }
                         }

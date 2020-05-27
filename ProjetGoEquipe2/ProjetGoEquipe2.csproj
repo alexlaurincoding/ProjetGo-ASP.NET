@@ -325,6 +325,7 @@
     <Content Include="Views\Dons\DonCompleter.cshtml" />
     <Content Include="Views\Dons\DonAnnuler.cshtml" />
     <Content Include="Views\Dons\Index.cshtml" />
+    <Content Include="Views\LeveeFonds\Donateurs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

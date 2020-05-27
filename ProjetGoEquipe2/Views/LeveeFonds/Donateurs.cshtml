@@ -1,0 +1,163 @@
+﻿@model ProjetGoEquipe2.Donateur
+
+@{ 
+    double montantTotal = 0;
+
+    foreach (Don don in Singleton.Instance.db.Dons.Where(d => d.Donateur.emailDonateur == Model.emailDonateur).ToList())
+    {
+        montantTotal += don.montantDon;
+    }
+}
+
+
+<br />
+<h2>Page de @Session["Usager"]</h2>
+<hr />
+<br />
+
+
+
+<!-- Partie principale de la page -->
+<main role="main" class="container-fluid">
+    <div class="row">
+        @{
+
+            Html.RenderAction("Menus", "Design", new { Categorie = "M", Emphase = "LP" });
+        }
+        <div class="col-sm-9">
+            <div class="content-section main-section-top main-add">
+
+                <div class="content-section" id="sectionPrincipaleMembre">
+
+                    <h4 class="titre">
+                        Informations sur le Donateur
+                    </h4>
+                    <br />
+                    <div style="text-align:center;">
+                        @Html.ActionLink("Revenir à la liste de mes Levées de Fonds", "MesLevees", "LeveeFonds")
+                        <hr /><br />
+
+                              <dl class="dl-horizontal">
+
+                                  <dt>
+                                      Prénom
+                                  </dt>
+
+                                  @if (Model.prenomDonateur == null)
+                                  {
+                                      <dd> ---</dd>
+                                  }
+                                  else
+                                  {
+                                      <dd>
+                                          @Html.DisplayFor(model => model.prenomDonateur)
+                                      </dd>
+                                  }
+                                  <br />
+                                  <dt>
+                                      Nom
+                                  </dt>
+
+                                  @if (Model.nomDonateur == null)
+                                  {
+                                      <dd>---</dd>
+                                  }
+                                  else
+                                  {
+                                      <dd>
+                                          @Html.DisplayFor(model => model.nomDonateur)
+                                      </dd>
+                                  }
+                                  <br />
+                                  <dt>
+                                      Adresse
+                                  </dt>
+
+                                  @if (Model.adresseDonateur == null)
+                                  {
+                                      <dd>---</dd>
+                                  }
+                                  else
+                                  {
+                                      <dd>
+                                          @Html.DisplayFor(model => model.adresseDonateur)
+                                      </dd>
+                                  }
+                                  <br />
+                                  <dt>
+                                      Ville
+                                  </dt>
+
+                                  @if (Model.villeDonateur == null)
+                                  {
+                                      <dd>---</dd>
+                                  }
+                                  else
+                                  {
+                                      <dd>
+                                          @Html.DisplayFor(model => model.villeDonateur)
+                                      </dd>
+                                  }
+                                  <br />
+                                  <dt>
+                                      Province
+                                  </dt>
+
+                                  @if (Model.provinceDonateur == null)
+                                  {
+                                      <dd>---</dd>
+                                  }
+                                  else
+                                  {
+                                      <dd>
+                                          @Html.DisplayFor(model => model.provinceDonateur)
+                                      </dd>
+                                  }
+                                  <br />
+                                  <dt>
+                                      Code Postal
+                                  </dt>
+
+                                  @if (Model.cpDonateur == null)
+                                  {
+                                      <dd>---</dd>
+                                  }
+                                  else
+                                  {
+                                      <dd>
+                                          @Html.DisplayFor(model => model.cpDonateur)
+                                      </dd>
+                                  }
+                                  <br />
+                                  <dt>
+                                      Courriel
+                                  </dt>
+
+                                  @if (Model.emailDonateur == null)
+                                  {
+                                      <dd>---</dd>
+                                  }
+                                  else
+                                  {
+
+                                      <dd>
+                                          @Html.DisplayFor(model => model.emailDonateur)
+                                      </dd>
+                                  }
+                                  <br />
+                                  <dt>
+                                      Somme total des dons
+                                  </dt>
+
+                                    <dd>
+                                        @montantTotal$
+                                    </dd>
+
+                              </dl>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
