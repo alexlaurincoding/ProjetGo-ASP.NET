@@ -49,25 +49,28 @@
                                 {
                                     if (projet != null && projet.visibilite == "Public" && projet.idResponsable == (string)Session["Usager"])
                                     {
-
-                                        bool inclure = true;
-                                        foreach (var levee in projet.LeveeFonds)
+                                        if (projet.statut == "Actif")
                                         {
 
-                                            if (levee != null)
+                                            bool inclure = true;
+                                            foreach (var levee in projet.LeveeFonds)
                                             {
 
-                                                if (levee.dateFin >= DateTime.Today)
+                                                if (levee != null)
                                                 {
-                                                    inclure = false;
+
+                                                    if (levee.dateFin >= DateTime.Today)
+                                                    {
+                                                        inclure = false;
+                                                    }
                                                 }
                                             }
-                                        }
-                                        if (inclure == true)
-                                        {
+                                            if (inclure == true)
+                                            {
                                             <option value=@projet.idProjet>@projet.titre</option>
-                                        }
+                                            }
 
+                                        }
                                     }
                                 }
                             </select>
