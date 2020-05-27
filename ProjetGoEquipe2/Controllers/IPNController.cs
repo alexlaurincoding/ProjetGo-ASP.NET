@@ -126,7 +126,7 @@ namespace ProjetGoEquipe2.Controllers
                 Don don = new Don();
                 don.dateDon = DateTime.Today;
                 don.montantDon = montantDouble;
-                don.idDonateur = donateur.idDonateur;
+                don.emailDonateur = donateur.emailDonateur;
                 don.idLeveeFonds = idLevee;
                 don.numTransaction = idTransactionId;
 
