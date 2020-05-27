@@ -20,6 +20,7 @@ namespace ProjetGoEquipe2
             this.Dons = new HashSet<Don>();
         }
     
+        public int idDonateur { get; set; }
         public string nomDonateur { get; set; }
         public string prenomDonateur { get; set; }
         public string numeroTelDonateur { get; set; }

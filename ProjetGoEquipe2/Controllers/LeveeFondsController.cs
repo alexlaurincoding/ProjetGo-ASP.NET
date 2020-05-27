@@ -194,7 +194,7 @@ namespace ProjetGoEquipe2.Controllers
             return View(lev);
         }
 
-        // GET: LeveeFonds/Dons/5
+        // GET: LeveeFonds/Donateur/5
         public ActionResult Donateurs(int? id)
         {
             if (Session["Connected"] == null || (bool)Session["Connected"] == false)

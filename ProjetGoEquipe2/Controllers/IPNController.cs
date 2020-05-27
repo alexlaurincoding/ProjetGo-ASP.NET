@@ -93,7 +93,7 @@ namespace ProjetGoEquipe2.Controllers
                         break;
                     }
                 }
-                //Si donateur pas trouvé, l'ajotuer à la BD
+                //Si donateur pas trouvé, l'ajouter à la BD
                 if (donateurExistant == false)
                 {
                     donateur.nomDonateur = Request.Form["last_name"];
@@ -127,7 +127,7 @@ namespace ProjetGoEquipe2.Controllers
                 Don don = new Don();
                 don.dateDon = DateTime.Today;
                 don.montantDon = montantDouble;
-                don.emailDonateur = donateur.emailDonateur;
+                don.idDonateur = donateur.idDonateur;
                 don.idLeveeFonds = idLevee;
                 don.numTransaction = idTransactionId;
 
