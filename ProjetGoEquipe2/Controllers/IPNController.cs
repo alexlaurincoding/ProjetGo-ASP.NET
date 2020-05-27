@@ -89,6 +89,7 @@ namespace ProjetGoEquipe2.Controllers
                     if (d.emailDonateur == Request.Form["payer_email"])
                     {
                         donateur = d;
+                        donateurExistant = true;
                         break;
                     }
                 }
