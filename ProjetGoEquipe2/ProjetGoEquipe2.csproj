@@ -207,6 +207,7 @@
     <Content Include="Content\Images\apropos-projet.png" />
     <Content Include="Content\Images\background-grey2.jpg" />
     <Content Include="Content\Images\blury-background.jpg" />
+    <Content Include="Content\Images\cancelled.png" />
     <Content Include="Content\Images\cathal-mac-an-bheatha-YaE8m2Oj36I-unsplash.jpg" />
     <Content Include="Content\Images\charity-heart.jpg" />
     <Content Include="Content\Images\cle-success.png" />
@@ -328,6 +329,7 @@
     <Content Include="Views\Dons\DonAnnuler.cshtml" />
     <Content Include="Views\Dons\Index.cshtml" />
     <Content Include="Views\LeveeFonds\Donateurs.cshtml" />
+    <Content Include="Views\Membres\RenouvAbonnementCancel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
