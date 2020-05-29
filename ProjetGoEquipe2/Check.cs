@@ -18,7 +18,7 @@ namespace ProjetGoEquipe2
                 if (projet.dateProchainCompteRendu != null && projet.dateProchainCompteRendu < DateTime.Today)
                 {
                     DateTime? dateprochain = projet.dateProchainCompteRendu;
-                    string email = projet.Membre.email;
+                    string email = "girouxcoding@gmail.com";
                     string prenom = projet.Membre.prenom;
                     string titre = projet.titre;
                     envoyerEmailCRManquant(email, prenom, titre, dateprochain);

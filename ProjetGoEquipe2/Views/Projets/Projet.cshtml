@@ -55,7 +55,7 @@
                                         <p>@levee.message</p>
                                         <br />
                                         <div class="form-actions no-color" style="text-align:right;">
-                                            <button onclick="@("window.location.href='" + @Url.Action("Index", "CompteRendus") + "'");" type="button" class="btn btn-default" style="background-color:rgb(184, 210, 49)">Faire un Don</button>
+                                            <button onclick="@("window.location.href='" + @Url.Action("Index", "Dons", new { id = levee.IdLeveeFonds }) + "'");" type="button" class="btn btn-default" style="background-color:rgb(184, 210, 49)">Faire un Don</button>
                                         </div>
                                     </li>
                                 </ul>
