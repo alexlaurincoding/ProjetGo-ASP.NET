@@ -33,7 +33,7 @@ namespace ProjetGoEquipe2.Controllers
         [HttpPost]
         public ActionResult Inscription(Membre membre, string repeter)
         {
-
+            Console.WriteLine("Dans Membre, inscription()");
             if (membre.motPasse.IsNullOrWhiteSpace() || membre.nomUsager.IsNullOrWhiteSpace() || membre.nom.IsNullOrWhiteSpace() || membre.prenom.IsNullOrWhiteSpace() || membre.email.IsNullOrWhiteSpace())
             {
                 ViewBag.Erreur = "Oubli";

@@ -13,6 +13,7 @@ namespace ProjetGoEquipe2.Controllers
         // GET: Utils
         public ActionResult SendEmail()
         {
+            Console.WriteLine("Dans sendEmail()");
             if (Session["Connected"] == null || (bool)Session["Connected"] == false)
             {
                 return RedirectToAction("Identifier");
@@ -27,6 +28,7 @@ namespace ProjetGoEquipe2.Controllers
         [HttpPost]
         public ActionResult SendEmail(string receiver, string subject, string message)
         {
+            Console.WriteLine("Dans sendEmail " + receiver +  subject +  message + ")");
             try
             {
                 if (ModelState.IsValid)
